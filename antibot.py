@@ -130,7 +130,7 @@ def extraer_nombres_bots(archivo_entrada="botnames.txt"):
 
 def generar_script_autohotkey(nombres_bots, directorio_ahk=None):
     """
-    Genera script de AutoHotkey para ban masivo, con notificación única al final
+    Genera script de AutoHotkey para ban masivo, con pausa inicial de 3 segundos
     """
     if not nombres_bots:
         print("❌ No hay bots para procesar")
@@ -141,7 +141,7 @@ def generar_script_autohotkey(nombres_bots, directorio_ahk=None):
 
     archivo_ahk = directorio_ahk / "massive_ban.ahk"
 
-    # Generar contenido del script sin countdown ni notificaciones intermedias
+    # Generar contenido del script con pausa inicial de 3 segundos
     ahk_content = f'''#NoEnv
 SendMode Input
 SetWorkingDir %A_ScriptDir%
@@ -152,20 +152,30 @@ FileEncoding, UTF-8
 ; Variables globales
 totalBots := {len(nombres_bots)}
 
-; F12 para ban masivo automático (se inicia de inmediato)
+; F12 para ban masivo automático (con pausa inicial de 3 segundos)
 F12::
-    MsgBox, 4, ⚠️ Confirmación de Ban Masivo, ¿Estás seguro de banear %totalBots% bots?`nEsta acción no se puede deshacer.`nAsegúrate de tener el chat enfocado.
+    MsgBox, 4, ⚠️ Confirmación de Ban Masivo, ¿Estás seguro de banear %totalBots% bots?`nEsta acción no se puede deshacer.`n`n¡IMPORTANTE!`nTras confirmar tendrás 3 segundos para posicionar el cursor en el chat.
     IfMsgBox No
         return
 
-    ; Inicio inmediato del proceso de ban (sin countdown)
+    ; Countdown de 3 segundos para posicionarse
+    TrayTip, ⏳ Preparándose..., Tienes 3 segundos para hacer clic en el chat de Twitch, 1, 1
+    Sleep, 1000
+    TrayTip, ⏳ Preparándose..., 2 segundos restantes..., 1, 1
+    Sleep, 1000
+    TrayTip, ⏳ Preparándose..., 1 segundo restante..., 1, 1
+    Sleep, 1000
+    TrayTip, 🚀 ¡Iniciando!, Comenzando ban masivo ahora..., 1, 1
+
+    ; Pausa adicional para que aparezca la notificación
+    Sleep, 500
 '''
 
-    # Agregar comandos de ban individuales sin notificaciones intermedias
+    # Agregar comandos de ban individuales
     for nombre in nombres_bots:
         ahk_content += f'''    SendRaw, /ban {nombre}
     Send, {{Enter}}
-    Sleep, 100  ; Pausa mínima entre comandos
+    Sleep, 150  ; Pausa entre comandos (aumentada ligeramente)
 '''
 
     ahk_content += f'''
@@ -173,20 +183,30 @@ F12::
     TrayTip, ✅ Ban Masivo Completado, Se baneó a {len(nombres_bots)} bots., 3, 1
     return
 
-; F11 para timeout masivo (24h) - se inicia de inmediato
+; F11 para timeout masivo (24h) - con pausa inicial de 3 segundos
 F11::
-    MsgBox, 4, ⏱️ Confirmación de Timeout Masivo, ¿Timeout de 24 horas para %totalBots% bots?`nMenos severo que un ban permanente.
+    MsgBox, 4, ⏱️ Confirmación de Timeout Masivo, ¿Timeout de 24 horas para %totalBots% bots?`nMenos severo que un ban permanente.`n`n¡IMPORTANTE!`nTras confirmar tendrás 3 segundos para posicionar el cursor en el chat.
     IfMsgBox No
         return
 
-    ; Inicio inmediato del proceso de timeout (sin notificaciones intermedias)
+    ; Countdown de 3 segundos para posicionarse
+    TrayTip, ⏳ Preparándose..., Tienes 3 segundos para hacer clic en el chat de Twitch, 1, 1
+    Sleep, 1000
+    TrayTip, ⏳ Preparándose..., 2 segundos restantes..., 1, 1
+    Sleep, 1000
+    TrayTip, ⏳ Preparándose..., 1 segundo restante..., 1, 1
+    Sleep, 1000
+    TrayTip, 🚀 ¡Iniciando!, Comenzando timeout masivo ahora..., 1, 1
+
+    ; Pausa adicional para que aparezca la notificación
+    Sleep, 500
 '''
 
-    # Agregar comandos de timeout individuales sin notificaciones intermedias
+    # Agregar comandos de timeout individuales
     for nombre in nombres_bots:
         ahk_content += f'''    SendRaw, /timeout {nombre} 86400
     Send, {{Enter}}
-    Sleep, 100  ; Pausa mínima entre comandos
+    Sleep, 150  ; Pausa entre comandos (aumentada ligeramente)
 '''
 
     ahk_content += f'''
@@ -196,7 +216,7 @@ F11::
 
 ; F9 para mostrar ayuda
 F9::
-    MsgBox, 0, Instrucciones, F12=Ban masivo | F11=Timeout 24h | ESC=Salir
+    MsgBox, 0, Instrucciones, INSTRUCCIONES DE USO:`n`nF12 = Ban masivo (permanente)`nF11 = Timeout 24 horas`nF9 = Mostrar esta ayuda`nESC = Salir del script`n`n⚠️ IMPORTANTE:`n• Tras presionar F12 o F11 tienes 3 segundos`n• Haz clic rápidamente en el chat de Twitch`n• Asegúrate de tener permisos de moderador
     return
 
 ; ESC para salir
@@ -277,6 +297,7 @@ def main():
     print("🤖 GENERADOR DE COMANDOS DE BAN MASIVO")
     print("=" * 50)
     print("📝 Versión mejorada - Compatible con logs de Chatterino")
+    print("⏱️  NUEVA CARACTERÍSTICA: Pausa de 3 segundos para posicionarse")
     print()
 
     # 1. Extraer nombres de bots
@@ -312,7 +333,7 @@ def main():
 
     # Generar script AutoHotkey
     if generar_script_autohotkey(nombres_bots, directorio_ahk):
-        print("✅ Script AutoHotkey creado")
+        print("✅ Script AutoHotkey creado con pausa inicial de 3 segundos")
 
     # Generar listas de comandos
     generar_lista_comandos(nombres_bots)
@@ -322,10 +343,11 @@ def main():
     print(f"")
     print(f"🎮 OPCIÓN 1 - AutoHotkey (Automático):")
     print(f"   1. Ejecuta: {directorio_ahk}/massive_ban.ahk")
-    print(f"   2. Abre Chatterino/Twitch")
-    print(f"   3. Enfoca el chat")
-    print(f"   4. Presiona F12 (ban) o F11 (timeout)")
-    print(f"   5. Presiona F9 para ayuda")
+    print(f"   2. Abre Chatterino/Twitch en tu navegador")
+    print(f"   3. Presiona F12 (ban) o F11 (timeout)")
+    print(f"   4. ⚠️  ¡TIENES 3 SEGUNDOS! Haz clic rápidamente en el chat")
+    print(f"   5. El script comenzará automáticamente después de la cuenta atrás")
+    print(f"   6. Presiona F9 para ayuda en cualquier momento")
     print(f"")
     print(f"📝 OPCIÓN 2 - Manual (Copiar/Pegar):")
     print(f"   1. Abre 'comandos_ban.txt' o 'comandos_timeout.txt'")
@@ -336,6 +358,7 @@ def main():
     print(f"   • Asegúrate de tener permisos de moderador")
     print(f"   • Los bans (F12) son permanentes")
     print(f"   • Los timeouts (F11) duran 24 horas")
+    print(f"   • Tienes 3 segundos para posicionar el cursor tras confirmar")
     print(f"   • Revisa la lista antes de ejecutar")
     print(f"")
     print(f"✅ ¡Todo listo para usar!")

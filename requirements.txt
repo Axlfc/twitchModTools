@@ -3,3 +3,6 @@ psycopg2
 qdrant-client
 python-dotenv
 python-dateutil
+selenium
+webdriver-manager
+pyperclip

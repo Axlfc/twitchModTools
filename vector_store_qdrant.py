@@ -20,15 +20,14 @@ class QdrantVectorStore:
         self.config = config
         self.client = QdrantClient(url=config.QDRANT_URL)
         self.base_collection_name = config.QDRANT_COLLECTION
+        self.is_fresh_collection = False
 
         # Generar nombre de colección específico para el archivo
         if file_path:
             self.collection_name = self._generate_collection_name(file_path)
+            self._ensure_collection()
         else:
-            self.collection_name = None  # Se asignará más tarde al procesar cada archivo
-            self.is_fresh_collection = False  # Por defecto, asumimos que existe
-
-        self._ensure_collection()
+            self.collection_name = None  # No inicializar colección aún
 
     def set_collection_for_file(self, file_path: str):
         """Genera nombre de colección a partir del archivo y crea si no existe"""
@@ -128,6 +127,10 @@ class QdrantVectorStore:
 
     def _ensure_collection(self):
         """Asegura que la colección existe"""
+        if not self.collection_name:
+            print("⚠️ No se ha definido un nombre de colección válido (None). Se omite la creación.")
+            return
+
         try:
             collections = self.client.get_collections().collections
             collection_names = [c.name for c in collections]
