@@ -6,3 +6,5 @@ python-dateutil
 selenium
 webdriver-manager
 pyperclip
+beautifulsoup4
+lxml
