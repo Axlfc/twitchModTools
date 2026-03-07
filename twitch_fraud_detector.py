@@ -8,8 +8,8 @@
 
 Uso:
     python twitch_fraud_detector.py <channel_name>
-    python twitch_fraud_detector.py willyrex_fanboy
-    python twitch_fraud_detector.py --demo willyrex_fanboy
+    python twitch_fraud_detector.py some_channel
+    python twitch_fraud_detector.py --demo some_channel
 """
 
 import sys
@@ -82,20 +82,21 @@ BENCHMARKS = {
     "drip_min": 8.0,
 }
 
-# ── DEMO DATA (para canales sin datos reales disponibles) ────────────────────
+# ── DEMO DATA (perfil genérico para pruebas sin datos reales) ────────────────
+# Representa un canal de ejemplo con señales de botting para testing.
 DEMO_PROFILES = {
-    "willyrex_fanboy": {
-        "followers": 26382,
-        "avg_ccv_30d": 30,
-        "peak_ccv": 94,
-        "follows_per_hour": 19.2,
-        "hours_streamed_30d": 45,
+    "example_fraud_channel": {
+        "followers": 25000,
+        "avg_ccv_30d": 28,
+        "peak_ccv": 90,
+        "follows_per_hour": 18.0,
+        "hours_streamed_30d": 42,
         "mature": False,
         "partner": False,
         "affiliate": True,
-        "created": "2022-08-15",
+        "created": "2022-01-01",
         "growth_pattern": "linear",   # linear | spiky | irregular
-        "top_games": ["Just Chatting", "Minecraft"],
+        "top_games": ["Just Chatting"],
         "language": "es",
     }
 }
@@ -186,11 +187,11 @@ def get_channel_data(channel: str, use_demo: bool = False) -> tuple[dict, bool]:
     print(clr("  → Generando perfil de análisis con datos de ejemplo", Y))
     return {
         "channel": channel,
-        "followers": 26382,
-        "avg_ccv_30d": 30,
-        "peak_ccv": 94,
-        "follows_per_hour": 19.2,
-        "hours_streamed_30d": 45,
+        "followers": 25000,
+        "avg_ccv_30d": 28,
+        "peak_ccv": 90,
+        "follows_per_hour": 18.0,
+        "hours_streamed_30d": 42,
         "partner": False,
         "affiliate": True,
         "growth_pattern": "unknown",
@@ -459,7 +460,7 @@ def main():
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog=__doc__,
     )
-    parser.add_argument("channel", help="Nombre del canal de Twitch (ej: willyrex_fanboy)")
+    parser.add_argument("channel", help="Nombre del canal de Twitch a analizar")
     parser.add_argument("--demo", action="store_true", help="Usar datos de demostración (sin scraping)")
     parser.add_argument("--json", action="store_true", help="Output en formato JSON")
     parser.add_argument(
