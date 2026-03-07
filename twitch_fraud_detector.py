@@ -304,7 +304,8 @@ def analyze_fraud(data: dict) -> tuple[float, list[FraudSignal], dict]:
         name      = "Sin verificación Partner/Marca",
         weight    = 0.08,
         triggered = not data.get("partner", False) and followers > 15_000,
-        value     = "Affiliate / Sin Partner" if data.get("affiliate") else "Sin estado",
+        value     = ("Partner" if data.get("partner") else
+                     "Affiliate" if data.get("affiliate") else "Sin estado"),
         expected  = "Partner esperado en >15K con crecimiento real",
         severity  = "LOW",
     ))
@@ -410,8 +411,17 @@ def origin_block(origins: list) -> str:
         conf_bar = G if o["conf"] > 70 else (Y if o["conf"] > 40 else DIM)
         bar = clr("█" * (o["conf"] // 10), conf_bar) + clr("░" * (10 - o["conf"] // 10), DIM)
         out.append(f"\n  {o['icon']}  {clr(o['type'], BLD, W)}  {bar} {clr(str(o['conf'])+'%', conf_bar)}")
-        for chunk in [o["detail"][i:i+70] for i in range(0, len(o["detail"]), 70)]:
-            out.append(f"     {clr(chunk, DIM)}")
+        # Wrap por palabras en lugar de por bytes para evitar cortes mid-char
+        words = o["detail"].split()
+        line, max_w = [], 70
+        for word in words:
+            if sum(len(w) for w in line) + len(line) + len(word) > max_w:
+                out.append(f"     {clr(' '.join(line), DIM)}")
+                line = [word]
+            else:
+                line.append(word)
+        if line:
+            out.append(f"     {clr(' '.join(line), DIM)}")
     return "\n".join(out)
 
 def tos_assessment(prob: float, signals: list) -> str:
