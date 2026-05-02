@@ -66,7 +66,8 @@ class DatabaseManager:
             keywords_detected TEXT[],
             analyzed_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
             model_used VARCHAR(100),
-            qdrant_point_id VARCHAR(100)
+            qdrant_point_id VARCHAR(100),
+            detected_fallacies JSONB
         );
 
         CREATE TABLE IF NOT EXISTS user_stats (
@@ -166,13 +167,15 @@ class DatabaseManager:
                             message_id, username, message_text, timestamp, file_source,
                             toxicity_score, spam_probability, sentiment,
                             categories, requires_action, action_type, reasoning,
-                            keywords_detected, model_used, qdrant_point_id
+                            keywords_detected, model_used, qdrant_point_id,
+                            detected_fallacies
                         )
                         VALUES (
                             %(message_id)s, %(username)s, %(text)s, %(timestamp)s, %(file_source)s,
                             %(toxicity_score)s, %(spam_probability)s, %(sentiment)s,
                             %(categories)s, %(requires_action)s, %(action_type)s, %(reasoning)s,
-                            %(keywords)s, %(model_used)s, %(point_id)s
+                            %(keywords)s, %(model_used)s, %(point_id)s,
+                            %(fallacies)s
                         )
                     """, {
                         "message_id": message_id,
@@ -189,7 +192,8 @@ class DatabaseManager:
                         "reasoning": analysis.get("reasoning", ""),
                         "keywords": analysis.get("keywords_detected", []),
                         "model_used": analysis.get("model_used", "ollama"),
-                        "point_id": point_id
+                        "point_id": point_id,
+                        "fallacies": json.dumps(analysis.get("fallacies", []))
                     })
 
                     # Actualizar estadísticas de usuario solo si se insertó

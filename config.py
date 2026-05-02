@@ -15,25 +15,25 @@ def get_required_env(key: str) -> str:
 @dataclass
 class Config:
     # === OLLAMA ===
-    OLLAMA_URL: str = os.getenv("OLLAMA_URL")
-    OLLAMA_MODEL: str = os.getenv("OLLAMA_MODEL")
-    EMBEDDING_MODEL: str = os.getenv("EMBEDDING_MODEL")
+    OLLAMA_URL: str = os.getenv("OLLAMA_URL", "http://localhost:11434")
+    OLLAMA_MODEL: str = os.getenv("OLLAMA_MODEL", "llama3")
+    EMBEDDING_MODEL: str = os.getenv("EMBEDDING_MODEL", "mxbai-embed-large")
 
     # === QDRANT ===
-    QDRANT_URL: str = os.getenv("QDRANT_URL")
-    QDRANT_COLLECTION: str = os.getenv("QDRANT_COLLECTION")
+    QDRANT_URL: str = os.getenv("QDRANT_URL", "http://localhost:6333")
+    QDRANT_COLLECTION: str = os.getenv("QDRANT_COLLECTION", "twitch_messages")
 
     # === PostgreSQL (⚠️ sin defaults para password) ===
-    POSTGRES_HOST: str = os.getenv("POSTGRES_HOST")
-    POSTGRES_PORT: int = int(os.getenv("POSTGRES_PORT"))
-    POSTGRES_USER: str = os.getenv("POSTGRES_USER")
+    POSTGRES_HOST: str = os.getenv("POSTGRES_HOST", "localhost")
+    POSTGRES_PORT: int = int(os.getenv("POSTGRES_PORT", "5432"))
+    POSTGRES_USER: str = os.getenv("POSTGRES_USER", "postgres")
     POSTGRES_PASSWORD: str = get_required_env("POSTGRES_PASSWORD")
-    POSTGRES_DB: str = os.getenv("POSTGRES_DB")
+    POSTGRES_DB: str = os.getenv("POSTGRES_DB", "twitch_mod")
 
     # === n8n ===
     N8N_ENCRYPTION_KEY: str = get_required_env("N8N_ENCRYPTION_KEY")
     N8N_JWT_SECRET: str = get_required_env("N8N_USER_MANAGEMENT_JWT_SECRET")
-    MCP_BRAVE_API_KEY: str = os.getenv("MCP_BRAVE_API_KEY")
+    MCP_BRAVE_API_KEY: str = os.getenv("MCP_BRAVE_API_KEY", "")
     WEBHOOK_URL: Optional[str] = os.getenv("WEBHOOK_URL")
 
     # === Postiz ===

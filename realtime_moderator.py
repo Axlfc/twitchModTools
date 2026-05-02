@@ -15,6 +15,7 @@ from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 
 from analyzer_ollama import OllamaAnalyzer
+from fallacy_detector import FallacyAnalyzer
 from chatterino_parser import ChatterinoParser
 from database_manager import DatabaseManager
 from vector_store_qdrant import QdrantVectorStore
@@ -42,6 +43,7 @@ class OptimizedModeradorSemantico:
         self.config = config
         self.parser = ChatterinoParser()
         self.analyzer = OllamaAnalyzer(self.config)
+        self.fallacy_analyzer = FallacyAnalyzer(self.config, self.analyzer)
         self.vector_store = QdrantVectorStore(self.config)
         self.db = DatabaseManager(self.config)
         self.streamer_username = "niaghtmares"
@@ -73,7 +75,7 @@ class OptimizedModeradorSemantico:
             with self.db.get_connection() as conn:
                 with conn.cursor() as cur:
                     cur.execute("""
-                        SELECT message_id FROM moderation_logs 
+                        SELECT message_id FROM moderation_logs
                         WHERE analyzed_at > %s
                         ORDER BY analyzed_at DESC
                     """, (datetime.now() - timedelta(hours=24),))
@@ -184,6 +186,10 @@ class OptimizedModeradorSemantico:
 
                 # Análisis con IA
                 analysis = self.analyzer.analyze_message(message)
+
+                # Detect fallacies
+                analysis = self.fallacy_analyzer.update_analysis_dict(message['text'], analysis)
+
                 embedding = self.analyzer.get_embedding(message['text'])
 
                 if embedding:
@@ -222,6 +228,7 @@ class OptimizedModeradorSemantico:
             'action': analysis['action_type'],
             'reason': analysis['reasoning'],
             'categories': analysis['categories'],
+            'fallacies': analysis.get('fallacies', []),
             'priority': self._calculate_priority(analysis)
         }
 
@@ -441,4 +448,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-

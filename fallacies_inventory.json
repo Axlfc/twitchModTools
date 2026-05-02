@@ -1,0 +1,2292 @@
+[
+    {
+        "id": "F001",
+        "name": "Afirmación del consecuente",
+        "part": "PARTE I — FALACIAS FORMALES",
+        "block": "BLOQUE 1 · Falacias silogísticas clásicas",
+        "severity": 3,
+        "description": "El hecho de que la consecuencia sea verdadera no valida el antecedente. El condicional no es bicondicional.",
+        "example": "\"Si hay infección, habrá fiebre. Hay fiebre. Luego hay infección.\" (la fiebre puede tener otras causas)",
+        "form": "Si P → Q; Q; ∴ P"
+    },
+    {
+        "id": "F002",
+        "name": "Negación del antecedente",
+        "part": "PARTE I — FALACIAS FORMALES",
+        "block": "BLOQUE 1 · Falacias silogísticas clásicas",
+        "severity": 3,
+        "description": "La falsedad del antecedente no implica la falsedad del consecuente.",
+        "example": "\"Si estudias, aprobarás. No has estudiado. Luego, no aprobarás.\" (podrías aprobar de otras formas)",
+        "form": "Si P → Q; ¬P; ∴ ¬Q"
+    },
+    {
+        "id": "F003",
+        "name": "Cuatro términos",
+        "part": "PARTE I — FALACIAS FORMALES",
+        "block": "BLOQUE 1 · Falacias silogísticas clásicas",
+        "severity": 3,
+        "description": "Un silogismo que aparenta tener tres términos pero usa cuatro porque un término cambia de significado entre premisas.",
+        "example": "\"El fin justifica los medios. La muerte es el fin de la vida. Luego, la muerte justifica los medios.\" (equivocación sobre \"fin\")",
+        "form": ""
+    },
+    {
+        "id": "F004",
+        "name": "Indistribución del término medio",
+        "part": "PARTE I — FALACIAS FORMALES",
+        "block": "BLOQUE 1 · Falacias silogísticas clásicas",
+        "severity": 3,
+        "description": "El término medio no está distribuido en ninguna premisa, rompiendo la validez del silogismo.",
+        "example": "\"Todos los perros son animales. Algunos animales son gatos. Luego, algunos perros son gatos.\" (el término medio \"animales\" no está distribuido)",
+        "form": ""
+    },
+    {
+        "id": "F005",
+        "name": "Ilícito mayor",
+        "part": "PARTE I — FALACIAS FORMALES",
+        "block": "BLOQUE 1 · Falacias silogísticas clásicas",
+        "severity": 3,
+        "description": "El término mayor está distribuido en la conclusión pero no en la premisa mayor, tomando más extensión de la que se le había concedido.",
+        "example": "\"Todos los humanos son mortales. Ningún ángel es humano. Luego, ningún ángel es mortal.\" (mortal queda distribuido indebidamente)",
+        "form": ""
+    },
+    {
+        "id": "F006",
+        "name": "Ilícito menor",
+        "part": "PARTE I — FALACIAS FORMALES",
+        "block": "BLOQUE 1 · Falacias silogísticas clásicas",
+        "severity": 3,
+        "description": "El término menor está distribuido en la conclusión pero no en la premisa menor.",
+        "example": "",
+        "form": ""
+    },
+    {
+        "id": "F007",
+        "name": "Dos premisas negativas",
+        "part": "PARTE I — FALACIAS FORMALES",
+        "block": "BLOQUE 1 · Falacias silogísticas clásicas",
+        "severity": 3,
+        "description": "De dos premisas negativas no puede extraerse ninguna conclusión positiva ni negativa válida.",
+        "example": "\"Ningún pez es mamífero. Ningún reptil es pez. ∴ ?\" (nada puede concluirse)",
+        "form": ""
+    },
+    {
+        "id": "F008",
+        "name": "Dos premisas particulares",
+        "part": "PARTE I — FALACIAS FORMALES",
+        "block": "BLOQUE 1 · Falacias silogísticas clásicas",
+        "severity": 3,
+        "description": "De dos premisas particulares no puede obtenerse una conclusión universal válida.",
+        "example": "",
+        "form": ""
+    },
+    {
+        "id": "F009",
+        "name": "Conclusión más fuerte que las premisas",
+        "part": "PARTE I — FALACIAS FORMALES",
+        "block": "BLOQUE 1 · Falacias silogísticas clásicas",
+        "severity": 3,
+        "description": "La conclusión es universal o necesaria cuando las premisas solo permiten una conclusión particular o contingente.",
+        "example": "",
+        "form": ""
+    },
+    {
+        "id": "F010",
+        "name": "Silogismo disyuntivo incompleto",
+        "part": "PARTE I — FALACIAS FORMALES",
+        "block": "BLOQUE 1 · Falacias silogísticas clásicas",
+        "severity": 2,
+        "description": "",
+        "example": "",
+        "form": "P ∨ Q; ¬P; ∴ Q — cuando la disyunción no es exhaustiva y existen otras alternativas no consideradas."
+    },
+    {
+        "id": "F011",
+        "name": "Generalización existencial incorrecta",
+        "part": "PARTE I — FALACIAS FORMALES",
+        "block": "BLOQUE 2 · Falacias de cuantificadores",
+        "severity": 3,
+        "description": "Inferir que algo existe en particular a partir de una verdad universal sin verificar la existencia del individuo.",
+        "example": "\"Todos los unicornios tienen cuerno. Luego, existe al menos un unicornio con cuerno.\"",
+        "form": ""
+    },
+    {
+        "id": "F012",
+        "name": "Error de cuantificador intercambiado",
+        "part": "PARTE I — FALACIAS FORMALES",
+        "block": "BLOQUE 2 · Falacias de cuantificadores",
+        "severity": 3,
+        "description": "Confundir \"∀x ∃y R(x,y)\" con \"∃y ∀x R(x,y)\".",
+        "example": "\"Todos aman a alguien\" ≠ \"Hay alguien a quien todos aman.\"",
+        "form": ""
+    },
+    {
+        "id": "F013",
+        "name": "Generalización de casos vacíos",
+        "part": "PARTE I — FALACIAS FORMALES",
+        "block": "BLOQUE 2 · Falacias de cuantificadores",
+        "severity": 2,
+        "description": "Tratar una verdad vacua (verdadera porque el antecedente es imposible) como si tuviera contenido sustantivo.",
+        "example": "usar \"Todos los unicornios son mansos\" como premisa sustantiva en un argumento sobre mansedumbre.",
+        "form": ""
+    },
+    {
+        "id": "F014",
+        "name": "Error de modalidad básico",
+        "part": "PARTE I — FALACIAS FORMALES",
+        "block": "BLOQUE 3 · Falacias modales",
+        "severity": 3,
+        "description": "Confundir necesidad con posibilidad, o lo contingente con lo imposible.",
+        "example": "\"Es posible que llueva. Luego, necesariamente lloverá en algún momento.\" (non sequitur modal)",
+        "form": ""
+    },
+    {
+        "id": "F015",
+        "name": "Necesitación errónea",
+        "part": "PARTE I — FALACIAS FORMALES",
+        "block": "BLOQUE 3 · Falacias modales",
+        "severity": 3,
+        "description": "Inferir que algo es necesario porque siempre ha ocurrido: confusión entre necesidad lógica y regularidad empírica.",
+        "example": "\"El sol siempre ha salido. Luego, es lógicamente necesario que salga mañana.\"",
+        "form": ""
+    },
+    {
+        "id": "F016",
+        "name": "Confusión de dicto / de re",
+        "part": "PARTE I — FALACIAS FORMALES",
+        "block": "BLOQUE 3 · Falacias modales",
+        "severity": 3,
+        "description": "Confundir la necesidad de una proposición (de dicto) con la necesidad de que una propiedad se aplique a un objeto (de re).",
+        "example": "\"Necesariamente el número de planetas es > 0\" (de dicto, analítica) ≠ \"El número de planetas tiene necesariamente esa cantidad\" (de re, falsa).",
+        "form": ""
+    },
+    {
+        "id": "F017",
+        "name": "Falacia de la posibilidad como probabilidad",
+        "part": "PARTE I — FALACIAS FORMALES",
+        "block": "BLOQUE 3 · Falacias modales",
+        "severity": 2,
+        "description": "Tratar \"es posible que X\" como si X tuviera probabilidad significativa o alta.",
+        "example": "\"Es posible que este medicamento cause daño cerebral\" usado para justificar su prohibición sin datos de frecuencia.",
+        "form": ""
+    },
+    {
+        "id": "F018",
+        "name": "Determinismo retrospectivo",
+        "part": "PARTE I — FALACIAS FORMALES",
+        "block": "BLOQUE 3 · Falacias modales",
+        "severity": 2,
+        "description": "Porque algo ocurrió, era inevitable que ocurriera. Confunde necesidad lógica con necesidad fáctica post-hoc.",
+        "example": "\"La Primera Guerra Mundial tenía que estallar; las condiciones lo hacían inevitable.\" (confunde explicación con necesidad lógica)",
+        "form": ""
+    },
+    {
+        "id": "F019",
+        "name": "Falacia del hombre enmascarado",
+        "part": "PARTE I — FALACIAS FORMALES",
+        "block": "BLOQUE 3 · Falacias modales",
+        "severity": 3,
+        "description": "Aplicar el principio de identidad de indiscernibles en contextos intensionales donde no aplica.",
+        "example": "\"Sé quién es el alcalde. No sé quién es el asesino. Luego el alcalde no es el asesino.\"",
+        "form": "Sé que A es F. No sé que B es F. ∴ A ≠ B. (inválido si el contexto es intensional)"
+    },
+    {
+        "id": "F020",
+        "name": "Non sequitur formal",
+        "part": "PARTE I — FALACIAS FORMALES",
+        "block": "BLOQUE 4 · Otras falacias formales",
+        "severity": 3,
+        "description": "La conclusión no se sigue de las premisas por ninguna regla de inferencia reconocible.",
+        "example": "",
+        "form": ""
+    },
+    {
+        "id": "F021",
+        "name": "Afirmación de un disyunto en disyunción inclusiva",
+        "part": "PARTE I — FALACIAS FORMALES",
+        "block": "BLOQUE 4 · Otras falacias formales",
+        "severity": 2,
+        "description": "En una disyunción inclusiva (P ∨ Q), afirmar P no permite negar Q.",
+        "example": "\"O estudia o trabaja. Estudia. Luego no trabaja.\" (puede hacer ambas)",
+        "form": ""
+    },
+    {
+        "id": "F022",
+        "name": "Falacia de la transitividad incorrecta",
+        "part": "PARTE I — FALACIAS FORMALES",
+        "block": "BLOQUE 4 · Otras falacias formales",
+        "severity": 3,
+        "description": "Asumir que una relación es transitiva cuando no lo es.",
+        "example": "\"Pedro es amigo de Juan. Juan es amigo de María. Luego, Pedro es amigo de María.\" (la amistad no es transitiva necesariamente)",
+        "form": ""
+    },
+    {
+        "id": "F023",
+        "name": "Equivocación",
+        "part": "PARTE II — FALACIAS DE AMBIGÜEDAD",
+        "block": "BLOQUE 4 · Otras falacias formales",
+        "severity": 3,
+        "description": "Usar una misma palabra con dos significados distintos dentro del mismo argumento.",
+        "example": "\"Las leyes de la naturaleza son leyes. Las leyes las hacen los hombres. Luego, los hombres hicieron las leyes de la naturaleza.\"",
+        "form": ""
+    },
+    {
+        "id": "F024",
+        "name": "Anfibología",
+        "part": "PARTE II — FALACIAS DE AMBIGÜEDAD",
+        "block": "BLOQUE 4 · Otras falacias formales",
+        "severity": 2,
+        "description": "Ambigüedad gramatical o sintáctica que hace que una premisa pueda interpretarse de formas contradictorias.",
+        "example": "\"Vi al hombre con el telescopio.\" (¿quién tiene el telescopio?)",
+        "form": ""
+    },
+    {
+        "id": "F025",
+        "name": "Acento",
+        "part": "PARTE II — FALACIAS DE AMBIGÜEDAD",
+        "block": "BLOQUE 4 · Otras falacias formales",
+        "severity": 2,
+        "description": "Cambiar el significado de una proposición por el énfasis en una palabra diferente.",
+        "example": "\"No deberías robar a tus AMIGOS.\" (implica que sí puedes robar a otros)",
+        "form": ""
+    },
+    {
+        "id": "F026",
+        "name": "Composición lógica",
+        "part": "PARTE II — FALACIAS DE AMBIGÜEDAD",
+        "block": "BLOQUE 4 · Otras falacias formales",
+        "severity": 3,
+        "description": "Atribuir al todo las propiedades de sus partes.",
+        "example": "\"Cada átomo de este muro es invisible. Luego, el muro es invisible.\"",
+        "form": ""
+    },
+    {
+        "id": "F027",
+        "name": "División lógica",
+        "part": "PARTE II — FALACIAS DE AMBIGÜEDAD",
+        "block": "BLOQUE 4 · Otras falacias formales",
+        "severity": 3,
+        "description": "Atribuir a las partes las propiedades del todo.",
+        "example": "\"Esta empresa gana millones. Tu departamento forma parte de ella. Luego, tu departamento gana millones.\"",
+        "form": ""
+    },
+    {
+        "id": "F028",
+        "name": "Composición verbal aristotélica",
+        "part": "PARTE II — FALACIAS DE AMBIGÜEDAD",
+        "block": "BLOQUE 4 · Otras falacias formales",
+        "severity": 2,
+        "description": "Ambigüedad producida por juntar palabras que deben leerse separadas, distinta de la composición lógica. Ejemplo clásico: \"Puede caminar mientras está sentado\" leído como \"puede-caminar-mientras-está-sentado\" (una capacidad) vs \"puede / caminar mientras está sentado\" (dos acciones).",
+        "example": "",
+        "form": ""
+    },
+    {
+        "id": "F029",
+        "name": "División verbal aristotélica",
+        "part": "PARTE II — FALACIAS DE AMBIGÜEDAD",
+        "block": "BLOQUE 4 · Otras falacias formales",
+        "severity": 2,
+        "description": "Ambigüedad producida por separar lo que debe leerse unido.",
+        "example": "",
+        "form": ""
+    },
+    {
+        "id": "F030",
+        "name": "Figura de dicción",
+        "part": "PARTE II — FALACIAS DE AMBIGÜEDAD",
+        "block": "BLOQUE 4 · Otras falacias formales",
+        "severity": 1,
+        "description": "Tratar expresiones metafóricas, figuradas o idiomáticas como si fueran literales, o viceversa.",
+        "example": "Tomar \"estoy muerto de hambre\" como afirmación médica.",
+        "form": ""
+    },
+    {
+        "id": "F031",
+        "name": "Reificación",
+        "part": "PARTE II — FALACIAS DE AMBIGÜEDAD",
+        "block": "BLOQUE 4 · Otras falacias formales",
+        "severity": 2,
+        "description": "Tratar una abstracción como si fuera una entidad concreta con agencia causal.",
+        "example": "\"La historia nos enseña que los imperios caen.\" (la historia no es un agente)",
+        "form": ""
+    },
+    {
+        "id": "F032",
+        "name": "Equivocación de proceso/producto",
+        "part": "PARTE II — FALACIAS DE AMBIGÜEDAD",
+        "block": "BLOQUE 4 · Otras falacias formales",
+        "severity": 2,
+        "description": "Confundir el proceso de hacer algo con el producto resultante.",
+        "example": "\"La construcción del puente duró dos años\" (proceso) vs \"La construcción es sólida\" (producto).",
+        "form": ""
+    },
+    {
+        "id": "F033",
+        "name": "Confusión uso/mención",
+        "part": "PARTE II — FALACIAS DE AMBIGÜEDAD",
+        "block": "BLOQUE 4 · Otras falacias formales",
+        "severity": 3,
+        "description": "Usar una palabra y hablar sobre esa palabra como si fueran la misma cosa.",
+        "example": "\"Gato tiene cuatro letras.\" (correcto) confundido con \"Gato tiene cuatro letras, luego los gatos tienen cuatro letras.\"",
+        "form": ""
+    },
+    {
+        "id": "F034",
+        "name": "Falacia etimológica",
+        "part": "PARTE II — FALACIAS DE AMBIGÜEDAD",
+        "block": "BLOQUE 4 · Otras falacias formales",
+        "severity": 2,
+        "description": "Argumentar que el significado actual de una palabra debe ser el original o el \"verdadero\".",
+        "example": "\"Política viene de polis, luego la política solo puede referirse a lo comunitario-local.\"",
+        "form": ""
+    },
+    {
+        "id": "F035",
+        "name": "Definición persuasiva",
+        "part": "PARTE II — FALACIAS DE AMBIGÜEDAD",
+        "block": "BLOQUE 4 · Otras falacias formales",
+        "severity": 2,
+        "description": "Redefinir un término cargado de valor para capturar su connotación en beneficio propio.",
+        "example": "\"La verdadera libertad es la obediencia voluntaria a la ley divina.\"",
+        "form": ""
+    },
+    {
+        "id": "F036",
+        "name": "Definición circular",
+        "part": "PARTE II — FALACIAS DE AMBIGÜEDAD",
+        "block": "BLOQUE 4 · Otras falacias formales",
+        "severity": 3,
+        "description": "Definir un término usando el mismo término, explícita o implícitamente.",
+        "example": "\"El opio duerme porque tiene virtud dormitiva.\" (Molière)",
+        "form": ""
+    },
+    {
+        "id": "F037",
+        "name": "Definición demasiado amplia",
+        "part": "PARTE II — FALACIAS DE AMBIGÜEDAD",
+        "block": "BLOQUE 4 · Otras falacias formales",
+        "severity": 2,
+        "description": "La definición incluye casos que claramente no pertenecen al concepto.",
+        "example": "",
+        "form": ""
+    },
+    {
+        "id": "F038",
+        "name": "Definición demasiado estrecha",
+        "part": "PARTE II — FALACIAS DE AMBIGÜEDAD",
+        "block": "BLOQUE 4 · Otras falacias formales",
+        "severity": 2,
+        "description": "La definición excluye casos que claramente sí pertenecen al concepto.",
+        "example": "",
+        "form": ""
+    },
+    {
+        "id": "F039",
+        "name": "Lenguaje cargado emocionalmente",
+        "part": "PARTE II — FALACIAS DE AMBIGÜEDAD",
+        "block": "BLOQUE 4 · Otras falacias formales",
+        "severity": 2,
+        "description": "Usar términos con fuerte carga emotiva o connotativa para sesgar la percepción sin añadir contenido proposicional.",
+        "example": "Llamar \"asesinato\" a un procedimiento médico legal, o \"eliminación de tejido\" a un homicidio.",
+        "form": ""
+    },
+    {
+        "id": "F040",
+        "name": "Eufemismo encubridor",
+        "part": "PARTE II — FALACIAS DE AMBIGÜEDAD",
+        "block": "BLOQUE 4 · Otras falacias formales",
+        "severity": 2,
+        "description": "Usar eufemismos para suavizar una realidad de manera que cambia la evaluación moral o epistémica del argumento.",
+        "example": "\"Daños colaterales\" en lugar de \"civiles muertos.\"",
+        "form": ""
+    },
+    {
+        "id": "F041",
+        "name": "Ad hominem abusivo",
+        "part": "PARTE III — FALACIAS DE RELEVANCIA",
+        "block": "BLOQUE 5 · Ad hominem y variantes",
+        "severity": 3,
+        "description": "Atacar el carácter, apariencia o vida personal del interlocutor en lugar de su argumento.",
+        "example": "\"No puedes hablar de economía; eres un fracasado financiero.\"",
+        "form": ""
+    },
+    {
+        "id": "F042",
+        "name": "Ad hominem circunstancial",
+        "part": "PARTE III — FALACIAS DE RELEVANCIA",
+        "block": "BLOQUE 5 · Ad hominem y variantes",
+        "severity": 2,
+        "description": "Señalar que el interlocutor tiene intereses personales que supuestamente invalidan su posición, sin refutar el argumento.",
+        "example": "\"Claro que defiendes las vacunas; te paga la industria farmacéutica.\"",
+        "form": ""
+    },
+    {
+        "id": "F043",
+        "name": "Tu quoque",
+        "part": "PARTE III — FALACIAS DE RELEVANCIA",
+        "block": "BLOQUE 5 · Ad hominem y variantes",
+        "severity": 3,
+        "description": "Responder a una crítica señalando que el crítico hace lo mismo, como si eso invalidara la crítica.",
+        "example": "\"Me dices que no debo fumar, pero tú también fumabas.\"",
+        "form": ""
+    },
+    {
+        "id": "F044",
+        "name": "Bulverismo",
+        "part": "PARTE III — FALACIAS DE RELEVANCIA",
+        "block": "BLOQUE 5 · Ad hominem y variantes",
+        "severity": 2,
+        "description": "Explicar por qué la persona cree lo que cree (motivos psicológicos, sociológicos) como si eso invalidara su argumento, sin refutarlo directamente.",
+        "example": "\"Solo defiendes el feminismo porque tu madre era feminista; eso explica tu sesgo.\"",
+        "form": ""
+    },
+    {
+        "id": "F045",
+        "name": "Envenenamiento del pozo",
+        "part": "PARTE III — FALACIAS DE RELEVANCIA",
+        "block": "BLOQUE 5 · Ad hominem y variantes",
+        "severity": 3,
+        "description": "Presentar información desacreditadora sobre el interlocutor antes de que pueda argumentar, de modo que cualquier cosa que diga quede contaminada.",
+        "example": "\"Antes de que hable mi oponente, deben saber que ha sido acusado de corrupción.\"",
+        "form": ""
+    },
+    {
+        "id": "F046",
+        "name": "Falacia genética",
+        "part": "PARTE III — FALACIAS DE RELEVANCIA",
+        "block": "BLOQUE 5 · Ad hominem y variantes",
+        "severity": 3,
+        "description": "Juzgar el valor de una idea por su origen (histórico, social, psicológico), no por su contenido.",
+        "example": "\"Esa teoría surgió en el contexto del nazismo, luego es falsa.\"",
+        "form": ""
+    },
+    {
+        "id": "F047",
+        "name": "Ad baculum",
+        "part": "PARTE III — FALACIAS DE RELEVANCIA",
+        "block": "BLOQUE 6 · Apelaciones improcedentes",
+        "severity": 3,
+        "description": "Usar la amenaza, la coerción o el poder como argumento para aceptar una conclusión.",
+        "example": "\"Aceptarás mi propuesta si sabes lo que te conviene.\"",
+        "form": ""
+    },
+    {
+        "id": "F048",
+        "name": "Ad misericordiam",
+        "part": "PARTE III — FALACIAS DE RELEVANCIA",
+        "block": "BLOQUE 6 · Apelaciones improcedentes",
+        "severity": 2,
+        "description": "Apelar a la lástima o compasión como sustituto de la evidencia.",
+        "example": "\"Deberías darme el trabajo; tengo tres hijos y estoy desesperado.\"",
+        "form": ""
+    },
+    {
+        "id": "F049",
+        "name": "Ad populum",
+        "part": "PARTE III — FALACIAS DE RELEVANCIA",
+        "block": "BLOQUE 6 · Apelaciones improcedentes",
+        "severity": 3,
+        "description": "Concluir que algo es verdad porque mucha gente lo cree.",
+        "example": "\"Millones de personas creen en la homeopatía, algo de verdad tendrá.\"",
+        "form": ""
+    },
+    {
+        "id": "F050",
+        "name": "Efecto de arrastre",
+        "part": "PARTE III — FALACIAS DE RELEVANCIA",
+        "block": "BLOQUE 6 · Apelaciones improcedentes",
+        "severity": 2,
+        "description": "Variante del ad populum: unirse a la mayoría o a la tendencia como justificación de una decisión o creencia.",
+        "example": "",
+        "form": ""
+    },
+    {
+        "id": "F051",
+        "name": "Ad verecundiam — fuera de dominio",
+        "part": "PARTE III — FALACIAS DE RELEVANCIA",
+        "block": "BLOQUE 6 · Apelaciones improcedentes",
+        "severity": 3,
+        "description": "Invocar la autoridad de alguien como sustituto de evidencia, especialmente fuera de su área de competencia.",
+        "example": "\"Este famoso físico dice que la acupuntura funciona, luego funciona.\"",
+        "form": ""
+    },
+    {
+        "id": "F052",
+        "name": "Apelación a la autoridad anónima",
+        "part": "PARTE III — FALACIAS DE RELEVANCIA",
+        "block": "BLOQUE 6 · Apelaciones improcedentes",
+        "severity": 3,
+        "description": "\"Estudios demuestran…\", \"expertos dicen…\" sin identificar la fuente ni sus credenciales.",
+        "example": "",
+        "form": ""
+    },
+    {
+        "id": "F053",
+        "name": "Apelación a la autoridad por consenso fabricado",
+        "part": "PARTE III — FALACIAS DE RELEVANCIA",
+        "block": "BLOQUE 6 · Apelaciones improcedentes",
+        "severity": 3,
+        "description": "Presentar como consenso experto lo que es solo opinión mayoritaria, sectaria o parcial.",
+        "example": "",
+        "form": ""
+    },
+    {
+        "id": "F054",
+        "name": "Ad ignorantiam",
+        "part": "PARTE III — FALACIAS DE RELEVANCIA",
+        "block": "BLOQUE 6 · Apelaciones improcedentes",
+        "severity": 3,
+        "description": "Concluir que algo es verdad porque no se ha probado que sea falso, o viceversa.",
+        "example": "\"Nadie ha demostrado que los fantasmas no existen, luego existen.\"",
+        "form": ""
+    },
+    {
+        "id": "F055",
+        "name": "Ad antiquitatem",
+        "part": "PARTE III — FALACIAS DE RELEVANCIA",
+        "block": "BLOQUE 6 · Apelaciones improcedentes",
+        "severity": 2,
+        "description": "Argumentar que algo es correcto porque siempre se ha hecho así.",
+        "example": "\"El matrimonio siempre ha sido entre hombre y mujer, luego así debe ser.\"",
+        "form": ""
+    },
+    {
+        "id": "F056",
+        "name": "Ad novitatem",
+        "part": "PARTE III — FALACIAS DE RELEVANCIA",
+        "block": "BLOQUE 6 · Apelaciones improcedentes",
+        "severity": 2,
+        "description": "Lo nuevo es mejor por el mero hecho de ser nuevo.",
+        "example": "\"Esta terapia es revolucionaria y reciente, debe ser superior a las antiguas.\"",
+        "form": ""
+    },
+    {
+        "id": "F057",
+        "name": "Ad naturam",
+        "part": "PARTE III — FALACIAS DE RELEVANCIA",
+        "block": "BLOQUE 6 · Apelaciones improcedentes",
+        "severity": 2,
+        "description": "Lo natural es bueno; lo artificial, malo, sin justificación ulterior.",
+        "example": "\"Este veneno es completamente natural, luego es seguro.\"",
+        "form": ""
+    },
+    {
+        "id": "F058",
+        "name": "Apelación al miedo",
+        "part": "PARTE III — FALACIAS DE RELEVANCIA",
+        "block": "BLOQUE 6 · Apelaciones improcedentes",
+        "severity": 3,
+        "description": "No es una amenaza directa (ad baculum), sino la evocación del miedo como argumento para aceptar una conclusión.",
+        "example": "\"Si no aprobamos esta ley, los terroristas acabarán con nuestra civilización.\"",
+        "form": ""
+    },
+    {
+        "id": "F059",
+        "name": "Apelación al asco / repugnancia moral",
+        "part": "PARTE III — FALACIAS DE RELEVANCIA",
+        "block": "BLOQUE 6 · Apelaciones improcedentes",
+        "severity": 2,
+        "description": "Usar la respuesta emocional de repulsa como sustituto de argumento ético (Haidt).",
+        "example": "\"Eso simplemente me parece asqueroso, luego no debe permitirse.\"",
+        "form": ""
+    },
+    {
+        "id": "F060",
+        "name": "Apelación a la riqueza",
+        "part": "PARTE III — FALACIAS DE RELEVANCIA",
+        "block": "BLOQUE 6 · Apelaciones improcedentes",
+        "severity": 2,
+        "description": "Lo que dice el rico es más válido o verdadero por el hecho de ser rico.",
+        "example": "",
+        "form": ""
+    },
+    {
+        "id": "F061",
+        "name": "Apelación a la pobreza",
+        "part": "PARTE III — FALACIAS DE RELEVANCIA",
+        "block": "BLOQUE 6 · Apelaciones improcedentes",
+        "severity": 2,
+        "description": "Lo que dice el pobre es más auténtico o verdadero por el hecho de serlo.",
+        "example": "",
+        "form": ""
+    },
+    {
+        "id": "F062",
+        "name": "Apelación a la adulación",
+        "part": "PARTE III — FALACIAS DE RELEVANCIA",
+        "block": "BLOQUE 6 · Apelaciones improcedentes",
+        "severity": 2,
+        "description": "Ganar adhesión mediante halagos al auditorio en lugar de argumentos.",
+        "example": "\"Ustedes, que son personas tan inteligentes, sabrán reconocer que mi propuesta es la correcta.\"",
+        "form": ""
+    },
+    {
+        "id": "F063",
+        "name": "Apelación al odio",
+        "part": "PARTE III — FALACIAS DE RELEVANCIA",
+        "block": "BLOQUE 6 · Apelaciones improcedentes",
+        "severity": 3,
+        "description": "Inducir hostilidad hacia el oponente o hacia su posición como sustituto de argumento.",
+        "example": "",
+        "form": ""
+    },
+    {
+        "id": "F064",
+        "name": "Apelación al ridículo",
+        "part": "PARTE III — FALACIAS DE RELEVANCIA",
+        "block": "BLOQUE 6 · Apelaciones improcedentes",
+        "severity": 3,
+        "description": "Presentar la posición contraria como absurda o ridícula sin demostrar por qué lo es. Distinto de la reductio ad absurdum legítima.",
+        "example": "\"¿De verdad quieres defender esa idea tan ridícula?\"",
+        "form": ""
+    },
+    {
+        "id": "F065",
+        "name": "Apelación al misterio",
+        "part": "PARTE III — FALACIAS DE RELEVANCIA",
+        "block": "BLOQUE 6 · Apelaciones improcedentes",
+        "severity": 2,
+        "description": "Usar la incomprensibilidad o el misterio como argumento positivo a favor de una posición sobrenatural o metafísica.",
+        "example": "\"La conciencia es tan misteriosa que solo puede explicarse por el alma.\"",
+        "form": ""
+    },
+    {
+        "id": "F066",
+        "name": "Argumentum ex silentio",
+        "part": "PARTE III — FALACIAS DE RELEVANCIA",
+        "block": "BLOQUE 6 · Apelaciones improcedentes",
+        "severity": 2,
+        "description": "Concluir que algo es verdad a partir de la ausencia de testimonio en contra, o que algo no ocurrió porque no hay registro de ello.",
+        "example": "",
+        "form": ""
+    },
+    {
+        "id": "F067",
+        "name": "Hombre de paja",
+        "part": "PARTE III — FALACIAS DE RELEVANCIA",
+        "block": "BLOQUE 7 · Distorsión del argumento ajeno",
+        "severity": 3,
+        "description": "Distorsionar, exagerar o simplificar la posición del oponente para refutarla más fácilmente.",
+        "example": "\"Quieres reducir el presupuesto militar, ¡así que quieres que nos invadan!\"",
+        "form": ""
+    },
+    {
+        "id": "F068",
+        "name": "Motte and bailey",
+        "part": "PARTE III — FALACIAS DE RELEVANCIA",
+        "block": "BLOQUE 7 · Distorsión del argumento ajeno",
+        "severity": 3,
+        "description": "Se defiende una posición controvertida (bailey) pero cuando se ataca, se retira a una posición obvia e indefendible (motte), luego se regresa al bailey sin que se haya resuelto el debate sobre este.",
+        "example": "Defender \"el patriarcado controla todas las instituciones\" (bailey), pero cuando se critica, retirarse a \"existen desigualdades de género\" (motte), y luego regresar al bailey como si se hubiera validado.",
+        "form": ""
+    },
+    {
+        "id": "F069",
+        "name": "Red herring",
+        "part": "PARTE III — FALACIAS DE RELEVANCIA",
+        "block": "BLOQUE 7 · Distorsión del argumento ajeno",
+        "severity": 3,
+        "description": "Introducir un tema irrelevante para desviar la atención del argumento central.",
+        "example": "",
+        "form": ""
+    },
+    {
+        "id": "F070",
+        "name": "Ignoratio elenchi",
+        "part": "PARTE III — FALACIAS DE RELEVANCIA",
+        "block": "BLOQUE 7 · Distorsión del argumento ajeno",
+        "severity": 3,
+        "description": "Probar algo diferente de lo que se discute, aunque la prueba en sí sea válida. Categoría madre que engloba el hombre de paja, el red herring y otras falacias de relevancia.",
+        "example": "",
+        "form": ""
+    },
+    {
+        "id": "F071",
+        "name": "Decontextualización",
+        "part": "PARTE III — FALACIAS DE RELEVANCIA",
+        "block": "BLOQUE 7 · Distorsión del argumento ajeno",
+        "severity": 3,
+        "description": "Extraer afirmaciones de su contexto argumentativo y presentarlas como si dijeran algo diferente.",
+        "example": "",
+        "form": ""
+    },
+    {
+        "id": "F072",
+        "name": "Lógica de la olla",
+        "part": "PARTE III — FALACIAS DE RELEVANCIA",
+        "block": "BLOQUE 7 · Distorsión del argumento ajeno",
+        "severity": 2,
+        "description": "Ofrecer simultáneamente múltiples argumentos contradictorios que no pueden ser todos verdaderos. Ejemplo de Freud: \"No le rompí la olla / La olla ya estaba rota / Nunca le devolví ninguna olla.\"",
+        "example": "",
+        "form": ""
+    },
+    {
+        "id": "F073",
+        "name": "Kafkatrapping",
+        "part": "PARTE III — FALACIAS DE RELEVANCIA",
+        "block": "BLOQUE 7 · Distorsión del argumento ajeno",
+        "severity": 3,
+        "description": "Construcción donde cualquier negación de la acusación se toma como prueba adicional de culpabilidad.",
+        "example": "\"Si niegas ser racista, eso demuestra que no eres consciente de tu propio racismo.\"",
+        "form": ""
+    },
+    {
+        "id": "F074",
+        "name": "Petición de principio",
+        "part": "PARTE IV — FALACIAS DE PRESUNCIÓN",
+        "block": "BLOQUE 8 · Circularidad y preguntas cargadas",
+        "severity": 3,
+        "description": "La conclusión está implícita en las premisas; el argumento es circular.",
+        "example": "\"La Biblia es verdadera porque lo dice Dios, y sabemos que Dios existe porque lo dice la Biblia.\"",
+        "form": ""
+    },
+    {
+        "id": "F075",
+        "name": "Pregunta compleja",
+        "part": "PARTE IV — FALACIAS DE PRESUNCIÓN",
+        "block": "BLOQUE 8 · Circularidad y preguntas cargadas",
+        "severity": 3,
+        "description": "Formular una pregunta que presupone algo no establecido.",
+        "example": "\"¿Cuándo dejaste de mentir?\" (presupone que mentiste)",
+        "form": ""
+    },
+    {
+        "id": "F076",
+        "name": "Falsa dicotomía",
+        "part": "PARTE IV — FALACIAS DE PRESUNCIÓN",
+        "block": "BLOQUE 8 · Circularidad y preguntas cargadas",
+        "severity": 3,
+        "description": "Presentar solo dos opciones cuando existen más.",
+        "example": "\"O estás con nosotros o estás contra nosotros.\"",
+        "form": ""
+    },
+    {
+        "id": "F077",
+        "name": "Punto medio falso",
+        "part": "PARTE IV — FALACIAS DE PRESUNCIÓN",
+        "block": "BLOQUE 8 · Circularidad y preguntas cargadas",
+        "severity": 3,
+        "description": "Asumir que la posición correcta siempre está entre dos extremos. La verdad no es necesariamente el promedio de las posiciones en debate.",
+        "example": "\"Algunos dicen que la Tierra tiene 4.500 millones de años; otros dicen 6.000 años. La verdad estará en el medio.\" (falso: el consenso científico no es un punto medio)",
+        "form": ""
+    },
+    {
+        "id": "F078",
+        "name": "Carga de la prueba desplazada",
+        "part": "PARTE IV — FALACIAS DE PRESUNCIÓN",
+        "block": "BLOQUE 8 · Circularidad y preguntas cargadas",
+        "severity": 3,
+        "description": "Exigir al oponente que pruebe la falsedad de lo que uno afirma sin haber ofrecido evidencia propia.",
+        "example": "\"Demuéstrame que Dios no existe.\"",
+        "form": ""
+    },
+    {
+        "id": "F079",
+        "name": "Pendiente resbaladiza conceptual",
+        "part": "PARTE IV — FALACIAS DE PRESUNCIÓN",
+        "block": "BLOQUE 9 · Pendiente resbaladiza y causalidad espuria",
+        "severity": 2,
+        "description": "Afirmar que aceptar una posición llevará inevitablemente a aceptar posiciones cada vez más extremas, sin justificar los pasos intermedios.",
+        "example": "\"Si permitimos el matrimonio homosexual, pronto se permitirá casarse con animales.\"",
+        "form": ""
+    },
+    {
+        "id": "F080",
+        "name": "Pendiente resbaladiza causal",
+        "part": "PARTE IV — FALACIAS DE PRESUNCIÓN",
+        "block": "BLOQUE 9 · Pendiente resbaladiza y causalidad espuria",
+        "severity": 2,
+        "description": "Afirmar que una acción causará inevitablemente una cadena de consecuencias negativas sin justificar los mecanismos causales.",
+        "example": "\"Si legalizamos el cannabis, en diez años habremos destruido a toda una generación.\"",
+        "form": ""
+    },
+    {
+        "id": "F081",
+        "name": "Post hoc ergo propter hoc",
+        "part": "PARTE IV — FALACIAS DE PRESUNCIÓN",
+        "block": "BLOQUE 9 · Pendiente resbaladiza y causalidad espuria",
+        "severity": 3,
+        "description": "Concluir que A causó B porque A precedió a B.",
+        "example": "\"Tomé vitamina C y se me curó el resfriado en una semana. La vitamina C cura los resfriados.\"",
+        "form": ""
+    },
+    {
+        "id": "F082",
+        "name": "Cum hoc ergo propter hoc",
+        "part": "PARTE IV — FALACIAS DE PRESUNCIÓN",
+        "block": "BLOQUE 9 · Pendiente resbaladiza y causalidad espuria",
+        "severity": 3,
+        "description": "Concluir causalidad a partir de correlación simultánea.",
+        "example": "\"Los países con más chocolateros tienen más premios Nobel. El chocolate aumenta el rendimiento cognitivo.\"",
+        "form": ""
+    },
+    {
+        "id": "F083",
+        "name": "Inversión de causa y efecto",
+        "part": "PARTE IV — FALACIAS DE PRESUNCIÓN",
+        "block": "BLOQUE 9 · Pendiente resbaladiza y causalidad espuria",
+        "severity": 3,
+        "description": "Confundir qué fenómeno causa cuál.",
+        "example": "\"Los hospitales enferman a la gente\" (porque en los hospitales hay enfermos).",
+        "form": ""
+    },
+    {
+        "id": "F084",
+        "name": "Causa común ignorada",
+        "part": "PARTE IV — FALACIAS DE PRESUNCIÓN",
+        "block": "BLOQUE 9 · Pendiente resbaladiza y causalidad espuria",
+        "severity": 3,
+        "description": "Atribuir causalidad entre A y B ignorando que una tercera variable C causa ambas.",
+        "example": "\"Los países con más televisores tienen más esperanza de vida. Comprar televisores alarga la vida.\" (la variable de confusión es el nivel de desarrollo)",
+        "form": ""
+    },
+    {
+        "id": "F085",
+        "name": "Sobredeterminación causal ignorada",
+        "part": "PARTE IV — FALACIAS DE PRESUNCIÓN",
+        "block": "BLOQUE 9 · Pendiente resbaladiza y causalidad espuria",
+        "severity": 2,
+        "description": "Asumir que solo puede haber una causa cuando pueden coexistir varias suficientes.",
+        "example": "",
+        "form": ""
+    },
+    {
+        "id": "F086",
+        "name": "Agente único",
+        "part": "PARTE IV — FALACIAS DE PRESUNCIÓN",
+        "block": "BLOQUE 9 · Pendiente resbaladiza y causalidad espuria",
+        "severity": 2,
+        "description": "Atribuir a una sola causa o agente un fenómeno que es resultado de múltiples factores.",
+        "example": "\"La Segunda Guerra Mundial la causó Hitler.\"",
+        "form": ""
+    },
+    {
+        "id": "F087",
+        "name": "Non causa pro causa",
+        "part": "PARTE IV — FALACIAS DE PRESUNCIÓN",
+        "block": "BLOQUE 9 · Pendiente resbaladiza y causalidad espuria",
+        "severity": 3,
+        "description": "Presentar como causa de algo lo que no lo es. Categoría madre que incluye el post hoc y el cum hoc.",
+        "example": "",
+        "form": ""
+    },
+    {
+        "id": "F088",
+        "name": "Generalización apresurada",
+        "part": "PARTE IV — FALACIAS DE PRESUNCIÓN",
+        "block": "BLOQUE 10 · Generalizaciones y muestras defectuosas",
+        "severity": 3,
+        "description": "Extraer una regla general a partir de un número insuficiente de casos.",
+        "example": "\"Conozco dos alemanes poco amistosos. Los alemanes son fríos.\"",
+        "form": ""
+    },
+    {
+        "id": "F089",
+        "name": "Accidente",
+        "part": "PARTE IV — FALACIAS DE PRESUNCIÓN",
+        "block": "BLOQUE 10 · Generalizaciones y muestras defectuosas",
+        "severity": 3,
+        "description": "Aplicar una regla general a un caso particular donde claramente no corresponde.",
+        "example": "\"Devolver lo prestado es correcto. Luego debes devolverle el cuchillo a tu amigo aunque quiera hacer daño con él.\"",
+        "form": ""
+    },
+    {
+        "id": "F090",
+        "name": "Accidente inverso",
+        "part": "PARTE IV — FALACIAS DE PRESUNCIÓN",
+        "block": "BLOQUE 10 · Generalizaciones y muestras defectuosas",
+        "severity": 3,
+        "description": "Construir una regla general a partir de un caso excepcional.",
+        "example": "\"En legítima defensa se puede matar. Luego, matar puede ser moralmente aceptable en general.\"",
+        "form": ""
+    },
+    {
+        "id": "F091",
+        "name": "Sesgo de selección",
+        "part": "PARTE IV — FALACIAS DE PRESUNCIÓN",
+        "block": "BLOQUE 10 · Generalizaciones y muestras defectuosas",
+        "severity": 3,
+        "description": "Usar una muestra no representativa del universo relevante para apoyar una conclusión general.",
+        "example": "",
+        "form": ""
+    },
+    {
+        "id": "F092",
+        "name": "Generalización desde casos típicos",
+        "part": "PARTE IV — FALACIAS DE PRESUNCIÓN",
+        "block": "BLOQUE 10 · Generalizaciones y muestras defectuosas",
+        "severity": 2,
+        "description": "Tomar el caso prototípico de una categoría como representativo de toda ella, ignorando la varianza real.",
+        "example": "",
+        "form": ""
+    },
+    {
+        "id": "F093",
+        "name": "Argumento desde la incredulidad personal",
+        "part": "PARTE IV — FALACIAS DE PRESUNCIÓN",
+        "block": "BLOQUE 10 · Generalizaciones y muestras defectuosas",
+        "severity": 3,
+        "description": "\"No puedo imaginar cómo X podría ser verdad (o ser resultado de Y), luego X es falso (o Y no lo causó).\"",
+        "example": "\"No puedo imaginar cómo la complejidad del ojo pudo surgir por selección natural, luego fue diseñado.\"",
+        "form": ""
+    },
+    {
+        "id": "F094",
+        "name": "Argumento desde la complejidad",
+        "part": "PARTE IV — FALACIAS DE PRESUNCIÓN",
+        "block": "BLOQUE 10 · Generalizaciones y muestras defectuosas",
+        "severity": 2,
+        "description": "Porque algo es complejo, no puede ser resultado de procesos no dirigidos o no intencionales. Variante del anterior, frecuente en argumentos de diseño inteligente.",
+        "example": "",
+        "form": ""
+    },
+    {
+        "id": "F095",
+        "name": "No verdadero escocés",
+        "part": "PARTE IV — FALACIAS DE PRESUNCIÓN",
+        "block": "BLOQUE 11 · Falacias de definición y clasificación",
+        "severity": 3,
+        "description": "Modificar ad hoc la definición de un grupo para excluir contraejemplos embarazosos.",
+        "example": "\"Ningún verdadero escocés pondría azúcar en la avena.\" \"Pero mi tío escocés lo hace.\" \"Entonces no es un verdadero escocés.\"",
+        "form": ""
+    },
+    {
+        "id": "F096",
+        "name": "Falacia del umbral / sorites",
+        "part": "PARTE IV — FALACIAS DE PRESUNCIÓN",
+        "block": "BLOQUE 11 · Falacias de definición y clasificación",
+        "severity": 2,
+        "description": "Argumentar que, dado que no hay una línea precisa entre dos extremos, la distinción no existe.",
+        "example": "\"No puedes decir en qué momento alguien se queda calvo, luego la calvicie no existe.\"",
+        "form": ""
+    },
+    {
+        "id": "F097",
+        "name": "Error de categoría",
+        "part": "PARTE IV — FALACIAS DE PRESUNCIÓN",
+        "block": "BLOQUE 11 · Falacias de definición y clasificación",
+        "severity": 3,
+        "description": "Atribuir a una entidad propiedades que pertenecen a una categoría ontológica distinta.",
+        "example": "\"¿Cuánto pesa la Universidad de Oxford?\" / \"¿Dónde está exactamente la mente?\"",
+        "form": ""
+    },
+    {
+        "id": "F098",
+        "name": "Falacia de la esencia",
+        "part": "PARTE IV — FALACIAS DE PRESUNCIÓN",
+        "block": "BLOQUE 11 · Falacias de definición y clasificación",
+        "severity": 2,
+        "description": "Asumir que todos los miembros de una categoría comparten una esencia fija y homogénea.",
+        "example": "Razonar sobre \"los migrantes\" como si todos compartieran exactamente las mismas propiedades.",
+        "form": ""
+    },
+    {
+        "id": "F099",
+        "name": "Falsa analogía",
+        "part": "PARTE V — FALACIAS DE ANALOGÍA",
+        "block": "BLOQUE 11 · Falacias de definición y clasificación",
+        "severity": 3,
+        "description": "Comparar dos casos cuyas diferencias relevantes invalidan la inferencia.",
+        "example": "\"El cerebro es como un ordenador, luego puede 'reprogramarse' conductualmente con la misma facilidad.\"",
+        "form": ""
+    },
+    {
+        "id": "F100",
+        "name": "Analogía por semejanza superficial",
+        "part": "PARTE V — FALACIAS DE ANALOGÍA",
+        "block": "BLOQUE 11 · Falacias de definición y clasificación",
+        "severity": 3,
+        "description": "Similitud en propiedades accidentales, no en la relación estructural relevante al argumento.",
+        "example": "\"Los nazis usaban uniformes. Los policías usan uniformes. Luego, los policías son nazis.\"",
+        "form": ""
+    },
+    {
+        "id": "F101",
+        "name": "Analogía extendida indebidamente",
+        "part": "PARTE V — FALACIAS DE ANALOGÍA",
+        "block": "BLOQUE 11 · Falacias de definición y clasificación",
+        "severity": 2,
+        "description": "Una analogía válida en un dominio se extiende más allá de sus límites sin justificación.",
+        "example": "\"Si los contratos privados se pueden anular cuando hay abuso de poder, también las leyes estatales deben anularse cuando el Estado abusa.\"",
+        "form": ""
+    },
+    {
+        "id": "F102",
+        "name": "Falacia de la metáfora cosificada",
+        "part": "PARTE V — FALACIAS DE ANALOGÍA",
+        "block": "BLOQUE 11 · Falacias de definición y clasificación",
+        "severity": 2,
+        "description": "Tratar una metáfora explicativa como si fuera una equivalencia real y extraer consecuencias de ella.",
+        "example": "\"La economía es un organismo vivo, luego tiene ciclos de enfermedad que no debemos interrumpir artificialmente.\"",
+        "form": ""
+    },
+    {
+        "id": "F103",
+        "name": "Falacia de la analogía legal defectuosa",
+        "part": "PARTE V — FALACIAS DE ANALOGÍA",
+        "block": "BLOQUE 11 · Falacias de definición y clasificación",
+        "severity": 3,
+        "description": "Aplicar precedente jurídico a un caso sin verificar que las propiedades jurídicamente relevantes sean las mismas.",
+        "example": "",
+        "form": ""
+    },
+    {
+        "id": "F104",
+        "name": "Falacia de la analogía moral defectuosa",
+        "part": "PARTE V — FALACIAS DE ANALOGÍA",
+        "block": "BLOQUE 11 · Falacias de definición y clasificación",
+        "severity": 3,
+        "description": "Comparar situaciones morales sin verificar que las propiedades moralmente relevantes sean equivalentes.",
+        "example": "\"Matar en guerra es igual que el aborto; ambos son quitar una vida.\" (ignora diferencias moralmente relevantes)",
+        "form": ""
+    },
+    {
+        "id": "F105",
+        "name": "Falacia de la analogía por resultado",
+        "part": "PARTE V — FALACIAS DE ANALOGÍA",
+        "block": "BLOQUE 11 · Falacias de definición y clasificación",
+        "severity": 2,
+        "description": "Dos acciones producen resultados similares; luego son equivalentes en todos los aspectos relevantes.",
+        "example": "",
+        "form": ""
+    },
+    {
+        "id": "F106",
+        "name": "Falacia de la única explicación",
+        "part": "PARTE VI — FALACIAS CAUSALES Y ABDUCTIVAS",
+        "block": "BLOQUE 11 · Falacias de definición y clasificación",
+        "severity": 3,
+        "description": "Concluir que la única explicación posible considerada es la verdadera, sin explorar alternativas.",
+        "example": "\"No puede haber otra explicación; claramente fue el mayordomo.\"",
+        "form": ""
+    },
+    {
+        "id": "F107",
+        "name": "Navaja de Ockham mal aplicada",
+        "part": "PARTE VI — FALACIAS CAUSALES Y ABDUCTIVAS",
+        "block": "BLOQUE 11 · Falacias de definición y clasificación",
+        "severity": 2,
+        "description": "Aplicar parsimonia explicativa de forma mecánica: confundir la hipótesis más simple con la más verdadera, ignorando que \"más simple\" es dependiente del marco teórico.",
+        "example": "",
+        "form": ""
+    },
+    {
+        "id": "F108",
+        "name": "Rescate ad hoc",
+        "part": "PARTE VI — FALACIAS CAUSALES Y ABDUCTIVAS",
+        "block": "BLOQUE 11 · Falacias de definición y clasificación",
+        "severity": 3,
+        "description": "Modificar una teoría con hipótesis auxiliares improvisadas para salvarla de la refutación, sin que las hipótesis añadidas sean independientemente comprobables.",
+        "example": "\"Mi teoría predijo X, pero ocurrió Y. Eso se explica por el factor Z.\" (Z inventado a posteriori)",
+        "form": ""
+    },
+    {
+        "id": "F109",
+        "name": "Confirmación circular abductiva",
+        "part": "PARTE VI — FALACIAS CAUSALES Y ABDUCTIVAS",
+        "block": "BLOQUE 11 · Falacias de definición y clasificación",
+        "severity": 3,
+        "description": "La hipótesis explica los datos, y los datos confirman la hipótesis, sin que haya predicciones independientes que puedan falsarla.",
+        "example": "",
+        "form": ""
+    },
+    {
+        "id": "F110",
+        "name": "Pensamiento mágico como abducción",
+        "part": "PARTE VI — FALACIAS CAUSALES Y ABDUCTIVAS",
+        "block": "BLOQUE 11 · Falacias de definición y clasificación",
+        "severity": 3,
+        "description": "Atribuir causalidad a conexiones simbólicas, rituales o supersticiosas sin mecanismo causal verificable.",
+        "example": "\"Rompí un espejo y luego tuve mala suerte; el espejo la causó.\"",
+        "form": ""
+    },
+    {
+        "id": "F111",
+        "name": "Falacia de la irreproducibilidad como confirmación",
+        "part": "PARTE VI — FALACIAS CAUSALES Y ABDUCTIVAS",
+        "block": "BLOQUE 11 · Falacias de definición y clasificación",
+        "severity": 3,
+        "description": "\"Nadie ha podido replicar el experimento que refuta mi teoría\" usado como si esto confirmara la teoría.",
+        "example": "",
+        "form": ""
+    },
+    {
+        "id": "F112",
+        "name": "Abducción desde la ignorancia",
+        "part": "PARTE VI — FALACIAS CAUSALES Y ABDUCTIVAS",
+        "block": "BLOQUE 11 · Falacias de definición y clasificación",
+        "severity": 3,
+        "description": "Inferir que X es verdad porque no se conoce ninguna otra explicación, ignorando que la ignorancia no es evidencia positiva.",
+        "example": "",
+        "form": ""
+    },
+    {
+        "id": "F113",
+        "name": "Falacia del francotirador de Texas",
+        "part": "PARTE VII — FALACIAS INDUCTIVAS Y ESTADÍSTICAS",
+        "block": "BLOQUE 12 · Sesgos de muestra y selección de datos",
+        "severity": 3,
+        "description": "Seleccionar a posteriori los datos que confirman la hipótesis, ignorando el resto; como disparar al azar y luego pintar la diana sobre los agujeros.",
+        "example": "",
+        "form": ""
+    },
+    {
+        "id": "F114",
+        "name": "Cherry-picking",
+        "part": "PARTE VII — FALACIAS INDUCTIVAS Y ESTADÍSTICAS",
+        "block": "BLOQUE 12 · Sesgos de muestra y selección de datos",
+        "severity": 3,
+        "description": "Seleccionar solo la evidencia favorable e ignorar sistemáticamente la contraria. Distinto del anterior: aquí la selección es deliberada y no necesariamente a posteriori.",
+        "example": "",
+        "form": ""
+    },
+    {
+        "id": "F115",
+        "name": "Sesgo de confirmación como falacia argumentativa",
+        "part": "PARTE VII — FALACIAS INDUCTIVAS Y ESTADÍSTICAS",
+        "block": "BLOQUE 12 · Sesgos de muestra y selección de datos",
+        "severity": 3,
+        "description": "Presentar solo evidencia confirmatoria mientras se ignora o descarta la disconfirmatoria como si fuera irrelevante.",
+        "example": "",
+        "form": ""
+    },
+    {
+        "id": "F116",
+        "name": "Falacia del superviviente",
+        "part": "PARTE VII — FALACIAS INDUCTIVAS Y ESTADÍSTICAS",
+        "block": "BLOQUE 12 · Sesgos de muestra y selección de datos",
+        "severity": 3,
+        "description": "Razonar solo a partir de los casos exitosos (supervivientes), ignorando los que no lo fueron y que no están disponibles para análisis.",
+        "example": "\"Los emprendedores exitosos no tienen estudios. Los estudios no sirven para emprender.\" (ignorando todos los fracasados sin estudios)",
+        "form": ""
+    },
+    {
+        "id": "F117",
+        "name": "Falacia del anecdotario",
+        "part": "PARTE VII — FALACIAS INDUCTIVAS Y ESTADÍSTICAS",
+        "block": "BLOQUE 12 · Sesgos de muestra y selección de datos",
+        "severity": 3,
+        "description": "Usar experiencias personales o casos aislados en lugar de evidencia sistemática y representativa.",
+        "example": "",
+        "form": ""
+    },
+    {
+        "id": "F118",
+        "name": "Ecológica",
+        "part": "PARTE VII — FALACIAS INDUCTIVAS Y ESTADÍSTICAS",
+        "block": "BLOQUE 12 · Sesgos de muestra y selección de datos",
+        "severity": 3,
+        "description": "Inferir propiedades individuales a partir de datos agregados de un grupo.",
+        "example": "\"En ese barrio la renta media es alta, luego ese vecino en particular debe ser rico.\"",
+        "form": ""
+    },
+    {
+        "id": "F119",
+        "name": "Falacia del jugador",
+        "part": "PARTE VII — FALACIAS INDUCTIVAS Y ESTADÍSTICAS",
+        "block": "BLOQUE 13 · Falacias probabilísticas y bayesianas",
+        "severity": 3,
+        "description": "Creer que eventos aleatorios pasados afectan la probabilidad de eventos futuros independientes.",
+        "example": "\"Ha salido cara diez veces seguidas, ahora seguro que sale cruz.\"",
+        "form": ""
+    },
+    {
+        "id": "F120",
+        "name": "Falacia del jugador inversa",
+        "part": "PARTE VII — FALACIAS INDUCTIVAS Y ESTADÍSTICAS",
+        "block": "BLOQUE 13 · Falacias probabilísticas y bayesianas",
+        "severity": 2,
+        "description": "Creer que una racha exitosa pasada continuará en el futuro en contextos donde los eventos son independientes.",
+        "example": "",
+        "form": ""
+    },
+    {
+        "id": "F121",
+        "name": "Ignorancia de la tasa base",
+        "part": "PARTE VII — FALACIAS INDUCTIVAS Y ESTADÍSTICAS",
+        "block": "BLOQUE 13 · Falacias probabilísticas y bayesianas",
+        "severity": 3,
+        "description": "Ignorar la frecuencia base de un fenómeno al evaluar probabilidades condicionales.",
+        "example": "Dar positivo en un test con 5% de falsos positivos en una enfermedad con prevalencia de 0,1% no significa necesariamente estar enfermo.",
+        "form": ""
+    },
+    {
+        "id": "F122",
+        "name": "Falacia del fiscal",
+        "part": "PARTE VII — FALACIAS INDUCTIVAS Y ESTADÍSTICAS",
+        "block": "BLOQUE 13 · Falacias probabilísticas y bayesianas",
+        "severity": 3,
+        "description": "Confundir P(evidencia | inocente) con P(inocente | evidencia).",
+        "example": "\"La probabilidad de que un inocente deje esta huella es 1 en un millón. Luego, la probabilidad de que sea inocente es 1 en un millón.\" (ignora la prevalencia de sospechosos)",
+        "form": ""
+    },
+    {
+        "id": "F123",
+        "name": "Falacia del defensor",
+        "part": "PARTE VII — FALACIAS INDUCTIVAS Y ESTADÍSTICAS",
+        "block": "BLOQUE 13 · Falacias probabilísticas y bayesianas",
+        "severity": 3,
+        "description": "El error inverso: porque la evidencia aislada es improbable condicionalmente, el crimen no ocurrió o el acusado es inocente.",
+        "example": "",
+        "form": ""
+    },
+    {
+        "id": "F124",
+        "name": "Falacia de la conjunción",
+        "part": "PARTE VII — FALACIAS INDUCTIVAS Y ESTADÍSTICAS",
+        "block": "BLOQUE 13 · Falacias probabilísticas y bayesianas",
+        "severity": 3,
+        "description": "Juzgar una conjunción de eventos como más probable que uno de sus componentes por sola coherencia narrativa.",
+        "example": "Juzgar que \"Linda es cajera de banco y feminista\" es más probable que \"Linda es cajera de banco\", cuando matemáticamente no puede serlo.",
+        "form": ""
+    },
+    {
+        "id": "F125",
+        "name": "Falacia de la disyunción",
+        "part": "PARTE VII — FALACIAS INDUCTIVAS Y ESTADÍSTICAS",
+        "block": "BLOQUE 13 · Falacias probabilísticas y bayesianas",
+        "severity": 2,
+        "description": "Subestimar la probabilidad de que al menos uno de varios eventos independientes ocurra.",
+        "example": "",
+        "form": ""
+    },
+    {
+        "id": "F126",
+        "name": "Paradoja de Simpson como trampa argumental",
+        "part": "PARTE VII — FALACIAS INDUCTIVAS Y ESTADÍSTICAS",
+        "block": "BLOQUE 13 · Falacias probabilísticas y bayesianas",
+        "severity": 3,
+        "description": "Usar datos agregados para ocultar tendencias que invierten su dirección en subgrupos, o viceversa.",
+        "example": "\"El hospital A tiene mayor tasa de mortalidad que el B, luego el A es peor.\" (sin controlar por gravedad de los casos admitidos)",
+        "form": ""
+    },
+    {
+        "id": "F127",
+        "name": "Falacia de la precisión",
+        "part": "PARTE VII — FALACIAS INDUCTIVAS Y ESTADÍSTICAS",
+        "block": "BLOQUE 13 · Falacias probabilísticas y bayesianas",
+        "severity": 2,
+        "description": "Usar cifras muy precisas para dar apariencia de rigor a una estimación fundamentalmente especulativa.",
+        "example": "\"Esto aumentará el PIB un 3,742%.\"",
+        "form": ""
+    },
+    {
+        "id": "F128",
+        "name": "Regresión a la media ignorada",
+        "part": "PARTE VII — FALACIAS INDUCTIVAS Y ESTADÍSTICAS",
+        "block": "BLOQUE 13 · Falacias probabilísticas y bayesianas",
+        "severity": 3,
+        "description": "Atribuir causalidad a fenómenos que son simplemente efecto estadístico de regresión hacia la media.",
+        "example": "\"Le grité y mejoró su actuación\" (ignorando que tras un rendimiento muy bajo, la recuperación es estadísticamente esperable sin intervención).",
+        "form": ""
+    },
+    {
+        "id": "F129",
+        "name": "Falacia lúdica",
+        "part": "PARTE VII — FALACIAS INDUCTIVAS Y ESTADÍSTICAS",
+        "block": "BLOQUE 13 · Falacias probabilísticas y bayesianas",
+        "severity": 3,
+        "description": "Aplicar modelos probabilísticos de sistemas cerrados y bien definidos (juegos de azar) a sistemas abiertos y complejos del mundo real donde las distribuciones son desconocidas.",
+        "example": "",
+        "form": ""
+    },
+    {
+        "id": "F130",
+        "name": "Falacia narrativa",
+        "part": "PARTE VII — FALACIAS INDUCTIVAS Y ESTADÍSTICAS",
+        "block": "BLOQUE 13 · Falacias probabilísticas y bayesianas",
+        "severity": 2,
+        "description": "Construir relatos causales coherentes sobre series de eventos que contienen alta aleatoriedad, sobreestimando la causalidad e infraestimando el azar.",
+        "example": "",
+        "form": ""
+    },
+    {
+        "id": "F131",
+        "name": "Falacia del porcentaje sin base",
+        "part": "PARTE VII — FALACIAS INDUCTIVAS Y ESTADÍSTICAS",
+        "block": "BLOQUE 13 · Falacias probabilísticas y bayesianas",
+        "severity": 3,
+        "description": "Usar porcentajes sin mencionar la base, o comparar porcentajes de bases distintas.",
+        "example": "\"¡Aumentamos un 100% los casos!\" (de 1 a 2 casos)",
+        "form": ""
+    },
+    {
+        "id": "F132",
+        "name": "Falacia del 95%",
+        "part": "PARTE VII — FALACIAS INDUCTIVAS Y ESTADÍSTICAS",
+        "block": "BLOQUE 13 · Falacias probabilísticas y bayesianas",
+        "severity": 3,
+        "description": "Confundir significación estadística (p < 0,05) con relevancia práctica, tamaño del efecto o verdad sustantiva.",
+        "example": "",
+        "form": ""
+    },
+    {
+        "id": "F133",
+        "name": "HARKing",
+        "part": "PARTE VII — FALACIAS INDUCTIVAS Y ESTADÍSTICAS",
+        "block": "BLOQUE 13 · Falacias probabilísticas y bayesianas",
+        "severity": 3,
+        "description": "Presentar hipótesis formuladas después de ver los datos como si hubieran sido planteadas antes, falseando el proceso científico.",
+        "example": "",
+        "form": ""
+    },
+    {
+        "id": "F134",
+        "name": "Enumeración perfecta falsa",
+        "part": "PARTE VII — FALACIAS INDUCTIVAS Y ESTADÍSTICAS",
+        "block": "BLOQUE 14 · Falacias de inferencia inductiva general",
+        "severity": 3,
+        "description": "Presentar una lista como exhaustiva cuando no lo es.",
+        "example": "",
+        "form": ""
+    },
+    {
+        "id": "F135",
+        "name": "Inducción por confirmación exclusiva",
+        "part": "PARTE VII — FALACIAS INDUCTIVAS Y ESTADÍSTICAS",
+        "block": "BLOQUE 14 · Falacias de inferencia inductiva general",
+        "severity": 3,
+        "description": "Buscar solo casos que confirmen una hipótesis y no casos que pudieran falsarla (relacionado con el sesgo de confirmación, pero como error metodológico deliberado).",
+        "example": "",
+        "form": ""
+    },
+    {
+        "id": "F136",
+        "name": "Falacia de la regla sin excepción",
+        "part": "PARTE VII — FALACIAS INDUCTIVAS Y ESTADÍSTICAS",
+        "block": "BLOQUE 14 · Falacias de inferencia inductiva general",
+        "severity": 2,
+        "description": "Extender una generalización empírica a casos límite donde claramente no aplica sin reconocer la excepción.",
+        "example": "",
+        "form": ""
+    },
+    {
+        "id": "F137",
+        "name": "Proyección mental",
+        "part": "PARTE VIII — FALACIAS EPISTÉMICAS",
+        "block": "BLOQUE 14 · Falacias de inferencia inductiva general",
+        "severity": 3,
+        "description": "Asumir que las propiedades del propio mapa cognitivo son propiedades del territorio real.",
+        "example": "\"No puedo concebir un universo sin propósito, luego el universo tiene propósito.\"",
+        "form": ""
+    },
+    {
+        "id": "F138",
+        "name": "Ilusión de comprensión explicativa",
+        "part": "PARTE VIII — FALACIAS EPISTÉMICAS",
+        "block": "BLOQUE 14 · Falacias de inferencia inductiva general",
+        "severity": 2,
+        "description": "Creer que se comprende un mecanismo en detalle cuando en realidad solo se tiene una comprensión superficial, y argumentar desde esa falsa comprensión.",
+        "example": "",
+        "form": ""
+    },
+    {
+        "id": "F139",
+        "name": "Vocabulario técnico como evidencia",
+        "part": "PARTE VIII — FALACIAS EPISTÉMICAS",
+        "block": "BLOQUE 14 · Falacias de inferencia inductiva general",
+        "severity": 3,
+        "description": "Usar terminología especializada o jerga científica como sustituto de argumentación.",
+        "example": "\"El efecto cuántico de tunelamiento explica la homeopatía.\"",
+        "form": ""
+    },
+    {
+        "id": "F140",
+        "name": "Conocimiento por descripción como conocimiento directo",
+        "part": "PARTE VIII — FALACIAS EPISTÉMICAS",
+        "block": "BLOQUE 14 · Falacias de inferencia inductiva general",
+        "severity": 2,
+        "description": "Tratar el conocimiento proposicional sobre algo (saber que) como equivalente al conocimiento experiencial o directo (saber cómo / conocer).",
+        "example": "",
+        "form": ""
+    },
+    {
+        "id": "F141",
+        "name": "Razonamiento motivado como falacia",
+        "part": "PARTE VIII — FALACIAS EPISTÉMICAS",
+        "block": "BLOQUE 14 · Falacias de inferencia inductiva general",
+        "severity": 3,
+        "description": "Ajustar el umbral de evidencia necesario según el resultado que se quiere obtener: exigir mucha evidencia para lo que se quiere rechazar y poca para lo que se quiere aceptar.",
+        "example": "",
+        "form": ""
+    },
+    {
+        "id": "F142",
+        "name": "Doble rasero epistémico",
+        "part": "PARTE VIII — FALACIAS EPISTÉMICAS",
+        "block": "BLOQUE 14 · Falacias de inferencia inductiva general",
+        "severity": 3,
+        "description": "Aplicar criterios de evidencia distintos a casos análogos según conveniencia ideológica o personal.",
+        "example": "",
+        "form": ""
+    },
+    {
+        "id": "F143",
+        "name": "Falso balance",
+        "part": "PARTE VIII — FALACIAS EPISTÉMICAS",
+        "block": "BLOQUE 14 · Falacias de inferencia inductiva general",
+        "severity": 3,
+        "description": "Presentar dos posiciones como igualmente válidas o igualmente respaldadas por evidencia cuando no lo son.",
+        "example": "Dar el mismo espacio mediático al consenso científico climático y a posiciones negacionistas marginales.",
+        "form": ""
+    },
+    {
+        "id": "F144",
+        "name": "Deepity",
+        "part": "PARTE VIII — FALACIAS EPISTÉMICAS",
+        "block": "BLOQUE 14 · Falacias de inferencia inductiva general",
+        "severity": 2,
+        "description": "Afirmaciones que parecen profundas pero son triviales en sentido literal y falsas o vacías en sentido profundo.",
+        "example": "\"El amor es solo una palabra\" (trivialmente verdadero en sentido literal; si se entiende como algo más profundo, es falso o carece de contenido).",
+        "form": ""
+    },
+    {
+        "id": "F145",
+        "name": "Profundidad ilusoria de la paradoja",
+        "part": "PARTE VIII — FALACIAS EPISTÉMICAS",
+        "block": "BLOQUE 14 · Falacias de inferencia inductiva general",
+        "severity": 1,
+        "description": "Presentar contradicciones aparentes como insights profundos en lugar de resolverlas o identificarlas como genuinas paradojas.",
+        "example": "",
+        "form": ""
+    },
+    {
+        "id": "F146",
+        "name": "Falacia naturalista",
+        "part": "PARTE IX — FALACIAS DE RAZONAMIENTO MORAL Y ÉTICO",
+        "block": "BLOQUE 14 · Falacias de inferencia inductiva general",
+        "severity": 3,
+        "description": "Inferir lo que \"debe ser\" a partir de lo que \"es\": confundir hecho con valor, ser con deber ser. Guillotina de Hume: la brecha lógica entre enunciados descriptivos y normativos.",
+        "example": "\"Los animales más fuertes dominan a los débiles en la naturaleza. Luego, el más fuerte debe dominar.\"",
+        "form": ""
+    },
+    {
+        "id": "F147",
+        "name": "Falacia moralista",
+        "part": "PARTE IX — FALACIAS DE RAZONAMIENTO MORAL Y ÉTICO",
+        "block": "BLOQUE 14 · Falacias de inferencia inductiva general",
+        "severity": 3,
+        "description": "Lo inverso: inferir cómo son las cosas empíricamente a partir de cómo deberían ser moralmente.",
+        "example": "\"Sería injusto que existieran diferencias innatas de capacidad, luego no existen.\"",
+        "form": ""
+    },
+    {
+        "id": "F148",
+        "name": "Falacia del consenso moral",
+        "part": "PARTE IX — FALACIAS DE RAZONAMIENTO MORAL Y ÉTICO",
+        "block": "BLOQUE 14 · Falacias de inferencia inductiva general",
+        "severity": 2,
+        "description": "Lo que la mayoría considera correcto es correcto. Distinta del ad populum porque opera específicamente en el dominio normativo.",
+        "example": "",
+        "form": ""
+    },
+    {
+        "id": "F149",
+        "name": "Relativismo moral como conclusión empírica",
+        "part": "PARTE IX — FALACIAS DE RAZONAMIENTO MORAL Y ÉTICO",
+        "block": "BLOQUE 14 · Falacias de inferencia inductiva general",
+        "severity": 3,
+        "description": "\"Culturas distintas tienen distintos valores morales\" (hecho). ∴ \"No hay valores morales objetivos\" (conclusión normativa). Salto injustificado del hecho al valor (o a la negación del valor).",
+        "example": "",
+        "form": ""
+    },
+    {
+        "id": "F150",
+        "name": "Omission bias como falacia ética",
+        "part": "PARTE IX — FALACIAS DE RAZONAMIENTO MORAL Y ÉTICO",
+        "block": "BLOQUE 14 · Falacias de inferencia inductiva general",
+        "severity": 2,
+        "description": "Juzgar una acción dañina como moralmente peor que una omisión igualmente dañina por el solo hecho de ser activa. Relevante en bioética, derecho y política pública.",
+        "example": "",
+        "form": ""
+    },
+    {
+        "id": "F151",
+        "name": "Doble efecto mal aplicado",
+        "part": "PARTE IX — FALACIAS DE RAZONAMIENTO MORAL Y ÉTICO",
+        "block": "BLOQUE 14 · Falacias de inferencia inductiva general",
+        "severity": 2,
+        "description": "El principio del doble efecto usado para justificar consecuencias negativas que en realidad son el fin buscado, no el efecto secundario no deseado.",
+        "example": "",
+        "form": ""
+    },
+    {
+        "id": "F152",
+        "name": "Falacia de la persona completa",
+        "part": "PARTE IX — FALACIAS DE RAZONAMIENTO MORAL Y ÉTICO",
+        "block": "BLOQUE 14 · Falacias de inferencia inductiva general",
+        "severity": 2,
+        "description": "Evaluar el comportamiento moral de una persona en función de una sola acción, positiva o negativa, ignorando el patrón completo.",
+        "example": "",
+        "form": ""
+    },
+    {
+        "id": "F153",
+        "name": "Falacia de la legalidad moral",
+        "part": "PARTE IX — FALACIAS DE RAZONAMIENTO MORAL Y ÉTICO",
+        "block": "BLOQUE 14 · Falacias de inferencia inductiva general",
+        "severity": 3,
+        "description": "Lo legal es moralmente aceptable; lo ilegal es moralmente reprobable. Confunde norma jurídica con norma ética.",
+        "example": "",
+        "form": ""
+    },
+    {
+        "id": "F154",
+        "name": "Universalización kantiana incorrecta",
+        "part": "PARTE IX — FALACIAS DE RAZONAMIENTO MORAL Y ÉTICO",
+        "block": "BLOQUE 14 · Falacias de inferencia inductiva general",
+        "severity": 2,
+        "description": "Usar la universalizabilidad como único criterio moral o aplicarla mecánicamente a casos donde Kant mismo requeriría matización.",
+        "example": "",
+        "form": ""
+    },
+    {
+        "id": "F155",
+        "name": "Falacia del hecho bruto como justificación",
+        "part": "PARTE IX — FALACIAS DE RAZONAMIENTO MORAL Y ÉTICO",
+        "block": "BLOQUE 14 · Falacias de inferencia inductiva general",
+        "severity": 3,
+        "description": "Presentar la mera existencia de algo como justificación de su continuación o de su corrección.",
+        "example": "\"La pobreza siempre ha existido, luego es inevitable y no hay que combatirla.\"",
+        "form": ""
+    },
+    {
+        "id": "F156",
+        "name": "Desplazamiento de la carga de prueba",
+        "part": "PARTE X — FALACIAS DIALÉCTICAS Y PRAGMÁTICAS",
+        "block": "BLOQUE 14 · Falacias de inferencia inductiva general",
+        "severity": 3,
+        "description": "Quien afirma debe probar. Exigir al otro que pruebe la negación es invertir ilegítimamente la carga.",
+        "example": "",
+        "form": ""
+    },
+    {
+        "id": "F157",
+        "name": "Argumento desde las consecuencias",
+        "part": "PARTE X — FALACIAS DIALÉCTICAS Y PRAGMÁTICAS",
+        "block": "BLOQUE 14 · Falacias de inferencia inductiva general",
+        "severity": 3,
+        "description": "Argumentar que algo es verdad (o falso) porque sus consecuencias serían deseables (o indeseables).",
+        "example": "\"El libre albedrío debe existir porque si no, nadie sería responsable de nada.\"",
+        "form": ""
+    },
+    {
+        "id": "F158",
+        "name": "Argumento desde las consecuencias prácticas",
+        "part": "PARTE X — FALACIAS DIALÉCTICAS Y PRAGMÁTICAS",
+        "block": "BLOQUE 14 · Falacias de inferencia inductiva general",
+        "severity": 2,
+        "description": "Aceptar una proposición porque creer en ella tiene buenos efectos prácticos, independientemente de su verdad.",
+        "example": "",
+        "form": ""
+    },
+    {
+        "id": "F159",
+        "name": "Mover los postes",
+        "part": "PARTE X — FALACIAS DIALÉCTICAS Y PRAGMÁTICAS",
+        "block": "BLOQUE 14 · Falacias de inferencia inductiva general",
+        "severity": 3,
+        "description": "Cambiar los criterios de éxito o las condiciones de aceptación de un argumento una vez que han sido satisfechos.",
+        "example": "",
+        "form": ""
+    },
+    {
+        "id": "F160",
+        "name": "Aplazamiento infinito",
+        "part": "PARTE X — FALACIAS DIALÉCTICAS Y PRAGMÁTICAS",
+        "block": "BLOQUE 14 · Falacias de inferencia inductiva general",
+        "severity": 2,
+        "description": "Responder a cada cuestionamiento con otro cuestionamiento, sin ofrecer nunca una base positiva.",
+        "example": "",
+        "form": ""
+    },
+    {
+        "id": "F161",
+        "name": "Silencio como consentimiento",
+        "part": "PARTE X — FALACIAS DIALÉCTICAS Y PRAGMÁTICAS",
+        "block": "BLOQUE 14 · Falacias de inferencia inductiva general",
+        "severity": 2,
+        "description": "Interpretar la falta de respuesta o refutación como aceptación tácita.",
+        "example": "",
+        "form": ""
+    },
+    {
+        "id": "F162",
+        "name": "Distracción dialéctica",
+        "part": "PARTE X — FALACIAS DIALÉCTICAS Y PRAGMÁTICAS",
+        "block": "BLOQUE 14 · Falacias de inferencia inductiva general",
+        "severity": 3,
+        "description": "Responder a la totalidad del argumento atacando un detalle periférico y tratar esa respuesta parcial como si fuera una refutación completa.",
+        "example": "",
+        "form": ""
+    },
+    {
+        "id": "F163",
+        "name": "Galileo gambit",
+        "part": "PARTE X — FALACIAS DIALÉCTICAS Y PRAGMÁTICAS",
+        "block": "BLOQUE 14 · Falacias de inferencia inductiva general",
+        "severity": 3,
+        "description": "\"Dijeron que Galileo estaba loco, y tenía razón. A mí también me critican, luego también tengo razón.\" Confunde la persecución con la validez epistémica.",
+        "example": "",
+        "form": ""
+    },
+    {
+        "id": "F164",
+        "name": "Pregunta retórica como argumento",
+        "part": "PARTE X — FALACIAS DIALÉCTICAS Y PRAGMÁTICAS",
+        "block": "BLOQUE 14 · Falacias de inferencia inductiva general",
+        "severity": 2,
+        "description": "Usar una pregunta retórica como si constituyera evidencia o argumento sustantivo.",
+        "example": "\"¿Acaso no es obvio que el capitalismo ha fracasado?\" (la obviedad no está justificada)",
+        "form": ""
+    },
+    {
+        "id": "F165",
+        "name": "Compromiso explotado",
+        "part": "PARTE X — FALACIAS DIALÉCTICAS Y PRAGMÁTICAS",
+        "block": "BLOQUE 14 · Falacias de inferencia inductiva general",
+        "severity": 2,
+        "description": "Usar los compromisos previos del interlocutor para forzarle a posiciones que no aceptaría en contexto fresco, ignorando la evolución legítima del pensamiento.",
+        "example": "",
+        "form": ""
+    },
+    {
+        "id": "F166",
+        "name": "Uso indebido del contexto de diálogo",
+        "part": "PARTE X — FALACIAS DIALÉCTICAS Y PRAGMÁTICAS",
+        "block": "BLOQUE 14 · Falacias de inferencia inductiva general",
+        "severity": 2,
+        "description": "Adoptar tácticas propias de un tipo de diálogo (negociación, litigio) en otro donde no son pertinentes (investigación, deliberación filosófica).",
+        "example": "",
+        "form": ""
+    },
+    {
+        "id": "F167",
+        "name": "Posición de autoridad en el diálogo",
+        "part": "PARTE X — FALACIAS DIALÉCTICAS Y PRAGMÁTICAS",
+        "block": "BLOQUE 14 · Falacias de inferencia inductiva general",
+        "severity": 3,
+        "description": "En un diálogo deliberativo, rechazar la contribución del interlocutor por su estatus social o jerárquico, no por su contenido.",
+        "example": "",
+        "form": ""
+    },
+    {
+        "id": "F168",
+        "name": "Dilución del argumento",
+        "part": "PARTE X — FALACIAS DIALÉCTICAS Y PRAGMÁTICAS",
+        "block": "BLOQUE 14 · Falacias de inferencia inductiva general",
+        "severity": 2,
+        "description": "Mezclar la conclusión bien fundamentada con otras conclusiones débiles o no probadas, de modo que el conjunto parece más débil o más fuerte de lo que es.",
+        "example": "",
+        "form": ""
+    },
+    {
+        "id": "F169",
+        "name": "Definición por ejemplo",
+        "part": "PARTE XI — FALACIAS DE DEFINICIÓN Y TAXONOMÍA",
+        "block": "BLOQUE 14 · Falacias de inferencia inductiva general",
+        "severity": 1,
+        "description": "Tratar ejemplos como si fueran definiciones completas y extraer consecuencias generales de características accidentales del ejemplo.",
+        "example": "",
+        "form": ""
+    },
+    {
+        "id": "F170",
+        "name": "Definición negativa exclusiva",
+        "part": "PARTE XI — FALACIAS DE DEFINICIÓN Y TAXONOMÍA",
+        "block": "BLOQUE 14 · Falacias de inferencia inductiva general",
+        "severity": 1,
+        "description": "Definir algo únicamente por lo que no es, sin especificar lo que sí es, y luego argumentar desde esa definición como si fuera positiva.",
+        "example": "",
+        "form": ""
+    },
+    {
+        "id": "F171",
+        "name": "Cambio de significado durante el argumento",
+        "part": "PARTE XI — FALACIAS DE DEFINICIÓN Y TAXONOMÍA",
+        "block": "BLOQUE 14 · Falacias de inferencia inductiva general",
+        "severity": 3,
+        "description": "Usar un término con un significado al inicio del argumento y cambiarlo sutilmente a lo largo de él, variante de la equivocación.",
+        "example": "",
+        "form": ""
+    },
+    {
+        "id": "F172",
+        "name": "Argumento de la etiqueta",
+        "part": "PARTE XI — FALACIAS DE DEFINICIÓN Y TAXONOMÍA",
+        "block": "BLOQUE 14 · Falacias de inferencia inductiva general",
+        "severity": 2,
+        "description": "Creer que nombrar algo equivale a explicarlo o a justificar una conclusión sobre ello.",
+        "example": "\"¿Por qué duerme el opio? Por su virtud dormitiva.\" (Molière; la etiqueta no añade contenido)",
+        "form": ""
+    },
+    {
+        "id": "F173",
+        "name": "Falacia de la excepción confirmatoria",
+        "part": "PARTE XII — FALACIAS ESPECÍFICAS DE DOMINIO",
+        "block": "BLOQUE 15 · Científicas",
+        "severity": 3,
+        "description": "Salvar una teoría del contraejemplo añadiendo excepciones ad hoc sin base independiente.",
+        "example": "",
+        "form": ""
+    },
+    {
+        "id": "F174",
+        "name": "Cherry-picking de estudios",
+        "part": "PARTE XII — FALACIAS ESPECÍFICAS DE DOMINIO",
+        "block": "BLOQUE 15 · Científicas",
+        "severity": 3,
+        "description": "Selección sesgada de literatura científica: citar solo los estudios favorables, ignorar los desfavorables o los que no se publicaron.",
+        "example": "",
+        "form": ""
+    },
+    {
+        "id": "F175",
+        "name": "Confusión modelo/realidad",
+        "part": "PARTE XII — FALACIAS ESPECÍFICAS DE DOMINIO",
+        "block": "BLOQUE 15 · Científicas",
+        "severity": 3,
+        "description": "Tratar el modelo matemático o computacional como si fuera la realidad que describe, sin considerar sus supuestos y limitaciones.",
+        "example": "",
+        "form": ""
+    },
+    {
+        "id": "F176",
+        "name": "Extrapolación más allá del dominio",
+        "part": "PARTE XII — FALACIAS ESPECÍFICAS DE DOMINIO",
+        "block": "BLOQUE 15 · Científicas",
+        "severity": 3,
+        "description": "Extender los resultados de un estudio más allá de la población, condiciones o fenómenos para los que fue diseñado.",
+        "example": "Generalizar hallazgos en estudiantes universitarios occidentales a toda la humanidad (WEIRD bias).",
+        "form": ""
+    },
+    {
+        "id": "F177",
+        "name": "Falacia de la analogía de laboratorio",
+        "part": "PARTE XII — FALACIAS ESPECÍFICAS DE DOMINIO",
+        "block": "BLOQUE 15 · Científicas",
+        "severity": 2,
+        "description": "Asumir que los resultados obtenidos en condiciones controladas de laboratorio se trasladan sin modificación a condiciones del mundo real.",
+        "example": "",
+        "form": ""
+    },
+    {
+        "id": "F178",
+        "name": "Cuestionamiento del consenso sin alternativa",
+        "part": "PARTE XII — FALACIAS ESPECÍFICAS DE DOMINIO",
+        "block": "BLOQUE 15 · Científicas",
+        "severity": 2,
+        "description": "Rechazar el consenso científico sin ofrecer una alternativa mejor fundamentada, tratando el cuestionamiento mismo como argumento suficiente.",
+        "example": "",
+        "form": ""
+    },
+    {
+        "id": "F179",
+        "name": "Falacia de la composición económica",
+        "part": "PARTE XII — FALACIAS ESPECÍFICAS DE DOMINIO",
+        "block": "BLOQUE 16 · Económicas",
+        "severity": 3,
+        "description": "Lo que es racional para un individuo (ahorrar) no lo es necesariamente para el conjunto cuando todos lo hacen simultáneamente.",
+        "example": "",
+        "form": ""
+    },
+    {
+        "id": "F180",
+        "name": "Falacia del crecimiento infinito",
+        "part": "PARTE XII — FALACIAS ESPECÍFICAS DE DOMINIO",
+        "block": "BLOQUE 16 · Económicas",
+        "severity": 2,
+        "description": "Asumir que el crecimiento económico puede ser indefinido en un sistema físicamente finito.",
+        "example": "",
+        "form": ""
+    },
+    {
+        "id": "F181",
+        "name": "Apelación a las consecuencias económicas como verdad",
+        "part": "PARTE XII — FALACIAS ESPECÍFICAS DE DOMINIO",
+        "block": "BLOQUE 16 · Económicas",
+        "severity": 2,
+        "description": "Un argumento o política es verdadero/correcto porque su aplicación sería rentable.",
+        "example": "",
+        "form": ""
+    },
+    {
+        "id": "F182",
+        "name": "Costo hundido",
+        "part": "PARTE XII — FALACIAS ESPECÍFICAS DE DOMINIO",
+        "block": "BLOQUE 16 · Económicas",
+        "severity": 3,
+        "description": "Continuar con una acción solo porque ya se han invertido recursos en ella, ignorando la racionalidad prospectiva.",
+        "example": "\"Ya he pagado el 70% del máster; tengo que terminarlo aunque no me aporte nada.\"",
+        "form": ""
+    },
+    {
+        "id": "F183",
+        "name": "Falacia del costo de oportunidad ignorado",
+        "part": "PARTE XII — FALACIAS ESPECÍFICAS DE DOMINIO",
+        "block": "BLOQUE 16 · Económicas",
+        "severity": 2,
+        "description": "Evaluar una decisión sin considerar lo que se renuncia al tomarla.",
+        "example": "\"Este proyecto no cuesta nada; usamos recursos propios.\" (ignorando que esos recursos podrían usarse de otra manera)",
+        "form": ""
+    },
+    {
+        "id": "F184",
+        "name": "Falacia de la distribución como suma cero",
+        "part": "PARTE XII — FALACIAS ESPECÍFICAS DE DOMINIO",
+        "block": "BLOQUE 16 · Económicas",
+        "severity": 3,
+        "description": "Asumir que lo que gana una parte necesariamente lo pierde otra, en contextos donde el valor puede crearse o destruirse.",
+        "example": "",
+        "form": ""
+    },
+    {
+        "id": "F185",
+        "name": "Ad hominem de la fuente legal",
+        "part": "PARTE XII — FALACIAS ESPECÍFICAS DE DOMINIO",
+        "block": "BLOQUE 17 · Jurídico-políticas",
+        "severity": 2,
+        "description": "Descalificar una ley o norma por su origen político en lugar de por su contenido.",
+        "example": "",
+        "form": ""
+    },
+    {
+        "id": "F186",
+        "name": "Pendiente resbaladiza jurídica",
+        "part": "PARTE XII — FALACIAS ESPECÍFICAS DE DOMINIO",
+        "block": "BLOQUE 17 · Jurídico-políticas",
+        "severity": 2,
+        "description": "\"Si permitimos X legalmente, el sistema no podrá contener Y.\"",
+        "example": "",
+        "form": ""
+    },
+    {
+        "id": "F187",
+        "name": "Apelación al precedente irrelevante",
+        "part": "PARTE XII — FALACIAS ESPECÍFICAS DE DOMINIO",
+        "block": "BLOQUE 17 · Jurídico-políticas",
+        "severity": 3,
+        "description": "Aplicar precedente jurídico a un caso sin verificar que las propiedades jurídicamente relevantes sean análogas.",
+        "example": "",
+        "form": ""
+    },
+    {
+        "id": "F188",
+        "name": "Falacia de la norma como descripción",
+        "part": "PARTE XII — FALACIAS ESPECÍFICAS DE DOMINIO",
+        "block": "BLOQUE 17 · Jurídico-políticas",
+        "severity": 3,
+        "description": "Confundir enunciados normativos (\"debes pagar impuestos\") con enunciados descriptivos (\"la gente paga impuestos\").",
+        "example": "",
+        "form": ""
+    },
+    {
+        "id": "F189",
+        "name": "Falacia del mandato popular",
+        "part": "PARTE XII — FALACIAS ESPECÍFICAS DE DOMINIO",
+        "block": "BLOQUE 17 · Jurídico-políticas",
+        "severity": 2,
+        "description": "Interpretar una victoria electoral estrecha como respaldo amplio a todas las políticas del vencedor.",
+        "example": "",
+        "form": ""
+    },
+    {
+        "id": "F190",
+        "name": "Apelación al estado de naturaleza",
+        "part": "PARTE XII — FALACIAS ESPECÍFICAS DE DOMINIO",
+        "block": "BLOQUE 17 · Jurídico-políticas",
+        "severity": 2,
+        "description": "Usar una descripción del estado de naturaleza (a menudo ficticia o idealizada) para justificar arreglos sociales actuales.",
+        "example": "",
+        "form": ""
+    },
+    {
+        "id": "F191",
+        "name": "Sesgo de anclaje argumentativo",
+        "part": "PARTE XII — FALACIAS ESPECÍFICAS DE DOMINIO",
+        "block": "BLOQUE 18 · Psicológicas y cognitivas sistematizadas",
+        "severity": 2,
+        "description": "Tomar el primer dato mencionado como referencia no cuestionada y construir el argumento sobre él.",
+        "example": "",
+        "form": ""
+    },
+    {
+        "id": "F192",
+        "name": "Efecto de encuadre",
+        "part": "PARTE XII — FALACIAS ESPECÍFICAS DE DOMINIO",
+        "block": "BLOQUE 18 · Psicológicas y cognitivas sistematizadas",
+        "severity": 3,
+        "description": "La misma información presentada con encuadre diferente conduce a evaluaciones contradictorias; usar el encuadre deliberadamente para manipular la conclusión.",
+        "example": "",
+        "form": ""
+    },
+    {
+        "id": "F193",
+        "name": "Efecto halo argumentativo",
+        "part": "PARTE XII — FALACIAS ESPECÍFICAS DE DOMINIO",
+        "block": "BLOQUE 18 · Psicológicas y cognitivas sistematizadas",
+        "severity": 2,
+        "description": "Asumir que porque alguien es bueno en un ámbito, sus juicios en otro ámbito también son fiables.",
+        "example": "",
+        "form": ""
+    },
+    {
+        "id": "F194",
+        "name": "Sesgo de status quo como argumento",
+        "part": "PARTE XII — FALACIAS ESPECÍFICAS DE DOMINIO",
+        "block": "BLOQUE 18 · Psicológicas y cognitivas sistematizadas",
+        "severity": 2,
+        "description": "Preferir el estado actual de las cosas como argumento en sí mismo, sin justificación adicional de su superioridad.",
+        "example": "",
+        "form": ""
+    },
+    {
+        "id": "F195",
+        "name": "Falacia del punto de referencia",
+        "part": "PARTE XII — FALACIAS ESPECÍFICAS DE DOMINIO",
+        "block": "BLOQUE 18 · Psicológicas y cognitivas sistematizadas",
+        "severity": 2,
+        "description": "Evaluar una situación exclusivamente desde el punto de referencia actual, ignorando la escala absoluta.",
+        "example": "\"Solo perdimos el 10% de los empleos\" (puede ser catastrófico en términos absolutos)",
+        "form": ""
+    },
+    {
+        "id": "F196",
+        "name": "Screenshot como prueba",
+        "part": "PARTE XIII — FALACIAS DE LA ERA DIGITAL Y MEDIÁTICA",
+        "block": "BLOQUE 18 · Psicológicas y cognitivas sistematizadas",
+        "severity": 3,
+        "description": "Tratar una imagen descontextualizada como evidencia sin verificar autenticidad, contexto ni fuente.",
+        "example": "",
+        "form": ""
+    },
+    {
+        "id": "F197",
+        "name": "Trending como verdad",
+        "part": "PARTE XIII — FALACIAS DE LA ERA DIGITAL Y MEDIÁTICA",
+        "block": "BLOQUE 18 · Psicológicas y cognitivas sistematizadas",
+        "severity": 3,
+        "description": "Lo que es viral o tendencia refleja la realidad o tiene mayor probabilidad de ser verdad.",
+        "example": "",
+        "form": ""
+    },
+    {
+        "id": "F198",
+        "name": "Cámara de eco como representatividad",
+        "part": "PARTE XIII — FALACIAS DE LA ERA DIGITAL Y MEDIÁTICA",
+        "block": "BLOQUE 18 · Psicológicas y cognitivas sistematizadas",
+        "severity": 3,
+        "description": "Lo que se ve repetidamente en el propio entorno informativo refleja la distribución real de opiniones en la sociedad.",
+        "example": "",
+        "form": ""
+    },
+    {
+        "id": "F199",
+        "name": "Cherry-picking algorítmico",
+        "part": "PARTE XIII — FALACIAS DE LA ERA DIGITAL Y MEDIÁTICA",
+        "block": "BLOQUE 18 · Psicológicas y cognitivas sistematizadas",
+        "severity": 3,
+        "description": "Confundir el perfil de resultados que un algoritmo selecciona (personalizado) con una muestra representativa del universo informativo.",
+        "example": "",
+        "form": ""
+    },
+    {
+        "id": "F200",
+        "name": "Like como endorsement epistémico",
+        "part": "PARTE XIII — FALACIAS DE LA ERA DIGITAL Y MEDIÁTICA",
+        "block": "BLOQUE 18 · Psicológicas y cognitivas sistematizadas",
+        "severity": 2,
+        "description": "Tratar el apoyo cuantificado (likes, shares, retweets) como validación del contenido o evidencia de su veracidad.",
+        "example": "",
+        "form": ""
+    },
+    {
+        "id": "F201",
+        "name": "Fuente verificada como fuente veraz",
+        "part": "PARTE XIII — FALACIAS DE LA ERA DIGITAL Y MEDIÁTICA",
+        "block": "BLOQUE 18 · Psicológicas y cognitivas sistematizadas",
+        "severity": 3,
+        "description": "Confundir la verificación de identidad (checkmark o credenciales) con la fiabilidad o veracidad del contenido publicado.",
+        "example": "",
+        "form": ""
+    },
+    {
+        "id": "F202",
+        "name": "Palimpsesto digital",
+        "part": "PARTE XIII — FALACIAS DE LA ERA DIGITAL Y MEDIÁTICA",
+        "block": "BLOQUE 18 · Psicológicas y cognitivas sistematizadas",
+        "severity": 2,
+        "description": "Citar capturas de texto editado o corregido como si representaran la versión actual o definitiva de una posición.",
+        "example": "",
+        "form": ""
+    },
+    {
+        "id": "F203",
+        "name": "Deepfake como argumento",
+        "part": "PARTE XIII — FALACIAS DE LA ERA DIGITAL Y MEDIÁTICA",
+        "block": "BLOQUE 18 · Psicológicas y cognitivas sistematizadas",
+        "severity": 3,
+        "description": "Usar contenido sintético (audio, video, imagen generada artificialmente) como evidencia de eventos reales.",
+        "example": "",
+        "form": ""
+    },
+    {
+        "id": "F204",
+        "name": "Autoridad de la plataforma",
+        "part": "PARTE XIII — FALACIAS DE LA ERA DIGITAL Y MEDIÁTICA",
+        "block": "BLOQUE 18 · Psicológicas y cognitivas sistematizadas",
+        "severity": 2,
+        "description": "Tratar el hecho de que un contenido no haya sido eliminado o etiquetado por la plataforma como validación de su veracidad.",
+        "example": "",
+        "form": ""
+    },
+    {
+        "id": "F205",
+        "name": "Falacia del detector de falacias",
+        "part": "PARTE XIV — FALACIAS DE SEGUNDO ORDEN Y META-FALACIAS",
+        "block": "BLOQUE 18 · Psicológicas y cognitivas sistematizadas",
+        "severity": 3,
+        "description": "Concluir que una tesis es falsa porque el argumento que la defiende contiene una falacia. La verdad de la conclusión es independiente de la validez del argumento que la sostiene.",
+        "example": "\"Tu argumento para demostrar que 2+2=4 es un non sequitur. Luego, 2+2≠4.\"",
+        "form": ""
+    },
+    {
+        "id": "F206",
+        "name": "Etiqueta de falacia sin demostración",
+        "part": "PARTE XIV — FALACIAS DE SEGUNDO ORDEN Y META-FALACIAS",
+        "block": "BLOQUE 18 · Psicológicas y cognitivas sistematizadas",
+        "severity": 3,
+        "description": "Nombrar una falacia sin demostrar que el argumento en cuestión la comete efectivamente.",
+        "example": "",
+        "form": ""
+    },
+    {
+        "id": "F207",
+        "name": "Falacia de la falacia de la falacia",
+        "part": "PARTE XIV — FALACIAS DE SEGUNDO ORDEN Y META-FALACIAS",
+        "block": "BLOQUE 18 · Psicológicas y cognitivas sistematizadas",
+        "severity": 2,
+        "description": "Invocar la \"falacia del detector de falacias\" para desestimar señalamientos legítimos de falacias reales.",
+        "example": "",
+        "form": ""
+    },
+    {
+        "id": "F208",
+        "name": "Formalismo estricto",
+        "part": "PARTE XIV — FALACIAS DE SEGUNDO ORDEN Y META-FALACIAS",
+        "block": "BLOQUE 18 · Psicológicas y cognitivas sistematizadas",
+        "severity": 2,
+        "description": "Exigir formalización lógica completa de argumentos cotidianos y rechazarlos si no la tienen, ignorando que el lenguaje natural admite argumentación válidamente informal.",
+        "example": "",
+        "form": ""
+    },
+    {
+        "id": "F209",
+        "name": "Solución perfecta",
+        "part": "PARTE XIV — FALACIAS DE SEGUNDO ORDEN Y META-FALACIAS",
+        "block": "BLOQUE 18 · Psicológicas y cognitivas sistematizadas",
+        "severity": 3,
+        "description": "Rechazar una solución porque no es perfecta, comparándola con un ideal imposible en lugar de con las alternativas disponibles.",
+        "example": "\"Este tratado de paz no resuelve todos los conflictos, luego no sirve de nada.\"",
+        "form": ""
+    },
+    {
+        "id": "F210",
+        "name": "Dilación de Galileo",
+        "part": "PARTE XIV — FALACIAS DE SEGUNDO ORDEN Y META-FALACIAS",
+        "block": "BLOQUE 18 · Psicológicas y cognitivas sistematizadas",
+        "severity": 0,
+        "description": "",
+        "example": "",
+        "form": ""
+    },
+    {
+        "id": "F211",
+        "name": "Falacia de la dilución argumental",
+        "part": "PARTE XIV — FALACIAS DE SEGUNDO ORDEN Y META-FALACIAS",
+        "block": "BLOQUE 18 · Psicológicas y cognitivas sistematizadas",
+        "severity": 2,
+        "description": "Tomar la versión más débil posible de la propia tesis para hacerla irrefutable, luego reclamar implícitamente que se ha defendido la versión fuerte. Variante formal del motte and bailey.",
+        "example": "",
+        "form": ""
+    },
+    {
+        "id": "F212",
+        "name": "Escala manipulada en gráfica",
+        "part": "PARTE XV — FALACIAS VISUALES Y NO VERBALES",
+        "block": "BLOQUE 18 · Psicológicas y cognitivas sistematizadas",
+        "severity": 3,
+        "description": "Usar ejes que no empiezan en cero o tienen escalas no lineales para exagerar o minimizar visualmente diferencias reales.",
+        "example": "",
+        "form": ""
+    },
+    {
+        "id": "F213",
+        "name": "Correlación visual espuria",
+        "part": "PARTE XV — FALACIAS VISUALES Y NO VERBALES",
+        "block": "BLOQUE 18 · Psicológicas y cognitivas sistematizadas",
+        "severity": 3,
+        "description": "Presentar dos gráficas con tendencias similares como si demostraran causalidad entre las variables.",
+        "example": "",
+        "form": ""
+    },
+    {
+        "id": "F214",
+        "name": "Selección de imagen sesgada",
+        "part": "PARTE XV — FALACIAS VISUALES Y NO VERBALES",
+        "block": "BLOQUE 18 · Psicológicas y cognitivas sistematizadas",
+        "severity": 3,
+        "description": "Elegir imágenes que representan un caso excepcional como si fuera el caso típico (o viceversa) para apoyar una conclusión.",
+        "example": "",
+        "form": ""
+    },
+    {
+        "id": "F215",
+        "name": "Falacia del porcentaje visual",
+        "part": "PARTE XV — FALACIAS VISUALES Y NO VERBALES",
+        "block": "BLOQUE 18 · Psicológicas y cognitivas sistematizadas",
+        "severity": 2,
+        "description": "Usar representaciones gráficas (tartas, barras) donde las proporciones visuales no corresponden a las proporciones numéricas reales.",
+        "example": "",
+        "form": ""
+    },
+    {
+        "id": "F216",
+        "name": "Apelación visual a la autoridad",
+        "part": "PARTE XV — FALACIAS VISUALES Y NO VERBALES",
+        "block": "BLOQUE 18 · Psicológicas y cognitivas sistematizadas",
+        "severity": 2,
+        "description": "Usar imágenes de personas con bata blanca, laboratorios, o símbolos de autoridad para reforzar afirmaciones sin evidencia adicional.",
+        "example": "",
+        "form": ""
+    },
+    {
+        "id": "F217",
+        "name": "Apelación a la autoridad fuera de dominio",
+        "part": "PARTE XVI — FALACIAS EN ARGUMENTACIÓN POR AUTORIDAD",
+        "block": "BLOQUE 18 · Psicológicas y cognitivas sistematizadas",
+        "severity": 0,
+        "description": "",
+        "example": "",
+        "form": ""
+    },
+    {
+        "id": "F218",
+        "name": "Apelación a la autoridad sin credenciales verificables",
+        "part": "PARTE XVI — FALACIAS EN ARGUMENTACIÓN POR AUTORIDAD",
+        "block": "BLOQUE 18 · Psicológicas y cognitivas sistematizadas",
+        "severity": 3,
+        "description": "La persona citada no tiene formación demostrable en el área relevante.",
+        "example": "",
+        "form": ""
+    },
+    {
+        "id": "F219",
+        "name": "Apelación a la autoridad en desacuerdo con su campo",
+        "part": "PARTE XVI — FALACIAS EN ARGUMENTACIÓN POR AUTORIDAD",
+        "block": "BLOQUE 18 · Psicológicas y cognitivas sistematizadas",
+        "severity": 3,
+        "description": "Citar al único experto discrepante como si su opinión equivaliera al consenso del campo.",
+        "example": "Citar a un climatólogo que niega el cambio climático como contrapeso al 97% del consenso.",
+        "form": ""
+    },
+    {
+        "id": "F220",
+        "name": "Apelación a la autoridad desactualizada",
+        "part": "PARTE XVI — FALACIAS EN ARGUMENTACIÓN POR AUTORIDAD",
+        "block": "BLOQUE 18 · Psicológicas y cognitivas sistematizadas",
+        "severity": 2,
+        "description": "Citar a una autoridad cuya posición data de cuando el campo no tenía la evidencia actual.",
+        "example": "",
+        "form": ""
+    },
+    {
+        "id": "F221",
+        "name": "Apelación a la autoridad interesada",
+        "part": "PARTE XVI — FALACIAS EN ARGUMENTACIÓN POR AUTORIDAD",
+        "block": "BLOQUE 18 · Psicológicas y cognitivas sistematizadas",
+        "severity": 3,
+        "description": "Citar a un experto que tiene conflictos de interés directos sin declarar dichos conflictos.",
+        "example": "",
+        "form": ""
+    },
+    {
+        "id": "F222",
+        "name": "Autoridad por prominencia mediática",
+        "part": "PARTE XVI — FALACIAS EN ARGUMENTACIÓN POR AUTORIDAD",
+        "block": "BLOQUE 18 · Psicológicas y cognitivas sistematizadas",
+        "severity": 2,
+        "description": "Tratar la visibilidad mediática de una persona como equivalente a su autoridad epistémica en un tema.",
+        "example": "",
+        "form": ""
+    },
+    {
+        "id": "F223",
+        "name": "Conspiranoia abductiva",
+        "part": "PARTE XVII — FALACIAS DE ABDUCCIÓN AVANZADA",
+        "block": "BLOQUE 18 · Psicológicas y cognitivas sistematizadas",
+        "severity": 3,
+        "description": "Construir una hipótesis conspirativa como \"inferencia a la mejor explicación\" cuando la hipótesis requiere más supuestos ad hoc que la explicación convencional, violando la parsimonia.",
+        "example": "",
+        "form": ""
+    },
+    {
+        "id": "F224",
+        "name": "Patrón en el ruido",
+        "part": "PARTE XVII — FALACIAS DE ABDUCCIÓN AVANZADA",
+        "block": "BLOQUE 18 · Psicológicas y cognitivas sistematizadas",
+        "severity": 3,
+        "description": "Percibir conexiones significativas entre eventos no relacionados y usarlas como evidencia abductiva.",
+        "example": "",
+        "form": ""
+    },
+    {
+        "id": "F225",
+        "name": "Evidencia anecdótica como inferencia a la mejor explicación",
+        "part": "PARTE XVII — FALACIAS DE ABDUCCIÓN AVANZADA",
+        "block": "BLOQUE 18 · Psicológicas y cognitivas sistematizadas",
+        "severity": 3,
+        "description": "Usar un caso único como base de una abducción que requeriría evidencia sistemática.",
+        "example": "",
+        "form": ""
+    },
+    {
+        "id": "F226",
+        "name": "Congeries",
+        "part": "PARTE XVIII — FALACIAS RETÓRICAS CLÁSICAS ADICIONALES",
+        "block": "BLOQUE 18 · Psicológicas y cognitivas sistematizadas",
+        "severity": 2,
+        "description": "Acumular gran cantidad de argumentos débiles o irrelevantes con la esperanza de que el volumen supla la solidez.",
+        "example": "",
+        "form": ""
+    },
+    {
+        "id": "F227",
+        "name": "Exordio tendencioso",
+        "part": "PARTE XVIII — FALACIAS RETÓRICAS CLÁSICAS ADICIONALES",
+        "block": "BLOQUE 18 · Psicológicas y cognitivas sistematizadas",
+        "severity": 1,
+        "description": "Usar el exordio o introducción para predisponer al auditorio de forma que filtre toda la argumentación posterior.",
+        "example": "",
+        "form": ""
+    },
+    {
+        "id": "F228",
+        "name": "Apelación al carácter propio",
+        "part": "PARTE XVIII — FALACIAS RETÓRICAS CLÁSICAS ADICIONALES",
+        "block": "BLOQUE 18 · Psicológicas y cognitivas sistematizadas",
+        "severity": 2,
+        "description": "Usar la propia reputación, honestidad o trayectoria como sustituto de la evidencia o el argumento.",
+        "example": "\"Yo nunca he mentido; luego puedes creer lo que digo ahora sin cuestionarlo.\"",
+        "form": ""
+    },
+    {
+        "id": "F229",
+        "name": "Quaestio",
+        "part": "PARTE XVIII — FALACIAS RETÓRICAS CLÁSICAS ADICIONALES",
+        "block": "BLOQUE 18 · Psicológicas y cognitivas sistematizadas",
+        "severity": 3,
+        "description": "Introducir subrepticiamente una pregunta o suposición en el discurso de manera que el auditorio la asuma sin haberla evaluado.",
+        "example": "",
+        "form": ""
+    }
+]
