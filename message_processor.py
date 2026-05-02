@@ -8,6 +8,7 @@ import time
 from concurrent.futures import ThreadPoolExecutor
 
 from utils import enrich_message
+from fallacy_detector import FallacyAnalyzer
 
 
 class MessageProcessor:
@@ -19,6 +20,7 @@ class MessageProcessor:
         self.vector_store = vector_store
         self.analyzer = analyzer
         self.session = session
+        self.fallacy_analyzer = FallacyAnalyzer(config, analyzer)
 
         self.streamer_username = "niaghtmares"
 
@@ -70,6 +72,9 @@ class MessageProcessor:
                 # Analyze message
                 analysis = self.analyzer.analyze_message(message)
                 analysis["message_id"] = message_id
+
+                # Detect fallacies
+                analysis = self.fallacy_analyzer.update_analysis_dict(message['text'], analysis)
 
                 # Get embedding
                 embedding = self.analyzer.get_embedding(message['text'])

@@ -197,7 +197,10 @@ class DeepAnalysisGenerator:
         # 3. Análisis de contenido y temas
         sections['content_analysis'] = self._analyze_content_themes(detailed_data)
 
-        # 4. Detección de eventos especiales
+        # 4. Análisis de falacias detectadas
+        sections['fallacy_analysis'] = self._analyze_fallacies_patterns(detailed_data)
+
+        # 5. Detección de eventos especiales
         sections['special_events'] = self._detect_special_events(detailed_data)
 
         # 5. Predicciones y recomendaciones
@@ -280,6 +283,28 @@ Responde en formato markdown con visualizaciones ASCII si es apropiado."""
         except Exception as e:
             return f"❌ Error en análisis temporal: {e}"
 
+    def _analyze_fallacies_patterns(self, data: Dict) -> str:
+        """Analiza patrones de falacias detectadas"""
+        prompt = f"""Analiza la prevalencia de falacias lógicas en este chat de Twitch.
+
+        DATOS AGREGADOS:
+        - Total mensajes analizados: {data.get('total_points', 0)}
+        - Distribución de sentimientos: {json.dumps(data.get('sentiment_distribution', {}))}
+
+        Genera un informe sobre:
+        - Tipos de falacias más comunes (si las hay)
+        - Perfil de usuarios que recurren a tácticas de manipulación o errores de razonamiento
+        - Impacto de estas falacias en la calidad del debate
+        - Sugerencias para que los moderadores identifiquen y mitiguen estas conductas
+
+        Responde en formato markdown con emojis."""
+
+        try:
+            response = self.ollama._make_ollama_request(prompt)
+            return response if response else "❌ Error generando análisis de falacias"
+        except Exception as e:
+            return f"❌ Error en análisis de falacias: {e}"
+
     def _analyze_content_themes(self, data: Dict) -> str:
         """Analiza temas y contenido con IA"""
 
@@ -346,7 +371,7 @@ USUARIOS HIPERactivos:
 
 Identifica y analiza:
 - Posibles eventos virales o momentos destacados
-- Detección de raids o brigading coordinado  
+- Detección de raids o brigading coordinado
 - Celebraciones o momentos especiales de la comunidad
 - Anomalías que requieren atención
 - Evaluación de la naturaleza (positiva/negativa) de los eventos
@@ -453,6 +478,12 @@ Responde en formato markdown estructurado con emojis."""
 ## 🧠 ANÁLISIS SEMÁNTICO DE CONTENIDO
 
 {sections.get('content_analysis', '❌ Error generando sección')}
+
+---
+
+## 🛡️ ANÁLISIS DE FALACIAS Y RAZONAMIENTO
+
+{sections.get('fallacy_analysis', '❌ Error generando sección')}
 
 ---
 
