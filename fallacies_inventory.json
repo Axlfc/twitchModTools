@@ -27,7 +27,7 @@
         "severity": 3,
         "description": "Un silogismo que aparenta tener tres términos pero usa cuatro porque un término cambia de significado entre premisas.",
         "example": "\"El fin justifica los medios. La muerte es el fin de la vida. Luego, la muerte justifica los medios.\" (equivocación sobre \"fin\")",
-        "form": ""
+        "form": "P1: Todo M es P; P2: Todo S es M' (donde M != M' por equivocación) ∴ Todo S es P"
     },
     {
         "id": "F004",
@@ -37,7 +37,7 @@
         "severity": 3,
         "description": "El término medio no está distribuido en ninguna premisa, rompiendo la validez del silogismo.",
         "example": "\"Todos los perros son animales. Algunos animales son gatos. Luego, algunos perros son gatos.\" (el término medio \"animales\" no está distribuido)",
-        "form": ""
+        "form": "P1: Todo P es M; P2: Todo S es M ∴ Todo S es P (M no está distribuido)"
     },
     {
         "id": "F005",
@@ -47,7 +47,7 @@
         "severity": 3,
         "description": "El término mayor está distribuido en la conclusión pero no en la premisa mayor, tomando más extensión de la que se le había concedido.",
         "example": "\"Todos los humanos son mortales. Ningún ángel es humano. Luego, ningún ángel es mortal.\" (mortal queda distribuido indebidamente)",
-        "form": ""
+        "form": "P1: Todo M es P; P2: Ningún S es M ∴ Ningún S es P (P está distribuido en la conclusión pero no en la premisa)"
     },
     {
         "id": "F006",
@@ -56,8 +56,8 @@
         "block": "BLOQUE 1 · Falacias silogísticas clásicas",
         "severity": 3,
         "description": "El término menor está distribuido en la conclusión pero no en la premisa menor.",
-        "example": "",
-        "form": ""
+        "example": "'Todos los gatos son mamíferos. Todos los mamíferos son animales. Luego, todos los animales son gatos.' (el término 'animales' se distribuye indebidamente)",
+        "form": "P1: Todo P es M; P2: Todo M es S ∴ Todo S es P (S está distribuido en la conclusión pero no en la premisa)"
     },
     {
         "id": "F007",
@@ -67,7 +67,7 @@
         "severity": 3,
         "description": "De dos premisas negativas no puede extraerse ninguna conclusión positiva ni negativa válida.",
         "example": "\"Ningún pez es mamífero. Ningún reptil es pez. ∴ ?\" (nada puede concluirse)",
-        "form": ""
+        "form": "Ningún M es P; Ningún S es M ∴ (no se sigue conclusión válida)"
     },
     {
         "id": "F008",
@@ -76,8 +76,8 @@
         "block": "BLOQUE 1 · Falacias silogísticas clásicas",
         "severity": 3,
         "description": "De dos premisas particulares no puede obtenerse una conclusión universal válida.",
-        "example": "",
-        "form": ""
+        "example": "'Algunos políticos son honestos. Algunos honestos son pobres. Luego, algunos políticos son pobres.' (no se puede asegurar la conexión)",
+        "form": "Algún M es P; Algún S es M ∴ (no se sigue conclusión válida)"
     },
     {
         "id": "F009",
@@ -86,8 +86,8 @@
         "block": "BLOQUE 1 · Falacias silogísticas clásicas",
         "severity": 3,
         "description": "La conclusión es universal o necesaria cuando las premisas solo permiten una conclusión particular o contingente.",
-        "example": "",
-        "form": ""
+        "example": "'Algún estudiante aprobó sin estudiar. Luego, todos aprobarán sin estudiar.'",
+        "form": "Premisas particulares o contingentes ∴ Conclusión universal o necesaria"
     },
     {
         "id": "F010",
@@ -96,7 +96,7 @@
         "block": "BLOQUE 1 · Falacias silogísticas clásicas",
         "severity": 2,
         "description": "",
-        "example": "",
+        "example": "'O es lunes o es martes. No es lunes, luego es martes.' (cuando podría ser miércoles, si la disyunción no es exhaustiva)",
         "form": "P ∨ Q; ¬P; ∴ Q — cuando la disyunción no es exhaustiva y existen otras alternativas no consideradas."
     },
     {
@@ -107,7 +107,7 @@
         "severity": 3,
         "description": "Inferir que algo existe en particular a partir de una verdad universal sin verificar la existencia del individuo.",
         "example": "\"Todos los unicornios tienen cuerno. Luego, existe al menos un unicornio con cuerno.\"",
-        "form": ""
+        "form": "∀x P(x) ∴ ∃x P(x) (presuponiendo falsamente que el conjunto no es vacío)"
     },
     {
         "id": "F012",
@@ -117,7 +117,7 @@
         "severity": 3,
         "description": "Confundir \"∀x ∃y R(x,y)\" con \"∃y ∀x R(x,y)\".",
         "example": "\"Todos aman a alguien\" ≠ \"Hay alguien a quien todos aman.\"",
-        "form": ""
+        "form": "∀x ∃y R(x,y) ∴ ∃y ∀x R(x,y)"
     },
     {
         "id": "F013",
@@ -127,7 +127,7 @@
         "severity": 2,
         "description": "Tratar una verdad vacua (verdadera porque el antecedente es imposible) como si tuviera contenido sustantivo.",
         "example": "usar \"Todos los unicornios son mansos\" como premisa sustantiva en un argumento sobre mansedumbre.",
-        "form": ""
+        "form": "∀x ∈ ∅: P(x) ∴ Q (tratar una verdad vacua como premisa con contenido)"
     },
     {
         "id": "F014",
@@ -137,7 +137,7 @@
         "severity": 3,
         "description": "Confundir necesidad con posibilidad, o lo contingente con lo imposible.",
         "example": "\"Es posible que llueva. Luego, necesariamente lloverá en algún momento.\" (non sequitur modal)",
-        "form": ""
+        "form": "◇P ∴ □P"
     },
     {
         "id": "F015",
@@ -147,7 +147,7 @@
         "severity": 3,
         "description": "Inferir que algo es necesario porque siempre ha ocurrido: confusión entre necesidad lógica y regularidad empírica.",
         "example": "\"El sol siempre ha salido. Luego, es lógicamente necesario que salga mañana.\"",
-        "form": ""
+        "form": "Siempre P ∴ □P (confundir regularidad con necesidad lógica)"
     },
     {
         "id": "F016",
@@ -157,7 +157,7 @@
         "severity": 3,
         "description": "Confundir la necesidad de una proposición (de dicto) con la necesidad de que una propiedad se aplique a un objeto (de re).",
         "example": "\"Necesariamente el número de planetas es > 0\" (de dicto, analítica) ≠ \"El número de planetas tiene necesariamente esa cantidad\" (de re, falsa).",
-        "form": ""
+        "form": "□(∃x Px) ∴ ∃x(□Px)"
     },
     {
         "id": "F017",
@@ -167,7 +167,7 @@
         "severity": 2,
         "description": "Tratar \"es posible que X\" como si X tuviera probabilidad significativa o alta.",
         "example": "\"Es posible que este medicamento cause daño cerebral\" usado para justificar su prohibición sin datos de frecuencia.",
-        "form": ""
+        "form": "◇P ∴ P tiene alta probabilidad"
     },
     {
         "id": "F018",
@@ -177,7 +177,7 @@
         "severity": 2,
         "description": "Porque algo ocurrió, era inevitable que ocurriera. Confunde necesidad lógica con necesidad fáctica post-hoc.",
         "example": "\"La Primera Guerra Mundial tenía que estallar; las condiciones lo hacían inevitable.\" (confunde explicación con necesidad lógica)",
-        "form": ""
+        "form": "P ocurrió ∴ □P (confusión de necesidad fáctica con necesidad lógica)"
     },
     {
         "id": "F019",
@@ -196,8 +196,8 @@
         "block": "BLOQUE 4 · Otras falacias formales",
         "severity": 3,
         "description": "La conclusión no se sigue de las premisas por ninguna regla de inferencia reconocible.",
-        "example": "",
-        "form": ""
+        "example": "'Tengo un coche rojo, luego mañana lloverá.'",
+        "form": "P ∴ Q (sin vínculo lógico o regla de inferencia válida)"
     },
     {
         "id": "F021",
@@ -207,7 +207,7 @@
         "severity": 2,
         "description": "En una disyunción inclusiva (P ∨ Q), afirmar P no permite negar Q.",
         "example": "\"O estudia o trabaja. Estudia. Luego no trabaja.\" (puede hacer ambas)",
-        "form": ""
+        "form": "P ∨ Q; P ∴ ¬Q (en una disyunción que permite ambos disyuntos)"
     },
     {
         "id": "F022",
@@ -217,7 +217,7 @@
         "severity": 3,
         "description": "Asumir que una relación es transitiva cuando no lo es.",
         "example": "\"Pedro es amigo de Juan. Juan es amigo de María. Luego, Pedro es amigo de María.\" (la amistad no es transitiva necesariamente)",
-        "form": ""
+        "form": "A R B; B R C ∴ A R C (donde la relación R no es transitiva)"
     },
     {
         "id": "F023",
@@ -227,7 +227,7 @@
         "severity": 3,
         "description": "Usar una misma palabra con dos significados distintos dentro del mismo argumento.",
         "example": "\"Las leyes de la naturaleza son leyes. Las leyes las hacen los hombres. Luego, los hombres hicieron las leyes de la naturaleza.\"",
-        "form": ""
+        "form": "P1(A es B); P2(B' es C) ∴ A es C (donde B y B' son la misma palabra con distinto significado)"
     },
     {
         "id": "F024",
@@ -237,7 +237,7 @@
         "severity": 2,
         "description": "Ambigüedad gramatical o sintáctica que hace que una premisa pueda interpretarse de formas contradictorias.",
         "example": "\"Vi al hombre con el telescopio.\" (¿quién tiene el telescopio?)",
-        "form": ""
+        "form": "Sentencia S tiene ambigüedad gramatical ∴ Interpretación errónea de S"
     },
     {
         "id": "F025",
@@ -247,7 +247,7 @@
         "severity": 2,
         "description": "Cambiar el significado de una proposición por el énfasis en una palabra diferente.",
         "example": "\"No deberías robar a tus AMIGOS.\" (implica que sí puedes robar a otros)",
-        "form": ""
+        "form": "Énfasis(S, palabra1) ∴ Significado1; Énfasis(S, palabra2) ∴ Significado2"
     },
     {
         "id": "F026",
@@ -257,7 +257,7 @@
         "severity": 3,
         "description": "Atribuir al todo las propiedades de sus partes.",
         "example": "\"Cada átomo de este muro es invisible. Luego, el muro es invisible.\"",
-        "form": ""
+        "form": "∀x ∈ W: P(x) ∴ P(W)"
     },
     {
         "id": "F027",
@@ -267,7 +267,7 @@
         "severity": 3,
         "description": "Atribuir a las partes las propiedades del todo.",
         "example": "\"Esta empresa gana millones. Tu departamento forma parte de ella. Luego, tu departamento gana millones.\"",
-        "form": ""
+        "form": "P(W) ∴ ∀x ∈ W: P(x)"
     },
     {
         "id": "F028",
@@ -276,8 +276,8 @@
         "block": "BLOQUE 4 · Otras falacias formales",
         "severity": 2,
         "description": "Ambigüedad producida por juntar palabras que deben leerse separadas, distinta de la composición lógica. Ejemplo clásico: \"Puede caminar mientras está sentado\" leído como \"puede-caminar-mientras-está-sentado\" (una capacidad) vs \"puede / caminar mientras está sentado\" (dos acciones).",
-        "example": "",
-        "form": ""
+        "example": "'Puede caminar mientras está sentado' (leído como una sola capacidad paradójica)",
+        "form": "Ambigüedad por agrupar palabras que deben leerse por separado"
     },
     {
         "id": "F029",
@@ -286,8 +286,8 @@
         "block": "BLOQUE 4 · Otras falacias formales",
         "severity": 2,
         "description": "Ambigüedad producida por separar lo que debe leerse unido.",
-        "example": "",
-        "form": ""
+        "example": "'Cinco es dos y tres' (interpretado como que el número 5 es a la vez el número 2 y el número 3 por separado)",
+        "form": "Ambigüedad por separar palabras que deben leerse juntas"
     },
     {
         "id": "F030",
@@ -297,7 +297,7 @@
         "severity": 1,
         "description": "Tratar expresiones metafóricas, figuradas o idiomáticas como si fueran literales, o viceversa.",
         "example": "Tomar \"estoy muerto de hambre\" como afirmación médica.",
-        "form": ""
+        "form": "Metáfora(M) ∴ Sentido_Literal(M)"
     },
     {
         "id": "F031",
@@ -307,7 +307,7 @@
         "severity": 2,
         "description": "Tratar una abstracción como si fuera una entidad concreta con agencia causal.",
         "example": "\"La historia nos enseña que los imperios caen.\" (la historia no es un agente)",
-        "form": ""
+        "form": "Abstracción A ∴ Entidad concreta con capacidad causal"
     },
     {
         "id": "F032",
@@ -317,7 +317,7 @@
         "severity": 2,
         "description": "Confundir el proceso de hacer algo con el producto resultante.",
         "example": "\"La construcción del puente duró dos años\" (proceso) vs \"La construcción es sólida\" (producto).",
-        "form": ""
+        "form": "Confundir las propiedades del acto de creación con las del objeto creado"
     },
     {
         "id": "F033",
@@ -327,7 +327,7 @@
         "severity": 3,
         "description": "Usar una palabra y hablar sobre esa palabra como si fueran la misma cosa.",
         "example": "\"Gato tiene cuatro letras.\" (correcto) confundido con \"Gato tiene cuatro letras, luego los gatos tienen cuatro letras.\"",
-        "form": ""
+        "form": "Confundir el hablar de una palabra (mención) con el uso de su referente"
     },
     {
         "id": "F034",
@@ -337,7 +337,7 @@
         "severity": 2,
         "description": "Argumentar que el significado actual de una palabra debe ser el original o el \"verdadero\".",
         "example": "\"Política viene de polis, luego la política solo puede referirse a lo comunitario-local.\"",
-        "form": ""
+        "form": "Etimología(X) = Significado_Actual(X)"
     },
     {
         "id": "F035",
@@ -347,7 +347,7 @@
         "severity": 2,
         "description": "Redefinir un término cargado de valor para capturar su connotación en beneficio propio.",
         "example": "\"La verdadera libertad es la obediencia voluntaria a la ley divina.\"",
-        "form": ""
+        "form": "Definición(X) = X + carga emocional/valorativa para sesgar"
     },
     {
         "id": "F036",
@@ -357,7 +357,7 @@
         "severity": 3,
         "description": "Definir un término usando el mismo término, explícita o implícitamente.",
         "example": "\"El opio duerme porque tiene virtud dormitiva.\" (Molière)",
-        "form": ""
+        "form": "X se define mediante Y; Y se define mediante X"
     },
     {
         "id": "F037",
@@ -366,8 +366,8 @@
         "block": "BLOQUE 4 · Otras falacias formales",
         "severity": 2,
         "description": "La definición incluye casos que claramente no pertenecen al concepto.",
-        "example": "",
-        "form": ""
+        "example": "'Un ave es un animal que pone huevos.' (incluye a los ornitorrincos)",
+        "form": "Definición(X) incluye casos que no pertenecen a la categoría X"
     },
     {
         "id": "F038",
@@ -376,8 +376,8 @@
         "block": "BLOQUE 4 · Otras falacias formales",
         "severity": 2,
         "description": "La definición excluye casos que claramente sí pertenecen al concepto.",
-        "example": "",
-        "form": ""
+        "example": "'Un mamífero es un animal con cuatro patas.' (excluye a los humanos)",
+        "form": "Definición(X) excluye casos que sí pertenecen a la categoría X"
     },
     {
         "id": "F039",
@@ -387,7 +387,7 @@
         "severity": 2,
         "description": "Usar términos con fuerte carga emotiva o connotativa para sesgar la percepción sin añadir contenido proposicional.",
         "example": "Llamar \"asesinato\" a un procedimiento médico legal, o \"eliminación de tejido\" a un homicidio.",
-        "form": ""
+        "form": "Uso de lenguaje con fuerte carga E para evitar la argumentación sobre hechos H"
     },
     {
         "id": "F040",
@@ -397,7 +397,7 @@
         "severity": 2,
         "description": "Usar eufemismos para suavizar una realidad de manera que cambia la evaluación moral o epistémica del argumento.",
         "example": "\"Daños colaterales\" en lugar de \"civiles muertos.\"",
-        "form": ""
+        "form": "Sustitución de término X por eufemismo Y para suavizar una realidad negativa"
     },
     {
         "id": "F041",
@@ -407,7 +407,7 @@
         "severity": 3,
         "description": "Atacar el carácter, apariencia o vida personal del interlocutor en lugar de su argumento.",
         "example": "\"No puedes hablar de economía; eres un fracasado financiero.\"",
-        "form": ""
+        "form": "P afirma X; P tiene rasgos negativos ∴ X es falso"
     },
     {
         "id": "F042",
@@ -417,7 +417,7 @@
         "severity": 2,
         "description": "Señalar que el interlocutor tiene intereses personales que supuestamente invalidan su posición, sin refutar el argumento.",
         "example": "\"Claro que defiendes las vacunas; te paga la industria farmacéutica.\"",
-        "form": ""
+        "form": "P afirma X; P tiene intereses en que X sea cierto ∴ X es falso"
     },
     {
         "id": "F043",
@@ -427,7 +427,7 @@
         "severity": 3,
         "description": "Responder a una crítica señalando que el crítico hace lo mismo, como si eso invalidara la crítica.",
         "example": "\"Me dices que no debo fumar, pero tú también fumabas.\"",
-        "form": ""
+        "form": "P critica Y; P comete Y ∴ La crítica de P es inválida"
     },
     {
         "id": "F044",
@@ -437,7 +437,7 @@
         "severity": 2,
         "description": "Explicar por qué la persona cree lo que cree (motivos psicológicos, sociológicos) como si eso invalidara su argumento, sin refutarlo directamente.",
         "example": "\"Solo defiendes el feminismo porque tu madre era feminista; eso explica tu sesgo.\"",
-        "form": ""
+        "form": "Explicar el origen psicológico de la creencia de P ∴ Refutación de dicha creencia"
     },
     {
         "id": "F045",
@@ -447,7 +447,7 @@
         "severity": 3,
         "description": "Presentar información desacreditadora sobre el interlocutor antes de que pueda argumentar, de modo que cualquier cosa que diga quede contaminada.",
         "example": "\"Antes de que hable mi oponente, deben saber que ha sido acusado de corrupción.\"",
-        "form": ""
+        "form": "Presentar información negativa de P antes de su intervención ∴ Argumento de P invalidado"
     },
     {
         "id": "F046",
@@ -457,7 +457,7 @@
         "severity": 3,
         "description": "Juzgar el valor de una idea por su origen (histórico, social, psicológico), no por su contenido.",
         "example": "\"Esa teoría surgió en el contexto del nazismo, luego es falsa.\"",
-        "form": ""
+        "form": "La idea I proviene de un origen O desacreditado ∴ I es falsa"
     },
     {
         "id": "F047",
@@ -467,7 +467,7 @@
         "severity": 3,
         "description": "Usar la amenaza, la coerción o el poder como argumento para aceptar una conclusión.",
         "example": "\"Aceptarás mi propuesta si sabes lo que te conviene.\"",
-        "form": ""
+        "form": "Si no aceptas X, ocurrirá un daño inducido D ∴ X es aceptable"
     },
     {
         "id": "F048",
@@ -477,7 +477,7 @@
         "severity": 2,
         "description": "Apelar a la lástima o compasión como sustituto de la evidencia.",
         "example": "\"Deberías darme el trabajo; tengo tres hijos y estoy desesperado.\"",
-        "form": ""
+        "form": "Apelar a la piedad de P para que acepte la conclusión C sin pruebas"
     },
     {
         "id": "F049",
@@ -487,7 +487,7 @@
         "severity": 3,
         "description": "Concluir que algo es verdad porque mucha gente lo cree.",
         "example": "\"Millones de personas creen en la homeopatía, algo de verdad tendrá.\"",
-        "form": ""
+        "form": "La mayoría cree X ∴ X es verdadero"
     },
     {
         "id": "F050",
@@ -496,8 +496,8 @@
         "block": "BLOQUE 6 · Apelaciones improcedentes",
         "severity": 2,
         "description": "Variante del ad populum: unirse a la mayoría o a la tendencia como justificación de una decisión o creencia.",
-        "example": "",
-        "form": ""
+        "example": "'Todo el mundo está comprando criptomonedas, así que deben ser una inversión segura.'",
+        "form": "X es tendencia o popular ∴ Debes aceptar o unirte a X"
     },
     {
         "id": "F051",
@@ -507,7 +507,7 @@
         "severity": 3,
         "description": "Invocar la autoridad de alguien como sustituto de evidencia, especialmente fuera de su área de competencia.",
         "example": "\"Este famoso físico dice que la acupuntura funciona, luego funciona.\"",
-        "form": ""
+        "form": "Autoridad A dice X (siendo X ajeno al dominio experto de A) ∴ X es cierto"
     },
     {
         "id": "F052",
@@ -516,8 +516,8 @@
         "block": "BLOQUE 6 · Apelaciones improcedentes",
         "severity": 3,
         "description": "\"Estudios demuestran…\", \"expertos dicen…\" sin identificar la fuente ni sus credenciales.",
-        "example": "",
-        "form": ""
+        "example": "'Científicos de prestigio aseguran que este producto rejuvenece.'",
+        "form": "Referencia a fuentes expertas sin identificar ∴ X es cierto"
     },
     {
         "id": "F053",
@@ -526,8 +526,8 @@
         "block": "BLOQUE 6 · Apelaciones improcedentes",
         "severity": 3,
         "description": "Presentar como consenso experto lo que es solo opinión mayoritaria, sectaria o parcial.",
-        "example": "",
-        "form": ""
+        "example": "'La mayoría de la gente prefiere este sistema, por lo tanto es el mejor técnicamente.'",
+        "form": "Presentar una opinión popular o mayoritaria como si fuera un consenso científico"
     },
     {
         "id": "F054",
@@ -537,7 +537,7 @@
         "severity": 3,
         "description": "Concluir que algo es verdad porque no se ha probado que sea falso, o viceversa.",
         "example": "\"Nadie ha demostrado que los fantasmas no existen, luego existen.\"",
-        "form": ""
+        "form": "No se ha probado que X sea falso ∴ X es verdadero"
     },
     {
         "id": "F055",
@@ -547,7 +547,7 @@
         "severity": 2,
         "description": "Argumentar que algo es correcto porque siempre se ha hecho así.",
         "example": "\"El matrimonio siempre ha sido entre hombre y mujer, luego así debe ser.\"",
-        "form": ""
+        "form": "Tradicionalmente se ha hecho X ∴ X es correcto o bueno"
     },
     {
         "id": "F056",
@@ -557,7 +557,7 @@
         "severity": 2,
         "description": "Lo nuevo es mejor por el mero hecho de ser nuevo.",
         "example": "\"Esta terapia es revolucionaria y reciente, debe ser superior a las antiguas.\"",
-        "form": ""
+        "form": "X es novedoso ∴ X es superior a lo anterior"
     },
     {
         "id": "F057",
@@ -567,7 +567,7 @@
         "severity": 2,
         "description": "Lo natural es bueno; lo artificial, malo, sin justificación ulterior.",
         "example": "\"Este veneno es completamente natural, luego es seguro.\"",
-        "form": ""
+        "form": "X es natural ∴ X es intrínsecamente bueno"
     },
     {
         "id": "F058",
@@ -577,7 +577,7 @@
         "severity": 3,
         "description": "No es una amenaza directa (ad baculum), sino la evocación del miedo como argumento para aceptar una conclusión.",
         "example": "\"Si no aprobamos esta ley, los terroristas acabarán con nuestra civilización.\"",
-        "form": ""
+        "form": "Evocar temor sobre las consecuencias de X para forzar su rechazo"
     },
     {
         "id": "F059",
@@ -587,7 +587,7 @@
         "severity": 2,
         "description": "Usar la respuesta emocional de repulsa como sustituto de argumento ético (Haidt).",
         "example": "\"Eso simplemente me parece asqueroso, luego no debe permitirse.\"",
-        "form": ""
+        "form": "X provoca repulsa emocional ∴ X es moralmente condenable"
     },
     {
         "id": "F060",
@@ -596,8 +596,8 @@
         "block": "BLOQUE 6 · Apelaciones improcedentes",
         "severity": 2,
         "description": "Lo que dice el rico es más válido o verdadero por el hecho de ser rico.",
-        "example": "",
-        "form": ""
+        "example": "'Es un empresario de éxito, así que su visión sobre la educación debe ser correcta.'",
+        "form": "P es rico ∴ Los juicios de P son más válidos"
     },
     {
         "id": "F061",
@@ -606,8 +606,8 @@
         "block": "BLOQUE 6 · Apelaciones improcedentes",
         "severity": 2,
         "description": "Lo que dice el pobre es más auténtico o verdadero por el hecho de serlo.",
-        "example": "",
-        "form": ""
+        "example": "'Este monje vive en la miseria, su palabra es la verdad pura.'",
+        "form": "P es pobre ∴ Los juicios de P son más auténticos o verdaderos"
     },
     {
         "id": "F062",
@@ -617,7 +617,7 @@
         "severity": 2,
         "description": "Ganar adhesión mediante halagos al auditorio en lugar de argumentos.",
         "example": "\"Ustedes, que son personas tan inteligentes, sabrán reconocer que mi propuesta es la correcta.\"",
-        "form": ""
+        "form": "Halagar al auditorio o a P ∴ Ganar adhesión a la conclusión C"
     },
     {
         "id": "F063",
@@ -626,8 +626,8 @@
         "block": "BLOQUE 6 · Apelaciones improcedentes",
         "severity": 3,
         "description": "Inducir hostilidad hacia el oponente o hacia su posición como sustituto de argumento.",
-        "example": "",
-        "form": ""
+        "example": "'Tus enemigos apoyan esta ley, ¿vas a estar de su lado?'",
+        "form": "Inducir odio hacia el proponente o su grupo ∴ Refutar su posición"
     },
     {
         "id": "F064",
@@ -637,7 +637,7 @@
         "severity": 3,
         "description": "Presentar la posición contraria como absurda o ridícula sin demostrar por qué lo es. Distinto de la reductio ad absurdum legítima.",
         "example": "\"¿De verdad quieres defender esa idea tan ridícula?\"",
-        "form": ""
+        "form": "Presentar X como ridículo sin análisis ∴ X es falso"
     },
     {
         "id": "F065",
@@ -647,7 +647,7 @@
         "severity": 2,
         "description": "Usar la incomprensibilidad o el misterio como argumento positivo a favor de una posición sobrenatural o metafísica.",
         "example": "\"La conciencia es tan misteriosa que solo puede explicarse por el alma.\"",
-        "form": ""
+        "form": "X es incomprensible ∴ X tiene una explicación sobrenatural"
     },
     {
         "id": "F066",
@@ -656,8 +656,8 @@
         "block": "BLOQUE 6 · Apelaciones improcedentes",
         "severity": 2,
         "description": "Concluir que algo es verdad a partir de la ausencia de testimonio en contra, o que algo no ocurrió porque no hay registro de ello.",
-        "example": "",
-        "form": ""
+        "example": "'Marco Polo no mencionó la Gran Muralla, por lo tanto no existía en su época.'",
+        "form": "Inexistencia de mención o registro de X ∴ X no sucedió"
     },
     {
         "id": "F067",
@@ -667,7 +667,7 @@
         "severity": 3,
         "description": "Distorsionar, exagerar o simplificar la posición del oponente para refutarla más fácilmente.",
         "example": "\"Quieres reducir el presupuesto militar, ¡así que quieres que nos invadan!\"",
-        "form": ""
+        "form": "Atacar una versión simplificada o deformada de X ∴ X queda refutado"
     },
     {
         "id": "F068",
@@ -677,7 +677,7 @@
         "severity": 3,
         "description": "Se defiende una posición controvertida (bailey) pero cuando se ataca, se retira a una posición obvia e indefendible (motte), luego se regresa al bailey sin que se haya resuelto el debate sobre este.",
         "example": "Defender \"el patriarcado controla todas las instituciones\" (bailey), pero cuando se critica, retirarse a \"existen desigualdades de género\" (motte), y luego regresar al bailey como si se hubiera validado.",
-        "form": ""
+        "form": "Alternar entre una posición fácil de defender (motte) y una controvertida (bailey)"
     },
     {
         "id": "F069",
@@ -686,8 +686,8 @@
         "block": "BLOQUE 7 · Distorsión del argumento ajeno",
         "severity": 3,
         "description": "Introducir un tema irrelevante para desviar la atención del argumento central.",
-        "example": "",
-        "form": ""
+        "example": "'¿Por qué no bajamos los impuestos? Bueno, lo importante es hablar de la unidad del país.'",
+        "form": "Introducir un tema B ajeno al debate para distraer del tema central A"
     },
     {
         "id": "F070",
@@ -696,8 +696,8 @@
         "block": "BLOQUE 7 · Distorsión del argumento ajeno",
         "severity": 3,
         "description": "Probar algo diferente de lo que se discute, aunque la prueba en sí sea válida. Categoría madre que engloba el hombre de paja, el red herring y otras falacias de relevancia.",
-        "example": "",
-        "form": ""
+        "example": "'Este sospechoso es una mala persona (probado), luego cometió este asesinato (no se sigue).'",
+        "form": "Probar una tesis P1 para concluir una tesis P2 no relacionada"
     },
     {
         "id": "F071",
@@ -706,8 +706,8 @@
         "block": "BLOQUE 7 · Distorsión del argumento ajeno",
         "severity": 3,
         "description": "Extraer afirmaciones de su contexto argumentativo y presentarlas como si dijeran algo diferente.",
-        "example": "",
-        "form": ""
+        "example": "'El autor escribió \"no me gusta la guerra\", pero si citamos solo \"me gusta la guerra\" cambiamos su mensaje.'",
+        "form": "Extraer fragmentos de un discurso para alterar su sentido original"
     },
     {
         "id": "F072",
@@ -716,8 +716,8 @@
         "block": "BLOQUE 7 · Distorsión del argumento ajeno",
         "severity": 2,
         "description": "Ofrecer simultáneamente múltiples argumentos contradictorios que no pueden ser todos verdaderos. Ejemplo de Freud: \"No le rompí la olla / La olla ya estaba rota / Nunca le devolví ninguna olla.\"",
-        "example": "",
-        "form": ""
+        "example": "'No te presté el libro, además te lo devolví ayer y ya estaba roto cuando me lo diste.'",
+        "form": "Ofrecer múltiples defensas que se contradicen entre sí"
     },
     {
         "id": "F073",
@@ -727,7 +727,7 @@
         "severity": 3,
         "description": "Construcción donde cualquier negación de la acusación se toma como prueba adicional de culpabilidad.",
         "example": "\"Si niegas ser racista, eso demuestra que no eres consciente de tu propio racismo.\"",
-        "form": ""
+        "form": "Cualquier negación de la acusación X ∴ Prueba de culpabilidad de X"
     },
     {
         "id": "F074",
@@ -737,7 +737,7 @@
         "severity": 3,
         "description": "La conclusión está implícita en las premisas; el argumento es circular.",
         "example": "\"La Biblia es verdadera porque lo dice Dios, y sabemos que Dios existe porque lo dice la Biblia.\"",
-        "form": ""
+        "form": "La conclusión C se asume como verdadera en las premisas de su propia prueba"
     },
     {
         "id": "F075",
@@ -747,7 +747,7 @@
         "severity": 3,
         "description": "Formular una pregunta que presupone algo no establecido.",
         "example": "\"¿Cuándo dejaste de mentir?\" (presupone que mentiste)",
-        "form": ""
+        "form": "Realizar una pregunta que contiene una presupuesto no aceptada"
     },
     {
         "id": "F076",
@@ -757,7 +757,7 @@
         "severity": 3,
         "description": "Presentar solo dos opciones cuando existen más.",
         "example": "\"O estás con nosotros o estás contra nosotros.\"",
-        "form": ""
+        "form": "Reducir las opciones a dos cuando hay más alternativas disponibles"
     },
     {
         "id": "F077",
@@ -767,7 +767,7 @@
         "severity": 3,
         "description": "Asumir que la posición correcta siempre está entre dos extremos. La verdad no es necesariamente el promedio de las posiciones en debate.",
         "example": "\"Algunos dicen que la Tierra tiene 4.500 millones de años; otros dicen 6.000 años. La verdad estará en el medio.\" (falso: el consenso científico no es un punto medio)",
-        "form": ""
+        "form": "Asumir que la verdad es el promedio exacto entre dos posiciones extremas"
     },
     {
         "id": "F078",
@@ -777,7 +777,7 @@
         "severity": 3,
         "description": "Exigir al oponente que pruebe la falsedad de lo que uno afirma sin haber ofrecido evidencia propia.",
         "example": "\"Demuéstrame que Dios no existe.\"",
-        "form": ""
+        "form": "Quien afirma X no aporta pruebas y exige que el otro pruebe ¬X"
     },
     {
         "id": "F079",
@@ -787,7 +787,7 @@
         "severity": 2,
         "description": "Afirmar que aceptar una posición llevará inevitablemente a aceptar posiciones cada vez más extremas, sin justificar los pasos intermedios.",
         "example": "\"Si permitimos el matrimonio homosexual, pronto se permitirá casarse con animales.\"",
-        "form": ""
+        "form": "Aceptar un cambio pequeño A llevará inevitablemente a un extremo Z"
     },
     {
         "id": "F080",
@@ -797,7 +797,7 @@
         "severity": 2,
         "description": "Afirmar que una acción causará inevitablemente una cadena de consecuencias negativas sin justificar los mecanismos causales.",
         "example": "\"Si legalizamos el cannabis, en diez años habremos destruido a toda una generación.\"",
-        "form": ""
+        "form": "A → B → C (sin demostrar el vínculo causal real entre los pasos)"
     },
     {
         "id": "F081",
@@ -807,7 +807,7 @@
         "severity": 3,
         "description": "Concluir que A causó B porque A precedió a B.",
         "example": "\"Tomé vitamina C y se me curó el resfriado en una semana. La vitamina C cura los resfriados.\"",
-        "form": ""
+        "form": "Evento A ocurrió antes que B ∴ A es la causa de B"
     },
     {
         "id": "F082",
@@ -817,7 +817,7 @@
         "severity": 3,
         "description": "Concluir causalidad a partir de correlación simultánea.",
         "example": "\"Los países con más chocolateros tienen más premios Nobel. El chocolate aumenta el rendimiento cognitivo.\"",
-        "form": ""
+        "form": "Evento A y B ocurren al mismo tiempo ∴ A causa B"
     },
     {
         "id": "F083",
@@ -827,7 +827,7 @@
         "severity": 3,
         "description": "Confundir qué fenómeno causa cuál.",
         "example": "\"Los hospitales enferman a la gente\" (porque en los hospitales hay enfermos).",
-        "form": ""
+        "form": "A causa B ∴ B causa A (invertir la dirección de la causalidad)"
     },
     {
         "id": "F084",
@@ -837,7 +837,7 @@
         "severity": 3,
         "description": "Atribuir causalidad entre A y B ignorando que una tercera variable C causa ambas.",
         "example": "\"Los países con más televisores tienen más esperanza de vida. Comprar televisores alarga la vida.\" (la variable de confusión es el nivel de desarrollo)",
-        "form": ""
+        "form": "A y B están correlacionados ∴ A causa B (ignorando una causa común C)"
     },
     {
         "id": "F085",
@@ -846,8 +846,8 @@
         "block": "BLOQUE 9 · Pendiente resbaladiza y causalidad espuria",
         "severity": 2,
         "description": "Asumir que solo puede haber una causa cuando pueden coexistir varias suficientes.",
-        "example": "",
-        "form": ""
+        "example": "'El incendio se debió a un cortocircuito.' (ignorando que hubo también una fuga de gas)",
+        "form": "Atribuir el efecto a una sola causa cuando existen múltiples causas independientes"
     },
     {
         "id": "F086",
@@ -857,7 +857,7 @@
         "severity": 2,
         "description": "Atribuir a una sola causa o agente un fenómeno que es resultado de múltiples factores.",
         "example": "\"La Segunda Guerra Mundial la causó Hitler.\"",
-        "form": ""
+        "form": "Simplificar un fenómeno multicausal atribuyéndolo a un único agente"
     },
     {
         "id": "F087",
@@ -866,8 +866,8 @@
         "block": "BLOQUE 9 · Pendiente resbaladiza y causalidad espuria",
         "severity": 3,
         "description": "Presentar como causa de algo lo que no lo es. Categoría madre que incluye el post hoc y el cum hoc.",
-        "example": "",
-        "form": ""
+        "example": "'La caída de la bolsa fue causada por el mal clima de esta mañana.'",
+        "form": "Presentar como causa algo que no tiene relación causal real"
     },
     {
         "id": "F088",
@@ -877,7 +877,7 @@
         "severity": 3,
         "description": "Extraer una regla general a partir de un número insuficiente de casos.",
         "example": "\"Conozco dos alemanes poco amistosos. Los alemanes son fríos.\"",
-        "form": ""
+        "form": "Extraer una conclusión general a partir de una muestra insuficiente"
     },
     {
         "id": "F089",
@@ -887,7 +887,7 @@
         "severity": 3,
         "description": "Aplicar una regla general a un caso particular donde claramente no corresponde.",
         "example": "\"Devolver lo prestado es correcto. Luego debes devolverle el cuchillo a tu amigo aunque quiera hacer daño con él.\"",
-        "form": ""
+        "form": "Aplicar una regla general a un caso cuyas circunstancias lo hacen excepcional"
     },
     {
         "id": "F090",
@@ -897,7 +897,7 @@
         "severity": 3,
         "description": "Construir una regla general a partir de un caso excepcional.",
         "example": "\"En legítima defensa se puede matar. Luego, matar puede ser moralmente aceptable en general.\"",
-        "form": ""
+        "form": "Usar un caso excepcional para fundamentar una regla general"
     },
     {
         "id": "F091",
@@ -906,8 +906,8 @@
         "block": "BLOQUE 10 · Generalizaciones y muestras defectuosas",
         "severity": 3,
         "description": "Usar una muestra no representativa del universo relevante para apoyar una conclusión general.",
-        "example": "",
-        "form": ""
+        "example": "'Encuestamos a personas en un club de golf y todos son ricos, luego el país es rico.'",
+        "form": "Usar una muestra sesgada para representar a toda la población"
     },
     {
         "id": "F092",
@@ -916,8 +916,8 @@
         "block": "BLOQUE 10 · Generalizaciones y muestras defectuosas",
         "severity": 2,
         "description": "Tomar el caso prototípico de una categoría como representativo de toda ella, ignorando la varianza real.",
-        "example": "",
-        "form": ""
+        "example": "'Un ave típica vuela, luego todas las aves vuelan.' (ignora pingüinos)",
+        "form": "Generalizar las propiedades del miembro más típico a toda la categoría"
     },
     {
         "id": "F093",
@@ -927,7 +927,7 @@
         "severity": 3,
         "description": "\"No puedo imaginar cómo X podría ser verdad (o ser resultado de Y), luego X es falso (o Y no lo causó).\"",
         "example": "\"No puedo imaginar cómo la complejidad del ojo pudo surgir por selección natural, luego fue diseñado.\"",
-        "form": ""
+        "form": "No ser capaz de imaginar cómo X es posible ∴ X es falso"
     },
     {
         "id": "F094",
@@ -936,8 +936,8 @@
         "block": "BLOQUE 10 · Generalizaciones y muestras defectuosas",
         "severity": 2,
         "description": "Porque algo es complejo, no puede ser resultado de procesos no dirigidos o no intencionales. Variante del anterior, frecuente en argumentos de diseño inteligente.",
-        "example": "",
-        "form": ""
+        "example": "'El ojo humano es tan complejo que no puede ser fruto de la evolución, requiere un diseñador.'",
+        "form": "La complejidad de X ∴ X debe haber sido diseñado por una inteligencia"
     },
     {
         "id": "F095",
@@ -947,7 +947,7 @@
         "severity": 3,
         "description": "Modificar ad hoc la definición de un grupo para excluir contraejemplos embarazosos.",
         "example": "\"Ningún verdadero escocés pondría azúcar en la avena.\" \"Pero mi tío escocés lo hace.\" \"Entonces no es un verdadero escocés.\"",
-        "form": ""
+        "form": "Rechazar un contraejemplo a una generalización cambiando la definición del grupo"
     },
     {
         "id": "F096",
@@ -957,7 +957,7 @@
         "severity": 2,
         "description": "Argumentar que, dado que no hay una línea precisa entre dos extremos, la distinción no existe.",
         "example": "\"No puedes decir en qué momento alguien se queda calvo, luego la calvicie no existe.\"",
-        "form": ""
+        "form": "La falta de una frontera nítida entre A y B ∴ No existe diferencia entre A y B"
     },
     {
         "id": "F097",
@@ -967,7 +967,7 @@
         "severity": 3,
         "description": "Atribuir a una entidad propiedades que pertenecen a una categoría ontológica distinta.",
         "example": "\"¿Cuánto pesa la Universidad de Oxford?\" / \"¿Dónde está exactamente la mente?\"",
-        "form": ""
+        "form": "Asignar a una entidad propiedades de una categoría lógica o física distinta"
     },
     {
         "id": "F098",
@@ -977,7 +977,7 @@
         "severity": 2,
         "description": "Asumir que todos los miembros de una categoría comparten una esencia fija y homogénea.",
         "example": "Razonar sobre \"los migrantes\" como si todos compartieran exactamente las mismas propiedades.",
-        "form": ""
+        "form": "Asumir que un grupo tiene una esencia inmutable que define a todos sus miembros"
     },
     {
         "id": "F099",
@@ -987,7 +987,7 @@
         "severity": 3,
         "description": "Comparar dos casos cuyas diferencias relevantes invalidan la inferencia.",
         "example": "\"El cerebro es como un ordenador, luego puede 'reprogramarse' conductualmente con la misma facilidad.\"",
-        "form": ""
+        "form": "Comparar dos objetos A y B basándose en similitudes irrelevantes para la conclusión"
     },
     {
         "id": "F100",
@@ -997,7 +997,7 @@
         "severity": 3,
         "description": "Similitud en propiedades accidentales, no en la relación estructural relevante al argumento.",
         "example": "\"Los nazis usaban uniformes. Los policías usan uniformes. Luego, los policías son nazis.\"",
-        "form": ""
+        "form": "A y B son similares en un rasgo superficial ∴ A y B son equivalentes en todo"
     },
     {
         "id": "F101",
@@ -1007,7 +1007,7 @@
         "severity": 2,
         "description": "Una analogía válida en un dominio se extiende más allá de sus límites sin justificación.",
         "example": "\"Si los contratos privados se pueden anular cuando hay abuso de poder, también las leyes estatales deben anularse cuando el Estado abusa.\"",
-        "form": ""
+        "form": "Llevar una analogía más allá del punto donde las similitudes se mantienen"
     },
     {
         "id": "F102",
@@ -1017,7 +1017,7 @@
         "severity": 2,
         "description": "Tratar una metáfora explicativa como si fuera una equivalencia real y extraer consecuencias de ella.",
         "example": "\"La economía es un organismo vivo, luego tiene ciclos de enfermedad que no debemos interrumpir artificialmente.\"",
-        "form": ""
+        "form": "Extraer consecuencias literales a partir de una comparación metafórica"
     },
     {
         "id": "F103",
@@ -1026,8 +1026,8 @@
         "block": "BLOQUE 11 · Falacias de definición y clasificación",
         "severity": 3,
         "description": "Aplicar precedente jurídico a un caso sin verificar que las propiedades jurídicamente relevantes sean las mismas.",
-        "example": "",
-        "form": ""
+        "example": "'Si el robo de pan por necesidad extrema se perdona, el robo de un reloj de lujo también debe perdonarse.'",
+        "form": "Aplicar un precedente legal a un caso que no comparte la misma ratio decidendi"
     },
     {
         "id": "F104",
@@ -1037,7 +1037,7 @@
         "severity": 3,
         "description": "Comparar situaciones morales sin verificar que las propiedades moralmente relevantes sean equivalentes.",
         "example": "\"Matar en guerra es igual que el aborto; ambos son quitar una vida.\" (ignora diferencias moralmente relevantes)",
-        "form": ""
+        "form": "Comparar dos actos morales ignorando diferencias éticas fundamentales"
     },
     {
         "id": "F105",
@@ -1046,8 +1046,8 @@
         "block": "BLOQUE 11 · Falacias de definición y clasificación",
         "severity": 2,
         "description": "Dos acciones producen resultados similares; luego son equivalentes en todos los aspectos relevantes.",
-        "example": "",
-        "form": ""
+        "example": "'Ambos causaron una muerte, luego son igual de culpables.' (sin distinguir accidente de intención)",
+        "form": "Dos acciones con resultados parecidos se juzgan como moralmente idénticas"
     },
     {
         "id": "F106",
@@ -1057,7 +1057,7 @@
         "severity": 3,
         "description": "Concluir que la única explicación posible considerada es la verdadera, sin explorar alternativas.",
         "example": "\"No puede haber otra explicación; claramente fue el mayordomo.\"",
-        "form": ""
+        "form": "Asumir que la primera explicación satisfactoria encontrada es la única válida"
     },
     {
         "id": "F107",
@@ -1066,8 +1066,8 @@
         "block": "BLOQUE 11 · Falacias de definición y clasificación",
         "severity": 2,
         "description": "Aplicar parsimonia explicativa de forma mecánica: confundir la hipótesis más simple con la más verdadera, ignorando que \"más simple\" es dependiente del marco teórico.",
-        "example": "",
-        "form": ""
+        "example": "'Es más fácil creer que la Tierra es plana que entender la física de la gravedad, por tanto es plana.'",
+        "form": "Elegir la hipótesis más simple ignorando la evidencia que requiere una más compleja"
     },
     {
         "id": "F108",
@@ -1077,7 +1077,7 @@
         "severity": 3,
         "description": "Modificar una teoría con hipótesis auxiliares improvisadas para salvarla de la refutación, sin que las hipótesis añadidas sean independientemente comprobables.",
         "example": "\"Mi teoría predijo X, pero ocurrió Y. Eso se explica por el factor Z.\" (Z inventado a posteriori)",
-        "form": ""
+        "form": "Añadir supuestos incomprobables a una teoría para evitar que sea refutada"
     },
     {
         "id": "F109",
@@ -1086,8 +1086,8 @@
         "block": "BLOQUE 11 · Falacias de definición y clasificación",
         "severity": 3,
         "description": "La hipótesis explica los datos, y los datos confirman la hipótesis, sin que haya predicciones independientes que puedan falsarla.",
-        "example": "",
-        "form": ""
+        "example": "'Este hombre tiene poderes porque mueve objetos, y sabemos que mueve objetos por sus poderes.'",
+        "form": "La hipótesis se justifica por unos datos que solo se explican por la propia hipótesis"
     },
     {
         "id": "F110",
@@ -1097,7 +1097,7 @@
         "severity": 3,
         "description": "Atribuir causalidad a conexiones simbólicas, rituales o supersticiosas sin mecanismo causal verificable.",
         "example": "\"Rompí un espejo y luego tuve mala suerte; el espejo la causó.\"",
-        "form": ""
+        "form": "Creer que existe una conexión causal física entre un símbolo y un evento"
     },
     {
         "id": "F111",
@@ -1106,8 +1106,8 @@
         "block": "BLOQUE 11 · Falacias de definición y clasificación",
         "severity": 3,
         "description": "\"Nadie ha podido replicar el experimento que refuta mi teoría\" usado como si esto confirmara la teoría.",
-        "example": "",
-        "form": ""
+        "example": "'Nadie ha podido repetir ese estudio que decía que mi producto era tóxico, así que es seguro.'",
+        "form": "Argumentar que una teoría es cierta porque nadie ha logrado replicar el experimento que la niega"
     },
     {
         "id": "F112",
@@ -1116,8 +1116,8 @@
         "block": "BLOQUE 11 · Falacias de definición y clasificación",
         "severity": 3,
         "description": "Inferir que X es verdad porque no se conoce ninguna otra explicación, ignorando que la ignorancia no es evidencia positiva.",
-        "example": "",
-        "form": ""
+        "example": "'No sabemos cómo se construyeron las pirámides, así que fueron los extraterrestres.'",
+        "form": "Concluir que una explicación es verdadera solo porque no se conocen alternativas"
     },
     {
         "id": "F113",
@@ -1126,8 +1126,8 @@
         "block": "BLOQUE 12 · Sesgos de muestra y selección de datos",
         "severity": 3,
         "description": "Seleccionar a posteriori los datos que confirman la hipótesis, ignorando el resto; como disparar al azar y luego pintar la diana sobre los agujeros.",
-        "example": "",
-        "form": ""
+        "example": "'Miré los números premiados y todos tenían un 7, ¡hay una conspiración del 7!'",
+        "form": "Encontrar patrones en datos aleatorios y crear una hipótesis a posteriori"
     },
     {
         "id": "F114",
@@ -1136,8 +1136,8 @@
         "block": "BLOQUE 12 · Sesgos de muestra y selección de datos",
         "severity": 3,
         "description": "Seleccionar solo la evidencia favorable e ignorar sistemáticamente la contraria. Distinto del anterior: aquí la selección es deliberada y no necesariamente a posteriori.",
-        "example": "",
-        "form": ""
+        "example": "'Este estudio dice que el azúcar es sano (financiado por la industria), ignoremos los otros cien estudios.'",
+        "form": "Elegir solo los datos que apoyan la tesis y descartar deliberadamente el resto"
     },
     {
         "id": "F115",
@@ -1146,8 +1146,8 @@
         "block": "BLOQUE 12 · Sesgos de muestra y selección de datos",
         "severity": 3,
         "description": "Presentar solo evidencia confirmatoria mientras se ignora o descarta la disconfirmatoria como si fuera irrelevante.",
-        "example": "",
-        "form": ""
+        "example": "'Para demostrar que mi gestión es buena, solo mostraré los meses en los que el paro bajó.'",
+        "form": "Presentar únicamente la evidencia confirmatoria ignorando la disonante"
     },
     {
         "id": "F116",
@@ -1157,7 +1157,7 @@
         "severity": 3,
         "description": "Razonar solo a partir de los casos exitosos (supervivientes), ignorando los que no lo fueron y que no están disponibles para análisis.",
         "example": "\"Los emprendedores exitosos no tienen estudios. Los estudios no sirven para emprender.\" (ignorando todos los fracasados sin estudios)",
-        "form": ""
+        "form": "Analizar solo los casos que 'sobrevivieron' a un filtro, ignorando los fallidos"
     },
     {
         "id": "F117",
@@ -1166,8 +1166,8 @@
         "block": "BLOQUE 12 · Sesgos de muestra y selección de datos",
         "severity": 3,
         "description": "Usar experiencias personales o casos aislados en lugar de evidencia sistemática y representativa.",
-        "example": "",
-        "form": ""
+        "example": "'Mi abuelo fumó siempre y vivió 100 años, por tanto el tabaco no es perjudicial.'",
+        "form": "Validar una regla general basándose en una sola experiencia personal"
     },
     {
         "id": "F118",
@@ -1177,7 +1177,7 @@
         "severity": 3,
         "description": "Inferir propiedades individuales a partir de datos agregados de un grupo.",
         "example": "\"En ese barrio la renta media es alta, luego ese vecino en particular debe ser rico.\"",
-        "form": ""
+        "form": "Atribuir a un individuo una propiedad basada solo en estadísticas del grupo"
     },
     {
         "id": "F119",
@@ -1187,7 +1187,7 @@
         "severity": 3,
         "description": "Creer que eventos aleatorios pasados afectan la probabilidad de eventos futuros independientes.",
         "example": "\"Ha salido cara diez veces seguidas, ahora seguro que sale cruz.\"",
-        "form": ""
+        "form": "Creer que la probabilidad de un suceso independiente cambia según los resultados previos"
     },
     {
         "id": "F120",
@@ -1196,8 +1196,8 @@
         "block": "BLOQUE 13 · Falacias probabilísticas y bayesianas",
         "severity": 2,
         "description": "Creer que una racha exitosa pasada continuará en el futuro en contextos donde los eventos son independientes.",
-        "example": "",
-        "form": ""
+        "example": "'Ha metido tres canastas seguidas, la siguiente la mete con total seguridad.'",
+        "form": "Asumir que una racha de suerte continuará de forma necesaria"
     },
     {
         "id": "F121",
@@ -1207,7 +1207,7 @@
         "severity": 3,
         "description": "Ignorar la frecuencia base de un fenómeno al evaluar probabilidades condicionales.",
         "example": "Dar positivo en un test con 5% de falsos positivos en una enfermedad con prevalencia de 0,1% no significa necesariamente estar enfermo.",
-        "form": ""
+        "form": "Evaluar la probabilidad de un evento ignorando su frecuencia previa en la población"
     },
     {
         "id": "F122",
@@ -1217,7 +1217,7 @@
         "severity": 3,
         "description": "Confundir P(evidencia | inocente) con P(inocente | evidencia).",
         "example": "\"La probabilidad de que un inocente deje esta huella es 1 en un millón. Luego, la probabilidad de que sea inocente es 1 en un millón.\" (ignora la prevalencia de sospechosos)",
-        "form": ""
+        "form": "Confundir la probabilidad de la prueba dado que el sujeto es inocente con la inversa"
     },
     {
         "id": "F123",
@@ -1226,8 +1226,8 @@
         "block": "BLOQUE 13 · Falacias probabilísticas y bayesianas",
         "severity": 3,
         "description": "El error inverso: porque la evidencia aislada es improbable condicionalmente, el crimen no ocurrió o el acusado es inocente.",
-        "example": "",
-        "form": ""
+        "example": "'Si la huella coincide con 1 de cada 100 personas, hay miles de sospechosos, luego la huella no sirve.' (ignora otros filtros)",
+        "form": "Descartar una prueba porque individualmente tiene baja probabilidad de acierto"
     },
     {
         "id": "F124",
@@ -1237,7 +1237,7 @@
         "severity": 3,
         "description": "Juzgar una conjunción de eventos como más probable que uno de sus componentes por sola coherencia narrativa.",
         "example": "Juzgar que \"Linda es cajera de banco y feminista\" es más probable que \"Linda es cajera de banco\", cuando matemáticamente no puede serlo.",
-        "form": ""
+        "form": "P(A ∧ B) se juzga más probable que P(A) debido a la coherencia del relato"
     },
     {
         "id": "F125",
@@ -1246,8 +1246,8 @@
         "block": "BLOQUE 13 · Falacias probabilísticas y bayesianas",
         "severity": 2,
         "description": "Subestimar la probabilidad de que al menos uno de varios eventos independientes ocurra.",
-        "example": "",
-        "form": ""
+        "example": "'Es poco probable que falle el motor, o el ala, o el piloto, así que el avión es seguro.' (la probabilidad de fallo total es la suma de riesgos)",
+        "form": "Subestimar la probabilidad de que ocurra al menos uno de varios fallos posibles"
     },
     {
         "id": "F126",
@@ -1257,7 +1257,7 @@
         "severity": 3,
         "description": "Usar datos agregados para ocultar tendencias que invierten su dirección en subgrupos, o viceversa.",
         "example": "\"El hospital A tiene mayor tasa de mortalidad que el B, luego el A es peor.\" (sin controlar por gravedad de los casos admitidos)",
-        "form": ""
+        "form": "Usar datos agregados para ocultar que la tendencia es opuesta en cada subgrupo"
     },
     {
         "id": "F127",
@@ -1267,7 +1267,7 @@
         "severity": 2,
         "description": "Usar cifras muy precisas para dar apariencia de rigor a una estimación fundamentalmente especulativa.",
         "example": "\"Esto aumentará el PIB un 3,742%.\"",
-        "form": ""
+        "form": "Asociar la precisión de una cifra decimal con la veracidad de la afirmación"
     },
     {
         "id": "F128",
@@ -1277,7 +1277,7 @@
         "severity": 3,
         "description": "Atribuir causalidad a fenómenos que son simplemente efecto estadístico de regresión hacia la media.",
         "example": "\"Le grité y mejoró su actuación\" (ignorando que tras un rendimiento muy bajo, la recuperación es estadísticamente esperable sin intervención).",
-        "form": ""
+        "form": "Ignorar que tras un valor extremo, el siguiente tiende a estar más cerca de la media"
     },
     {
         "id": "F129",
@@ -1286,8 +1286,8 @@
         "block": "BLOQUE 13 · Falacias probabilísticas y bayesianas",
         "severity": 3,
         "description": "Aplicar modelos probabilísticos de sistemas cerrados y bien definidos (juegos de azar) a sistemas abiertos y complejos del mundo real donde las distribuciones son desconocidas.",
-        "example": "",
-        "form": ""
+        "example": "'En el casino las reglas son claras, así que en la bolsa el riesgo debe ser igual de predecible.'",
+        "form": "Tratar situaciones de la vida real como si fueran juegos con reglas y probabilidades fijas"
     },
     {
         "id": "F130",
@@ -1296,8 +1296,8 @@
         "block": "BLOQUE 13 · Falacias probabilísticas y bayesianas",
         "severity": 2,
         "description": "Construir relatos causales coherentes sobre series de eventos que contienen alta aleatoriedad, sobreestimando la causalidad e infraestimando el azar.",
-        "example": "",
-        "form": ""
+        "example": "'La empresa quebró porque el director cambió de coche, todo encaja en mi historia sobre su arrogancia.'",
+        "form": "Unir hechos dispersos en un relato coherente y asumir que esa coherencia prueba causalidad"
     },
     {
         "id": "F131",
@@ -1307,7 +1307,7 @@
         "severity": 3,
         "description": "Usar porcentajes sin mencionar la base, o comparar porcentajes de bases distintas.",
         "example": "\"¡Aumentamos un 100% los casos!\" (de 1 a 2 casos)",
-        "form": ""
+        "form": "Citar aumentos porcentuales sin mencionar la cantidad absoluta de partida"
     },
     {
         "id": "F132",
@@ -1316,8 +1316,8 @@
         "block": "BLOQUE 13 · Falacias probabilísticas y bayesianas",
         "severity": 3,
         "description": "Confundir significación estadística (p < 0,05) con relevancia práctica, tamaño del efecto o verdad sustantiva.",
-        "example": "",
-        "form": ""
+        "example": "'Hay una correlación con p=0.04 entre comer pepinos y ser rubio, luego el pepino aclara el pelo.'",
+        "form": "Asumir que la significación estadística equivale a importancia real o verdad absoluta"
     },
     {
         "id": "F133",
@@ -1326,8 +1326,8 @@
         "block": "BLOQUE 13 · Falacias probabilísticas y bayesianas",
         "severity": 3,
         "description": "Presentar hipótesis formuladas después de ver los datos como si hubieran sido planteadas antes, falseando el proceso científico.",
-        "example": "",
-        "form": ""
+        "example": "'Vi que las plantas crecieron más con música, así que dije que mi hipótesis era que la música ayudaba.'",
+        "form": "Presentar una hipótesis creada tras ver los resultados como si hubiera sido la original"
     },
     {
         "id": "F134",
@@ -1336,8 +1336,8 @@
         "block": "BLOQUE 14 · Falacias de inferencia inductiva general",
         "severity": 3,
         "description": "Presentar una lista como exhaustiva cuando no lo es.",
-        "example": "",
-        "form": ""
+        "example": "'Solo hay tres tipos de personas: las que mandan, las que obedecen y las que se rebelan.'",
+        "form": "Ofrecer una lista de opciones como si fuera completa cuando faltan alternativas"
     },
     {
         "id": "F135",
@@ -1346,8 +1346,8 @@
         "block": "BLOQUE 14 · Falacias de inferencia inductiva general",
         "severity": 3,
         "description": "Buscar solo casos que confirmen una hipótesis y no casos que pudieran falsarla (relacionado con el sesgo de confirmación, pero como error metodológico deliberado).",
-        "example": "",
-        "form": ""
+        "example": "'Para mi informe, solo he entrevistado a los clientes que compraron el producto dos veces.'",
+        "form": "Diseñar el método de investigación para que solo encuentre pruebas a favor"
     },
     {
         "id": "F136",
@@ -1356,8 +1356,8 @@
         "block": "BLOQUE 14 · Falacias de inferencia inductiva general",
         "severity": 2,
         "description": "Extender una generalización empírica a casos límite donde claramente no aplica sin reconocer la excepción.",
-        "example": "",
-        "form": ""
+        "example": "'Mentir es malo, así que no mientas al secuestrador sobre dónde están los rehenes.'",
+        "form": "Aplicar una regla de forma absoluta sin considerar excepciones obvias"
     },
     {
         "id": "F137",
@@ -1367,7 +1367,7 @@
         "severity": 3,
         "description": "Asumir que las propiedades del propio mapa cognitivo son propiedades del territorio real.",
         "example": "\"No puedo concebir un universo sin propósito, luego el universo tiene propósito.\"",
-        "form": ""
+        "form": "Creer que las estructuras de nuestro razonamiento son leyes físicas del universo"
     },
     {
         "id": "F138",
@@ -1376,8 +1376,8 @@
         "block": "BLOQUE 14 · Falacias de inferencia inductiva general",
         "severity": 2,
         "description": "Creer que se comprende un mecanismo en detalle cuando en realidad solo se tiene una comprensión superficial, y argumentar desde esa falsa comprensión.",
-        "example": "",
-        "form": ""
+        "example": "'Sé cómo funciona una cremallera.' (pero no puede explicar la mecánica de los dientes)",
+        "form": "Confundir la familiaridad con un término con el conocimiento profundo del objeto"
     },
     {
         "id": "F139",
@@ -1387,7 +1387,7 @@
         "severity": 3,
         "description": "Usar terminología especializada o jerga científica como sustituto de argumentación.",
         "example": "\"El efecto cuántico de tunelamiento explica la homeopatía.\"",
-        "form": ""
+        "form": "Sustituir el razonamiento lógico por el uso intensivo de terminología técnica"
     },
     {
         "id": "F140",
@@ -1396,8 +1396,8 @@
         "block": "BLOQUE 14 · Falacias de inferencia inductiva general",
         "severity": 2,
         "description": "Tratar el conocimiento proposicional sobre algo (saber que) como equivalente al conocimiento experiencial o directo (saber cómo / conocer).",
-        "example": "",
-        "form": ""
+        "example": "'He leído diez libros sobre aviones, ya sé pilotar.'",
+        "form": "Equiparar la lectura de manuales o teoría con la adquisición de una destreza práctica"
     },
     {
         "id": "F141",
@@ -1406,8 +1406,8 @@
         "block": "BLOQUE 14 · Falacias de inferencia inductiva general",
         "severity": 3,
         "description": "Ajustar el umbral de evidencia necesario según el resultado que se quiere obtener: exigir mucha evidencia para lo que se quiere rechazar y poca para lo que se quiere aceptar.",
-        "example": "",
-        "form": ""
+        "example": "'Acepto este rumor con una fuente, pero pido tres estudios para creer lo contrario.'",
+        "form": "Cambiar el nivel de exigencia de pruebas según si nos gusta o no la conclusión"
     },
     {
         "id": "F142",
@@ -1416,8 +1416,8 @@
         "block": "BLOQUE 14 · Falacias de inferencia inductiva general",
         "severity": 3,
         "description": "Aplicar criterios de evidencia distintos a casos análogos según conveniencia ideológica o personal.",
-        "example": "",
-        "form": ""
+        "example": "'Mi religión es fe; la tuya es superstición que requiere pruebas.'",
+        "form": "Usar criterios de evaluación diferentes para mi bando y para el bando contrario"
     },
     {
         "id": "F143",
@@ -1427,7 +1427,7 @@
         "severity": 3,
         "description": "Presentar dos posiciones como igualmente válidas o igualmente respaldadas por evidencia cuando no lo son.",
         "example": "Dar el mismo espacio mediático al consenso científico climático y a posiciones negacionistas marginales.",
-        "form": ""
+        "form": "Presentar dos opiniones como equivalentes cuando una carece de respaldo"
     },
     {
         "id": "F144",
@@ -1437,7 +1437,7 @@
         "severity": 2,
         "description": "Afirmaciones que parecen profundas pero son triviales en sentido literal y falsas o vacías en sentido profundo.",
         "example": "\"El amor es solo una palabra\" (trivialmente verdadero en sentido literal; si se entiende como algo más profundo, es falso o carece de contenido).",
-        "form": ""
+        "form": "Afirmación que suena profunda pero es un juego de palabras vacío o trivial"
     },
     {
         "id": "F145",
@@ -1446,8 +1446,8 @@
         "block": "BLOQUE 14 · Falacias de inferencia inductiva general",
         "severity": 1,
         "description": "Presentar contradicciones aparentes como insights profundos en lugar de resolverlas o identificarlas como genuinas paradojas.",
-        "example": "",
-        "form": ""
+        "example": "'Para ganar, primero hay que perder.'",
+        "form": "Presentar una contradicción terminológica como una revelación mística"
     },
     {
         "id": "F146",
@@ -1457,7 +1457,7 @@
         "severity": 3,
         "description": "Inferir lo que \"debe ser\" a partir de lo que \"es\": confundir hecho con valor, ser con deber ser. Guillotina de Hume: la brecha lógica entre enunciados descriptivos y normativos.",
         "example": "\"Los animales más fuertes dominan a los débiles en la naturaleza. Luego, el más fuerte debe dominar.\"",
-        "form": ""
+        "form": "Lo que es natural es por definición moralmente correcto o deseable"
     },
     {
         "id": "F147",
@@ -1467,7 +1467,7 @@
         "severity": 3,
         "description": "Lo inverso: inferir cómo son las cosas empíricamente a partir de cómo deberían ser moralmente.",
         "example": "\"Sería injusto que existieran diferencias innatas de capacidad, luego no existen.\"",
-        "form": ""
+        "form": "Porque algo debería ser así moralmente, se concluye que es así en la realidad"
     },
     {
         "id": "F148",
@@ -1476,8 +1476,8 @@
         "block": "BLOQUE 14 · Falacias de inferencia inductiva general",
         "severity": 2,
         "description": "Lo que la mayoría considera correcto es correcto. Distinta del ad populum porque opera específicamente en el dominio normativo.",
-        "example": "",
-        "form": ""
+        "example": "'Si la mayoría aprueba la tortura, entonces es moralmente aceptable.'",
+        "form": "Lo que la mayoría considera bueno se toma como medida de la moralidad"
     },
     {
         "id": "F149",
@@ -1486,8 +1486,8 @@
         "block": "BLOQUE 14 · Falacias de inferencia inductiva general",
         "severity": 3,
         "description": "\"Culturas distintas tienen distintos valores morales\" (hecho). ∴ \"No hay valores morales objetivos\" (conclusión normativa). Salto injustificado del hecho al valor (o a la negación del valor).",
-        "example": "",
-        "form": ""
+        "example": "'Cada cultura tiene sus valores, por tanto no hay verdades morales.'",
+        "form": "La observación de distintas costumbres se usa para negar la posibilidad de ética objetiva"
     },
     {
         "id": "F150",
@@ -1496,8 +1496,8 @@
         "block": "BLOQUE 14 · Falacias de inferencia inductiva general",
         "severity": 2,
         "description": "Juzgar una acción dañina como moralmente peor que una omisión igualmente dañina por el solo hecho de ser activa. Relevante en bioética, derecho y política pública.",
-        "example": "",
-        "form": ""
+        "example": "'Es mejor no vacunar y que el niño enferme, que vacunarlo y que tenga un efecto secundario.'",
+        "form": "Juzgar un daño activo como peor que uno pasivo con el mismo resultado"
     },
     {
         "id": "F151",
@@ -1506,8 +1506,8 @@
         "block": "BLOQUE 14 · Falacias de inferencia inductiva general",
         "severity": 2,
         "description": "El principio del doble efecto usado para justificar consecuencias negativas que en realidad son el fin buscado, no el efecto secundario no deseado.",
-        "example": "",
-        "form": ""
+        "example": "'Bombardeamos civiles para que el gobierno se rinda; sus muertes son un efecto secundario.'",
+        "form": "Justificar un daño como 'daño colateral' cuando es en realidad el medio para el fin"
     },
     {
         "id": "F152",
@@ -1516,8 +1516,8 @@
         "block": "BLOQUE 14 · Falacias de inferencia inductiva general",
         "severity": 2,
         "description": "Evaluar el comportamiento moral de una persona en función de una sola acción, positiva o negativa, ignorando el patrón completo.",
-        "example": "",
-        "form": ""
+        "example": "'Mintió una vez, por tanto es un mentiroso en todo lo que hace.'",
+        "form": "Evaluar la calidad moral de toda una vida por un único acto aislado"
     },
     {
         "id": "F153",
@@ -1526,8 +1526,8 @@
         "block": "BLOQUE 14 · Falacias de inferencia inductiva general",
         "severity": 3,
         "description": "Lo legal es moralmente aceptable; lo ilegal es moralmente reprobable. Confunde norma jurídica con norma ética.",
-        "example": "",
-        "form": ""
+        "example": "'Era legal tener esclavos, por tanto era moralmente correcto en ese tiempo.'",
+        "form": "Confundir el cumplimiento de la ley positiva con la corrección ética"
     },
     {
         "id": "F154",
@@ -1536,8 +1536,8 @@
         "block": "BLOQUE 14 · Falacias de inferencia inductiva general",
         "severity": 2,
         "description": "Usar la universalizabilidad como único criterio moral o aplicarla mecánicamente a casos donde Kant mismo requeriría matización.",
-        "example": "",
-        "form": ""
+        "example": "'Si todos robáramos pan, no habría panaderías; por tanto, el que muere de hambre no debe robar pan.'",
+        "form": "Extender el principio de universalización a situaciones donde el contexto es clave"
     },
     {
         "id": "F155",
@@ -1547,7 +1547,7 @@
         "severity": 3,
         "description": "Presentar la mera existencia de algo como justificación de su continuación o de su corrección.",
         "example": "\"La pobreza siempre ha existido, luego es inevitable y no hay que combatirla.\"",
-        "form": ""
+        "form": "La existencia histórica o actual de un hecho se usa como prueba de que es correcto"
     },
     {
         "id": "F156",
@@ -1556,8 +1556,8 @@
         "block": "BLOQUE 14 · Falacias de inferencia inductiva general",
         "severity": 3,
         "description": "Quien afirma debe probar. Exigir al otro que pruebe la negación es invertir ilegítimamente la carga.",
-        "example": "",
-        "form": ""
+        "example": "'Hay un dragón en mi garaje; demuéstrame tú que no existe.'",
+        "form": "El proponente de una idea inusual exige que los demás demuestren que es falsa"
     },
     {
         "id": "F157",
@@ -1567,7 +1567,7 @@
         "severity": 3,
         "description": "Argumentar que algo es verdad (o falso) porque sus consecuencias serían deseables (o indeseables).",
         "example": "\"El libre albedrío debe existir porque si no, nadie sería responsable de nada.\"",
-        "form": ""
+        "form": "Negar la verdad de una proposición porque sus consecuencias serían desagradables"
     },
     {
         "id": "F158",
@@ -1576,8 +1576,8 @@
         "block": "BLOQUE 14 · Falacias de inferencia inductiva general",
         "severity": 2,
         "description": "Aceptar una proposición porque creer en ella tiene buenos efectos prácticos, independientemente de su verdad.",
-        "example": "",
-        "form": ""
+        "example": "'Creer en el destino me hace feliz, por tanto el destino es real.'",
+        "form": "Aceptar una idea como verdadera solo porque creer en ella es provechoso"
     },
     {
         "id": "F159",
@@ -1586,8 +1586,8 @@
         "block": "BLOQUE 14 · Falacias de inferencia inductiva general",
         "severity": 3,
         "description": "Cambiar los criterios de éxito o las condiciones de aceptación de un argumento una vez que han sido satisfechos.",
-        "example": "",
-        "form": ""
+        "example": "'Has probado que flota, pero ¿has probado que resiste el fuego?'",
+        "form": "Cambiar las condiciones de victoria de un debate una vez que han sido cumplidas"
     },
     {
         "id": "F160",
@@ -1596,8 +1596,8 @@
         "block": "BLOQUE 14 · Falacias de inferencia inductiva general",
         "severity": 2,
         "description": "Responder a cada cuestionamiento con otro cuestionamiento, sin ofrecer nunca una base positiva.",
-        "example": "",
-        "form": ""
+        "example": "'¿Quién creó al creador del creador?'",
+        "form": "Exigir una cadena infinita de justificaciones para evitar aceptar un punto de partida"
     },
     {
         "id": "F161",
@@ -1606,8 +1606,8 @@
         "block": "BLOQUE 14 · Falacias de inferencia inductiva general",
         "severity": 2,
         "description": "Interpretar la falta de respuesta o refutación como aceptación tácita.",
-        "example": "",
-        "form": ""
+        "example": "'No dijiste que no a mi propuesta, así que asumo que estás de acuerdo.'",
+        "form": "Interpretar la falta de oposición inmediata como un acuerdo total"
     },
     {
         "id": "F162",
@@ -1616,8 +1616,8 @@
         "block": "BLOQUE 14 · Falacias de inferencia inductiva general",
         "severity": 3,
         "description": "Responder a la totalidad del argumento atacando un detalle periférico y tratar esa respuesta parcial como si fuera una refutación completa.",
-        "example": "",
-        "form": ""
+        "example": "'Has errado en una cifra del informe, por tanto todo el informe es basura.'",
+        "form": "Descalificar todo un argumento basándose en la refutación de un detalle mínimo"
     },
     {
         "id": "F163",
@@ -1626,8 +1626,8 @@
         "block": "BLOQUE 14 · Falacias de inferencia inductiva general",
         "severity": 3,
         "description": "\"Dijeron que Galileo estaba loco, y tenía razón. A mí también me critican, luego también tengo razón.\" Confunde la persecución con la validez epistémica.",
-        "example": "",
-        "form": ""
+        "example": "'Me llaman loco como a Galileo, por tanto tengo razón.'",
+        "form": "Creer que la crítica o el rechazo social son pruebas de que se posee la verdad"
     },
     {
         "id": "F164",
@@ -1637,7 +1637,7 @@
         "severity": 2,
         "description": "Usar una pregunta retórica como si constituyera evidencia o argumento sustantivo.",
         "example": "\"¿Acaso no es obvio que el capitalismo ha fracasado?\" (la obviedad no está justificada)",
-        "form": ""
+        "form": "Formular una pregunta cuya respuesta se da por sentada como argumento"
     },
     {
         "id": "F165",
@@ -1646,8 +1646,8 @@
         "block": "BLOQUE 14 · Falacias de inferencia inductiva general",
         "severity": 2,
         "description": "Usar los compromisos previos del interlocutor para forzarle a posiciones que no aceptaría en contexto fresco, ignorando la evolución legítima del pensamiento.",
-        "example": "",
-        "form": ""
+        "example": "'Dijiste que te gustaba el riesgo, así que no te quejes por perder tu dinero.'",
+        "form": "Utilizar declaraciones antiguas del interlocutor para forzarle a una conclusión actual"
     },
     {
         "id": "F166",
@@ -1656,8 +1656,8 @@
         "block": "BLOQUE 14 · Falacias de inferencia inductiva general",
         "severity": 2,
         "description": "Adoptar tácticas propias de un tipo de diálogo (negociación, litigio) en otro donde no son pertinentes (investigación, deliberación filosófica).",
-        "example": "",
-        "form": ""
+        "example": "'En una negociación se regatea, así que pactemos el valor de la gravedad.'",
+        "form": "Aplicar tácticas de un contexto de diálogo a otro donde son inapropiadas"
     },
     {
         "id": "F167",
@@ -1666,8 +1666,8 @@
         "block": "BLOQUE 14 · Falacias de inferencia inductiva general",
         "severity": 3,
         "description": "En un diálogo deliberativo, rechazar la contribución del interlocutor por su estatus social o jerárquico, no por su contenido.",
-        "example": "",
-        "form": ""
+        "example": "'Soy tu superior, por tanto mi lógica es mejor.'",
+        "form": "Rechazar un argumento solo por el cargo o posición de quien lo emite"
     },
     {
         "id": "F168",
@@ -1676,8 +1676,8 @@
         "block": "BLOQUE 14 · Falacias de inferencia inductiva general",
         "severity": 2,
         "description": "Mezclar la conclusión bien fundamentada con otras conclusiones débiles o no probadas, de modo que el conjunto parece más débil o más fuerte de lo que es.",
-        "example": "",
-        "form": ""
+        "example": "'Esta ley es buena por economía, justicia y porque me gusta el logo.'",
+        "form": "Combinar una tesis fuerte con varias débiles para ocultar la debilidad del conjunto"
     },
     {
         "id": "F169",
@@ -1686,8 +1686,8 @@
         "block": "BLOQUE 14 · Falacias de inferencia inductiva general",
         "severity": 1,
         "description": "Tratar ejemplos como si fueran definiciones completas y extraer consecuencias generales de características accidentales del ejemplo.",
-        "example": "",
-        "form": ""
+        "example": "'La libertad es poder votar y elegir marca de champú.'",
+        "form": "Definir un concepto general citando solamente algunos ejemplos particulares"
     },
     {
         "id": "F170",
@@ -1696,8 +1696,8 @@
         "block": "BLOQUE 14 · Falacias de inferencia inductiva general",
         "severity": 1,
         "description": "Definir algo únicamente por lo que no es, sin especificar lo que sí es, y luego argumentar desde esa definición como si fuera positiva.",
-        "example": "",
-        "form": ""
+        "example": "'La felicidad es no tener deudas y no tener hambre.'",
+        "form": "Intentar definir algo diciendo solo lo que no es, sin aportar rasgos positivos"
     },
     {
         "id": "F171",
@@ -1706,8 +1706,8 @@
         "block": "BLOQUE 14 · Falacias de inferencia inductiva general",
         "severity": 3,
         "description": "Usar un término con un significado al inicio del argumento y cambiarlo sutilmente a lo largo de él, variante de la equivocación.",
-        "example": "",
-        "form": ""
+        "example": "'La fe es sustancia. Tengo fe en el bus. Luego el bus es una sustancia.'",
+        "form": "Usar una palabra con un sentido en la premisa y con otro diferente en la conclusión"
     },
     {
         "id": "F172",
@@ -1717,7 +1717,7 @@
         "severity": 2,
         "description": "Creer que nombrar algo equivale a explicarlo o a justificar una conclusión sobre ello.",
         "example": "\"¿Por qué duerme el opio? Por su virtud dormitiva.\" (Molière; la etiqueta no añade contenido)",
-        "form": ""
+        "form": "Creer que haberle puesto nombre a un problema es haberlo explicado"
     },
     {
         "id": "F173",
@@ -1726,8 +1726,8 @@
         "block": "BLOQUE 15 · Científicas",
         "severity": 3,
         "description": "Salvar una teoría del contraejemplo añadiendo excepciones ad hoc sin base independiente.",
-        "example": "",
-        "form": ""
+        "example": "'Todos deben pagar, menos los de mi calle por su buen carácter.'",
+        "form": "Salvar una regla de un contraejemplo creando una excepción sin base lógica"
     },
     {
         "id": "F174",
@@ -1736,8 +1736,8 @@
         "block": "BLOQUE 15 · Científicas",
         "severity": 3,
         "description": "Selección sesgada de literatura científica: citar solo los estudios favorables, ignorar los desfavorables o los que no se publicaron.",
-        "example": "",
-        "form": ""
+        "example": "'Un estudio de 1970 dice que el tabaco es bueno, ignoremos el resto.'",
+        "form": "Mencionar solo el estudio que conviene de entre toda la literatura existente"
     },
     {
         "id": "F175",
@@ -1746,8 +1746,8 @@
         "block": "BLOQUE 15 · Científicas",
         "severity": 3,
         "description": "Tratar el modelo matemático o computacional como si fuera la realidad que describe, sin considerar sus supuestos y limitaciones.",
-        "example": "",
-        "form": ""
+        "example": "'El modelo dice que no habrá pobreza, así que el problema está resuelto.'",
+        "form": "Confundir las predicciones de una simulación con los hechos del mundo real"
     },
     {
         "id": "F176",
@@ -1757,7 +1757,7 @@
         "severity": 3,
         "description": "Extender los resultados de un estudio más allá de la población, condiciones o fenómenos para los que fue diseñado.",
         "example": "Generalizar hallazgos en estudiantes universitarios occidentales a toda la humanidad (WEIRD bias).",
-        "form": ""
+        "form": "Aplicar los hallazgos de un campo a otro muy distinto sin validación"
     },
     {
         "id": "F177",
@@ -1766,8 +1766,8 @@
         "block": "BLOQUE 15 · Científicas",
         "severity": 2,
         "description": "Asumir que los resultados obtenidos en condiciones controladas de laboratorio se trasladan sin modificación a condiciones del mundo real.",
-        "example": "",
-        "form": ""
+        "example": "'Mata bacterias en el vidrio, así que beberlo curará tu infección.'",
+        "form": "Creer que lo que sucede en el laboratorio ocurrirá igual en la complejidad del mundo"
     },
     {
         "id": "F178",
@@ -1776,8 +1776,8 @@
         "block": "BLOQUE 15 · Científicas",
         "severity": 2,
         "description": "Rechazar el consenso científico sin ofrecer una alternativa mejor fundamentada, tratando el cuestionamiento mismo como argumento suficiente.",
-        "example": "",
-        "form": ""
+        "example": "'No creo en la evolución por sus fallos, pero no tengo otra explicación.'",
+        "form": "Criticar el consenso sin proponer una teoría que explique mejor los datos"
     },
     {
         "id": "F179",
@@ -1786,8 +1786,8 @@
         "block": "BLOQUE 16 · Económicas",
         "severity": 3,
         "description": "Lo que es racional para un individuo (ahorrar) no lo es necesariamente para el conjunto cuando todos lo hacen simultáneamente.",
-        "example": "",
-        "form": ""
+        "example": "'Si yo ahorro gano; si todos ahorramos a la vez, el consumo cae y la economía se hunde.'",
+        "form": "Asumir que lo que beneficia a un individuo beneficia a toda la economía"
     },
     {
         "id": "F180",
@@ -1796,8 +1796,8 @@
         "block": "BLOQUE 16 · Económicas",
         "severity": 2,
         "description": "Asumir que el crecimiento económico puede ser indefinido en un sistema físicamente finito.",
-        "example": "",
-        "form": ""
+        "example": "'Podemos crecer un 3% anual para siempre en este planeta.'",
+        "form": "Suponer que una tendencia de crecimiento puede mantenerse sin límites físicos"
     },
     {
         "id": "F181",
@@ -1806,8 +1806,8 @@
         "block": "BLOQUE 16 · Económicas",
         "severity": 2,
         "description": "Un argumento o política es verdadero/correcto porque su aplicación sería rentable.",
-        "example": "",
-        "form": ""
+        "example": "'Es rentable engañar sobre las baterías, por tanto es la política correcta.'",
+        "form": "Concluir que una política es verdadera o justa solo porque genera beneficios"
     },
     {
         "id": "F182",
@@ -1817,7 +1817,7 @@
         "severity": 3,
         "description": "Continuar con una acción solo porque ya se han invertido recursos en ella, ignorando la racionalidad prospectiva.",
         "example": "\"Ya he pagado el 70% del máster; tengo que terminarlo aunque no me aporte nada.\"",
-        "form": ""
+        "form": "Continuar una acción fallida solo por los recursos ya perdidos en ella"
     },
     {
         "id": "F183",
@@ -1827,7 +1827,7 @@
         "severity": 2,
         "description": "Evaluar una decisión sin considerar lo que se renuncia al tomarla.",
         "example": "\"Este proyecto no cuesta nada; usamos recursos propios.\" (ignorando que esos recursos podrían usarse de otra manera)",
-        "form": ""
+        "form": "Juzgar una opción sin valorar lo que se pierde al no elegir la otra"
     },
     {
         "id": "F184",
@@ -1836,8 +1836,8 @@
         "block": "BLOQUE 16 · Económicas",
         "severity": 3,
         "description": "Asumir que lo que gana una parte necesariamente lo pierde otra, en contextos donde el valor puede crearse o destruirse.",
-        "example": "",
-        "form": ""
+        "example": "'Si ellos se enriquecen, nosotros nos empobrecemos.'",
+        "form": "Creer que para que alguien gane, otro debe perder necesariamente"
     },
     {
         "id": "F185",
@@ -1846,8 +1846,8 @@
         "block": "BLOQUE 17 · Jurídico-políticas",
         "severity": 2,
         "description": "Descalificar una ley o norma por su origen político en lugar de por su contenido.",
-        "example": "",
-        "form": ""
+        "example": "'Esa ley es mala porque la hizo la oposición.'",
+        "form": "Rechazar una norma solo por el grupo político que la ha redactado"
     },
     {
         "id": "F186",
@@ -1856,8 +1856,8 @@
         "block": "BLOQUE 17 · Jurídico-políticas",
         "severity": 2,
         "description": "\"Si permitimos X legalmente, el sistema no podrá contener Y.\"",
-        "example": "",
-        "form": ""
+        "example": "'Si perdonamos esta multa, mañana nadie respetará ninguna ley.'",
+        "form": "Argumentar que una pequeña concesión legal destruirá todo el orden jurídico"
     },
     {
         "id": "F187",
@@ -1866,8 +1866,8 @@
         "block": "BLOQUE 17 · Jurídico-políticas",
         "severity": 3,
         "description": "Aplicar precedente jurídico a un caso sin verificar que las propiedades jurídicamente relevantes sean análogas.",
-        "example": "",
-        "form": ""
+        "example": "'Se construyó en la costa en 1950, así que yo puedo construir hoy en la reserva.'",
+        "form": "Usar un caso del pasado como guía para uno actual que es esencialmente distinto"
     },
     {
         "id": "F188",
@@ -1876,8 +1876,8 @@
         "block": "BLOQUE 17 · Jurídico-políticas",
         "severity": 3,
         "description": "Confundir enunciados normativos (\"debes pagar impuestos\") con enunciados descriptivos (\"la gente paga impuestos\").",
-        "example": "",
-        "form": ""
+        "example": "'La ley dice que somos iguales, por tanto no hay racismo.'",
+        "form": "Tomar un enunciado del deber ser como si fuera una descripción de la realidad"
     },
     {
         "id": "F189",
@@ -1886,8 +1886,8 @@
         "block": "BLOQUE 17 · Jurídico-políticas",
         "severity": 2,
         "description": "Interpretar una victoria electoral estrecha como respaldo amplio a todas las políticas del vencedor.",
-        "example": "",
-        "form": ""
+        "example": "'He ganado, así que el pueblo quiere exactamente todo lo que propuse.'",
+        "form": "Creer que ganar un cargo da permiso para imponer cada detalle de un programa"
     },
     {
         "id": "F190",
@@ -1896,8 +1896,8 @@
         "block": "BLOQUE 17 · Jurídico-políticas",
         "severity": 2,
         "description": "Usar una descripción del estado de naturaleza (a menudo ficticia o idealizada) para justificar arreglos sociales actuales.",
-        "example": "",
-        "form": ""
+        "example": "'En la naturaleza no hay propiedad, así que debemos abolirla hoy.'",
+        "form": "Justificar leyes actuales basándose en una visión idealizada del hombre primitivo"
     },
     {
         "id": "F191",
@@ -1906,8 +1906,8 @@
         "block": "BLOQUE 18 · Psicológicas y cognitivas sistematizadas",
         "severity": 2,
         "description": "Tomar el primer dato mencionado como referencia no cuestionada y construir el argumento sobre él.",
-        "example": "",
-        "form": ""
+        "example": "'Costaba 1000, por 800 es un chollo, aunque valga 100.'",
+        "form": "Quedarse atrapado en la primera cifra mencionada al evaluar una oferta"
     },
     {
         "id": "F192",
@@ -1916,8 +1916,8 @@
         "block": "BLOQUE 18 · Psicológicas y cognitivas sistematizadas",
         "severity": 3,
         "description": "La misma información presentada con encuadre diferente conduce a evaluaciones contradictorias; usar el encuadre deliberadamente para manipular la conclusión.",
-        "example": "",
-        "form": ""
+        "example": "'90% libre de grasa' vs '10% de grasa'.",
+        "form": "Presentar la misma información de forma positiva o negativa para influir"
     },
     {
         "id": "F193",
@@ -1926,8 +1926,8 @@
         "block": "BLOQUE 18 · Psicológicas y cognitivas sistematizadas",
         "severity": 2,
         "description": "Asumir que porque alguien es bueno en un ámbito, sus juicios en otro ámbito también son fiables.",
-        "example": "",
-        "form": ""
+        "example": "'Es un actor guapo, su opinión sobre geopolítica debe ser acertada.'",
+        "form": "Valorar el argumento de alguien basándose en su carisma o atractivo físico"
     },
     {
         "id": "F194",
@@ -1936,8 +1936,8 @@
         "block": "BLOQUE 18 · Psicológicas y cognitivas sistematizadas",
         "severity": 2,
         "description": "Preferir el estado actual de las cosas como argumento en sí mismo, sin justificación adicional de su superioridad.",
-        "example": "",
-        "form": ""
+        "example": "'Siempre usamos papel, no hay razón para cambiar a digital.'",
+        "form": "Defender la situación actual solo por miedo al cambio o inercia"
     },
     {
         "id": "F195",
@@ -1947,7 +1947,7 @@
         "severity": 2,
         "description": "Evaluar una situación exclusivamente desde el punto de referencia actual, ignorando la escala absoluta.",
         "example": "\"Solo perdimos el 10% de los empleos\" (puede ser catastrófico en términos absolutos)",
-        "form": ""
+        "form": "Ignorar la escala total y centrarse solo en la variación relativa"
     },
     {
         "id": "F196",
@@ -1956,8 +1956,8 @@
         "block": "BLOQUE 18 · Psicológicas y cognitivas sistematizadas",
         "severity": 3,
         "description": "Tratar una imagen descontextualizada como evidencia sin verificar autenticidad, contexto ni fuente.",
-        "example": "",
-        "form": ""
+        "example": "'Tengo el pantallazo del tweet, así que el ministro dijo eso.'",
+        "form": "Aceptar una captura de pantalla como verdad absoluta sin verificarla"
     },
     {
         "id": "F197",
@@ -1966,8 +1966,8 @@
         "block": "BLOQUE 18 · Psicológicas y cognitivas sistematizadas",
         "severity": 3,
         "description": "Lo que es viral o tendencia refleja la realidad o tiene mayor probabilidad de ser verdad.",
-        "example": "",
-        "form": ""
+        "example": "'Tiene millones de visitas, algo de cierto habrá en el video.'",
+        "form": "Asociar el número de visualizaciones con la veracidad del contenido"
     },
     {
         "id": "F198",
@@ -1976,8 +1976,8 @@
         "block": "BLOQUE 18 · Psicológicas y cognitivas sistematizadas",
         "severity": 3,
         "description": "Lo que se ve repetidamente en el propio entorno informativo refleja la distribución real de opiniones en la sociedad.",
-        "example": "",
-        "form": ""
+        "example": "'En mi Facebook todos odian la ley, así que será un fracaso.'",
+        "form": "Creer que lo que dice mi grupo de redes sociales es lo que piensa todo el mundo"
     },
     {
         "id": "F199",
@@ -1986,8 +1986,8 @@
         "block": "BLOQUE 18 · Psicológicas y cognitivas sistematizadas",
         "severity": 3,
         "description": "Confundir el perfil de resultados que un algoritmo selecciona (personalizado) con una muestra representativa del universo informativo.",
-        "example": "",
-        "form": ""
+        "example": "'Solo veo noticias de robos, el mundo es un caos total.'",
+        "form": "Confundir la selección personalizada de un algoritmo con la realidad general"
     },
     {
         "id": "F200",
@@ -1996,8 +1996,8 @@
         "block": "BLOQUE 18 · Psicológicas y cognitivas sistematizadas",
         "severity": 2,
         "description": "Tratar el apoyo cuantificado (likes, shares, retweets) como validación del contenido o evidencia de su veracidad.",
-        "example": "",
-        "form": ""
+        "example": "'Esa dieta tiene 50.000 likes, debe ser muy sana.'",
+        "form": "Creer que una idea es válida porque tiene muchos 'me gusta'"
     },
     {
         "id": "F201",
@@ -2006,8 +2006,8 @@
         "block": "BLOQUE 18 · Psicológicas y cognitivas sistematizadas",
         "severity": 3,
         "description": "Confundir la verificación de identidad (checkmark o credenciales) con la fiabilidad o veracidad del contenido publicado.",
-        "example": "",
-        "form": ""
+        "example": "'La cuenta tiene el check azul, así que la noticia es real.'",
+        "form": "Confundir la identidad verificada de una cuenta con la verdad de lo que publica"
     },
     {
         "id": "F202",
@@ -2016,8 +2016,8 @@
         "block": "BLOQUE 18 · Psicológicas y cognitivas sistematizadas",
         "severity": 2,
         "description": "Citar capturas de texto editado o corregido como si representaran la versión actual o definitiva de una posición.",
-        "example": "",
-        "form": ""
+        "example": "'Esto escribiste hace 20 años, eso es lo que piensas hoy.'",
+        "form": "Usar textos antiguos y superados para atacar la posición presente de alguien"
     },
     {
         "id": "F203",
@@ -2026,8 +2026,8 @@
         "block": "BLOQUE 18 · Psicológicas y cognitivas sistematizadas",
         "severity": 3,
         "description": "Usar contenido sintético (audio, video, imagen generada artificialmente) como evidencia de eventos reales.",
-        "example": "",
-        "form": ""
+        "example": "'He visto el video del soborno, es la prueba.' (siendo un deepfake)",
+        "form": "Tomar un video generado por IA como una prueba irrefutable de un suceso"
     },
     {
         "id": "F204",
@@ -2036,8 +2036,8 @@
         "block": "BLOQUE 18 · Psicológicas y cognitivas sistematizadas",
         "severity": 2,
         "description": "Tratar el hecho de que un contenido no haya sido eliminado o etiquetado por la plataforma como validación de su veracidad.",
-        "example": "",
-        "form": ""
+        "example": "'Si fuera mentira, la plataforma ya lo habría quitado.'",
+        "form": "Creer que si algo fuera falso, la red social ya lo habría borrado"
     },
     {
         "id": "F205",
@@ -2047,7 +2047,7 @@
         "severity": 3,
         "description": "Concluir que una tesis es falsa porque el argumento que la defiende contiene una falacia. La verdad de la conclusión es independiente de la validez del argumento que la sostiene.",
         "example": "\"Tu argumento para demostrar que 2+2=4 es un non sequitur. Luego, 2+2≠4.\"",
-        "form": ""
+        "form": "Concluir que una idea es falsa solo porque se ha defendido con una falacia"
     },
     {
         "id": "F206",
@@ -2056,8 +2056,8 @@
         "block": "BLOQUE 18 · Psicológicas y cognitivas sistematizadas",
         "severity": 3,
         "description": "Nombrar una falacia sin demostrar que el argumento en cuestión la comete efectivamente.",
-        "example": "",
-        "form": ""
+        "example": "'Eso es un hombre de paja.' (sin demostrar la deformación)",
+        "form": "Ponerle el nombre de una falacia a un argumento sin explicar por qué lo es"
     },
     {
         "id": "F207",
@@ -2066,8 +2066,8 @@
         "block": "BLOQUE 18 · Psicológicas y cognitivas sistematizadas",
         "severity": 2,
         "description": "Invocar la \"falacia del detector de falacias\" para desestimar señalamientos legítimos de falacias reales.",
-        "example": "",
-        "form": ""
+        "example": "'Me acusas de ad hominem, eso es la falacia del detector, así que mi insulto vale.'",
+        "form": "Usar la acusación de 'falacia del detector' para proteger una falacia propia"
     },
     {
         "id": "F208",
@@ -2076,8 +2076,8 @@
         "block": "BLOQUE 18 · Psicológicas y cognitivas sistematizadas",
         "severity": 2,
         "description": "Exigir formalización lógica completa de argumentos cotidianos y rechazarlos si no la tienen, ignorando que el lenguaje natural admite argumentación válidamente informal.",
-        "example": "",
-        "form": ""
+        "example": "'No es un silogismo perfecto, así que no es válido.'",
+        "form": "Rechazar cualquier razonamiento que no esté en formato lógico perfecto"
     },
     {
         "id": "F209",
@@ -2087,7 +2087,7 @@
         "severity": 3,
         "description": "Rechazar una solución porque no es perfecta, comparándola con un ideal imposible en lugar de con las alternativas disponibles.",
         "example": "\"Este tratado de paz no resuelve todos los conflictos, luego no sirve de nada.\"",
-        "form": ""
+        "form": "Descartar una solución útil porque no alcanza la perfección ideal"
     },
     {
         "id": "F210",
@@ -2096,8 +2096,8 @@
         "block": "BLOQUE 18 · Psicológicas y cognitivas sistematizadas",
         "severity": 0,
         "description": "",
-        "example": "",
-        "form": ""
+        "example": "'Esperemos 50 años más de estudios sobre el tabaco para estar seguros.'",
+        "form": "Demandar pruebas adicionales de forma infinita para no aceptar una verdad incómoda"
     },
     {
         "id": "F211",
@@ -2106,8 +2106,8 @@
         "block": "BLOQUE 18 · Psicológicas y cognitivas sistematizadas",
         "severity": 2,
         "description": "Tomar la versión más débil posible de la propia tesis para hacerla irrefutable, luego reclamar implícitamente que se ha defendido la versión fuerte. Variante formal del motte and bailey.",
-        "example": "",
-        "form": ""
+        "example": "'Hay dudas sobre el informe, luego el informe es una basura total.'",
+        "form": "Defender una versión suave de una tesis y luego actuar como si se hubiera probado la versión extrema"
     },
     {
         "id": "F212",
@@ -2116,8 +2116,8 @@
         "block": "BLOQUE 18 · Psicológicas y cognitivas sistematizadas",
         "severity": 3,
         "description": "Usar ejes que no empiezan en cero o tienen escalas no lineales para exagerar o minimizar visualmente diferencias reales.",
-        "example": "",
-        "form": ""
+        "example": "'El eje empieza en 9.8%, así que una bajada de 0.1% parece del 50%.'",
+        "form": "Manipular los ejes de un gráfico para que cambios mínimos parezcan enormes"
     },
     {
         "id": "F213",
@@ -2126,8 +2126,8 @@
         "block": "BLOQUE 18 · Psicológicas y cognitivas sistematizadas",
         "severity": 3,
         "description": "Presentar dos gráficas con tendencias similares como si demostraran causalidad entre las variables.",
-        "example": "",
-        "form": ""
+        "example": "'Sube el consumo de helado y suben los ataques de tiburón, luego el helado atrae tiburones.'",
+        "form": "Presentar dos gráficas similares para sugerir que una causa la otra"
     },
     {
         "id": "F214",
@@ -2136,8 +2136,8 @@
         "block": "BLOQUE 18 · Psicológicas y cognitivas sistematizadas",
         "severity": 3,
         "description": "Elegir imágenes que representan un caso excepcional como si fuera el caso típico (o viceversa) para apoyar una conclusión.",
-        "example": "",
-        "form": ""
+        "example": "'Poner la foto de un niño sonriendo para decir que no hay guerra.'",
+        "form": "Elegir una foto de un caso raro para representar a todo un colectivo"
     },
     {
         "id": "F215",
@@ -2146,8 +2146,8 @@
         "block": "BLOQUE 18 · Psicológicas y cognitivas sistematizadas",
         "severity": 2,
         "description": "Usar representaciones gráficas (tartas, barras) donde las proporciones visuales no corresponden a las proporciones numéricas reales.",
-        "example": "",
-        "form": ""
+        "example": "'Un sector del 20% que ocupa la mitad del gráfico circular.'",
+        "form": "Dibujar proporciones en un gráfico que no coinciden con los datos numéricos"
     },
     {
         "id": "F216",
@@ -2156,8 +2156,8 @@
         "block": "BLOQUE 18 · Psicológicas y cognitivas sistematizadas",
         "severity": 2,
         "description": "Usar imágenes de personas con bata blanca, laboratorios, o símbolos de autoridad para reforzar afirmaciones sin evidencia adicional.",
-        "example": "",
-        "form": ""
+        "example": "'Sale con bata blanca, así que su consejo de belleza es médico.'",
+        "form": "Usar la vestimenta o el entorno para dar autoridad a un mensaje sin pruebas"
     },
     {
         "id": "F217",
@@ -2166,8 +2166,8 @@
         "block": "BLOQUE 18 · Psicológicas y cognitivas sistematizadas",
         "severity": 0,
         "description": "",
-        "example": "",
-        "form": ""
+        "example": "'Este Nobel de física dice que las vitaminas curan el cáncer.'",
+        "form": "Citar a un experto en un tema para validar su opinión en otro tema diferente"
     },
     {
         "id": "F218",
@@ -2176,8 +2176,8 @@
         "block": "BLOQUE 18 · Psicológicas y cognitivas sistematizadas",
         "severity": 3,
         "description": "La persona citada no tiene formación demostrable en el área relevante.",
-        "example": "",
-        "form": ""
+        "example": "'Un anónimo dice que el limón cura todo, debe ser verdad.'",
+        "form": "Aceptar una afirmación médica o científica de alguien sin ninguna formación"
     },
     {
         "id": "F219",
@@ -2187,7 +2187,7 @@
         "severity": 3,
         "description": "Citar al único experto discrepante como si su opinión equivaliera al consenso del campo.",
         "example": "Citar a un climatólogo que niega el cambio climático como contrapeso al 97% del consenso.",
-        "form": ""
+        "form": "Citar a un único experto que disiente para ignorar el consenso de miles de especialistas"
     },
     {
         "id": "F220",
@@ -2196,8 +2196,8 @@
         "block": "BLOQUE 18 · Psicológicas y cognitivas sistematizadas",
         "severity": 2,
         "description": "Citar a una autoridad cuya posición data de cuando el campo no tenía la evidencia actual.",
-        "example": "",
-        "form": ""
+        "example": "'Aristóteles decía que los pesados caen antes, así que es así.'",
+        "form": "Usar citas de autoridades de hace siglos para contradecir la ciencia actual"
     },
     {
         "id": "F221",
@@ -2206,8 +2206,8 @@
         "block": "BLOQUE 18 · Psicológicas y cognitivas sistematizadas",
         "severity": 3,
         "description": "Citar a un experto que tiene conflictos de interés directos sin declarar dichos conflictos.",
-        "example": "",
-        "form": ""
+        "example": "'La petrolera dice que sus vertidos no dañan, su estudio lo confirma.'",
+        "form": "No mencionar que el experto que habla recibe dinero de la empresa interesada"
     },
     {
         "id": "F222",
@@ -2216,8 +2216,8 @@
         "block": "BLOQUE 18 · Psicológicas y cognitivas sistematizadas",
         "severity": 2,
         "description": "Tratar la visibilidad mediática de una persona como equivalente a su autoridad epistémica en un tema.",
-        "example": "",
-        "form": ""
+        "example": "'Ese tertuliano sale mucho, debe saber mucho de virus.'",
+        "form": "Confundir la fama televisiva con el conocimiento experto en una materia"
     },
     {
         "id": "F223",
@@ -2226,8 +2226,8 @@
         "block": "BLOQUE 18 · Psicológicas y cognitivas sistematizadas",
         "severity": 3,
         "description": "Construir una hipótesis conspirativa como \"inferencia a la mejor explicación\" cuando la hipótesis requiere más supuestos ad hoc que la explicación convencional, violando la parsimonia.",
-        "example": "",
-        "form": ""
+        "example": "'Es más fácil creer que todos mienten a que la Tierra es redonda.'",
+        "form": "Elegir una explicación llena de conspiraciones complejas frente a una sencilla y probada"
     },
     {
         "id": "F224",
@@ -2236,8 +2236,8 @@
         "block": "BLOQUE 18 · Psicológicas y cognitivas sistematizadas",
         "severity": 3,
         "description": "Percibir conexiones significativas entre eventos no relacionados y usarlas como evidencia abductiva.",
-        "example": "",
-        "form": ""
+        "example": "'Esa nube tiene forma de cara, es una señal del destino.'",
+        "form": "Atribuir un propósito inteligente a una formación azarosa de la naturaleza"
     },
     {
         "id": "F225",
@@ -2246,8 +2246,8 @@
         "block": "BLOQUE 18 · Psicológicas y cognitivas sistematizadas",
         "severity": 3,
         "description": "Usar un caso único como base de una abducción que requeriría evidencia sistemática.",
-        "example": "",
-        "form": ""
+        "example": "'A mi primo le funcionó el amuleto, la magia existe.'",
+        "form": "Usar un suceso fortuito que le pasó a un conocido como prueba de una ley universal"
     },
     {
         "id": "F226",
@@ -2256,8 +2256,8 @@
         "block": "BLOQUE 18 · Psicológicas y cognitivas sistematizadas",
         "severity": 2,
         "description": "Acumular gran cantidad de argumentos débiles o irrelevantes con la esperanza de que el volumen supla la solidez.",
-        "example": "",
-        "form": ""
+        "example": "'Tengo 50 indicios vagos, así que debe ser culpable.'",
+        "form": "Presentar una montaña de argumentos flojos pensando que la cantidad hace la calidad"
     },
     {
         "id": "F227",
@@ -2266,8 +2266,8 @@
         "block": "BLOQUE 18 · Psicológicas y cognitivas sistematizadas",
         "severity": 1,
         "description": "Usar el exordio o introducción para predisponer al auditorio de forma que filtre toda la argumentación posterior.",
-        "example": "",
-        "form": ""
+        "example": "'Antes de oír las mentiras de mi rival, veamos los hechos...'",
+        "form": "Empezar un discurso insultando o alabando para nublar el juicio del oyente"
     },
     {
         "id": "F228",
@@ -2277,7 +2277,7 @@
         "severity": 2,
         "description": "Usar la propia reputación, honestidad o trayectoria como sustituto de la evidencia o el argumento.",
         "example": "\"Yo nunca he mentido; luego puedes creer lo que digo ahora sin cuestionarlo.\"",
-        "form": ""
+        "form": "Pedir que se acepte un argumento solo por la buena fama personal del que lo dice"
     },
     {
         "id": "F229",
@@ -2286,7 +2286,7 @@
         "block": "BLOQUE 18 · Psicológicas y cognitivas sistematizadas",
         "severity": 3,
         "description": "Introducir subrepticiamente una pregunta o suposición en el discurso de manera que el auditorio la asuma sin haberla evaluado.",
-        "example": "",
-        "form": ""
+        "example": "'Como todos sabemos que el Estado es ineficiente, analicemos el plan...'",
+        "form": "Colar una afirmación no probada dentro de una pregunta o frase para que se acepte sin pensar"
     }
 ]
