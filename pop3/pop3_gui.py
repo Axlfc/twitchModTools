@@ -4,6 +4,7 @@ import threading
 import socket
 import poplib
 from pop3_client import EmailClient
+from spam_detector import SpamDetector
 from datetime import datetime
 try:
     from tkinterweb import HtmlFrame
@@ -21,6 +22,7 @@ class Pop3Gui:
         self.master_key = None
         self.local_emails = [] # Todos los emails cargados
         self.displayed_emails = [] # Emails actualmente en el Treeview (filtrados o no)
+        self.email_id_to_data = {} # Mapeo de ID de Treeview -> email_data
 
         self.setup_styles()
         self.create_widgets()
@@ -30,9 +32,9 @@ class Pop3Gui:
 
     def setup_styles(self):
         style = ttk.Style()
-        style.configure("Spam0.Treeview", foreground="green")
-        style.configure("Spam1.Treeview", foreground="#CCCC00")
-        style.configure("Spam2.Treeview", foreground="red")
+        style.configure("SpamSafe.Treeview", foreground="green")
+        style.configure("SpamSuspicious.Treeview", foreground="#CCCC00")
+        style.configure("SpamSpam.Treeview", foreground="red")
 
     def create_widgets(self):
         self.notebook = ttk.Notebook(self.master)
@@ -213,10 +215,12 @@ class Pop3Gui:
 
     def update_tree(self):
         for item in self.tree.get_children(): self.tree.delete(item)
+        self.email_id_to_data = {}
         for em in self.displayed_emails:
-            level = em.get('spam_level', 0)
-            icon = "🟢" if level == 0 else "🟡" if level == 1 else "🔴"
-            self.tree.insert("", "end", values=(icon, em.get('date'), em.get('from'), em.get('subject')), tags=(f"Spam{level}",))
+            level = em.get('spam_level', "safe")
+            icon = "🟢" if level == "safe" else "🟡" if level == "suspicious" else "🔴"
+            item_id = self.tree.insert("", "end", values=(icon, em.get('date'), em.get('from'), em.get('subject')), tags=(f"Spam{level.capitalize()}",))
+            self.email_id_to_data[item_id] = em
 
     def perform_search(self):
         q = self.search_entry.get().lower()
@@ -232,17 +236,23 @@ class Pop3Gui:
     def on_email_select(self, event):
         selected = self.tree.selection()
         if not selected: return
-        idx = self.tree.index(selected[0])
-        if idx < len(self.displayed_emails):
-            email_data = self.displayed_emails[idx]
-            self.header_label.config(text=f"De: {email_data.get('from')}\nAsunto: {email_data.get('subject')}")
+        item_id = selected[0]
+        email_data = self.email_id_to_data.get(item_id)
+        if email_data:
+            spam_reasons = "\n".join(email_data.get('spam_reasons', []))
+            spam_info = f"\n[SPAM] Razones:\n{spam_reasons}" if spam_reasons else ""
+
+            self.header_label.config(text=f"De: {email_data.get('from')}\nAsunto: {email_data.get('subject')}{spam_info}")
+
             body_html = email_data.get('body_html', '')
             body_text = email_data.get('body_text', '')
+
             if HAS_TKINTERWEB:
                 self.html_viewer.load_html(body_html if body_html else f"<html><body><pre>{body_text}</pre></body></html>")
             else:
                 self.text_viewer.config(state='normal'); self.text_viewer.delete(1.0, tk.END)
-                self.text_viewer.insert(tk.END, body_text); self.text_viewer.config(state='disabled')
+                clean_text = body_text if body_text else SpamDetector.strip_tags(body_html)
+                self.text_viewer.insert(tk.END, clean_text); self.text_viewer.config(state='disabled')
 
     def send_email(self):
         if not self.client.username or not self.client.password:
@@ -269,13 +279,27 @@ class Pop3Gui:
         def log(msg): self.master.after(0, lambda: (self.diag_output.insert(tk.END, msg + "\n"), self.diag_output.see(tk.END)))
         def task():
             log(f"--- Diagnóstico {datetime.now().strftime('%H:%M:%S')} ---")
+
+            # POP3
             log(f"Probando POP3: {self.client.pop_server}:{self.client.pop_port}")
             try:
-                s = socket.create_connection((self.client.pop_server, self.client.pop_port), 5); s.close(); log("✅ Conectividad TCP OK")
-                p = poplib.POP3_SSL(self.client.pop_server, self.client.pop_port); log("✅ SSL Handshake OK")
+                s = socket.create_connection((self.client.pop_server, self.client.pop_port), 10); s.close(); log("✅ Conectividad TCP POP3 OK")
+                p = poplib.POP3_SSL(self.client.pop_server, self.client.pop_port, timeout=10); log("✅ SSL Handshake POP3 OK")
                 p.user(self.client.username); p.pass_(self.client.password); log("✅ Autenticación POP3 OK"); p.quit()
-            except Exception as e: log(f"❌ Error: {e}")
-            log("--- Fin del diagnóstico ---")
+            except Exception as e: log(f"❌ Error POP3: {e}")
+
+            # SMTP
+            log(f"\nProbando SMTP: {self.client.smtp_server}:{self.client.smtp_port}")
+            try:
+                s = socket.create_connection((self.client.smtp_server, self.client.smtp_port), 10); s.close(); log("✅ Conectividad TCP SMTP OK")
+                success, msg = self.client.test_smtp_auth()
+                if success:
+                    log("✅ Autenticación SMTP OK")
+                else:
+                    log(f"❌ Error Autenticación SMTP: {msg}")
+            except Exception as e: log(f"❌ Error SMTP: {e}")
+
+            log("\n--- Fin del diagnóstico ---")
             self.master.after(0, lambda: self.diag_output.config(state='disabled'))
         threading.Thread(target=task, daemon=True).start()
 

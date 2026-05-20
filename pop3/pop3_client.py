@@ -10,15 +10,16 @@ import email
 import os
 import json
 import datetime
-import getpass
 import hashlib
 import base64
+import re
 from pathlib import Path
 from email.header import decode_header
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from email.mime.base import MIMEBase
 from email import encoders
+from spam_detector import SpamDetector
 
 
 class EnvLoader:
@@ -93,11 +94,7 @@ class SecureCredentialManager:
         return None, None, display_name.strip()
 
     def save_credentials(self, username, password, display_name="", master_key=None):
-        if not master_key:
-            master_key = getpass.getpass("Introduce una clave maestra (mín 8 car.): ")
-
-        if len(master_key) < 8:
-            print("❌ Clave demasiado corta")
+        if not master_key or len(master_key) < 8:
             return False
 
         try:
@@ -125,15 +122,12 @@ class SecureCredentialManager:
             return False
 
     def load_credentials(self, master_key=None):
-        if not self.config_file.exists():
+        if not self.config_file.exists() or not master_key:
             return None, None, ""
 
         try:
             with open(self.config_file, 'r') as f:
                 config_data = json.load(f)
-
-            if not master_key:
-                master_key = getpass.getpass("Introduce tu clave maestra: ")
 
             key_verify = hashlib.sha256(master_key.encode()).hexdigest()[:16]
 
@@ -147,48 +141,6 @@ class SecureCredentialManager:
             return username.strip(), password.strip(), display_name
         except Exception:
             return None, None, ""
-
-
-class SpamDetector:
-    """Detector de SPAM simple basado en heurísticas"""
-
-    SPAM_KEYWORDS = [
-        'oferta', 'ganado', 'premio', 'bitcoin', 'crypto', 'viagra', 'urgente',
-        'cuenta bloqueada', 'herencia', 'loteria', 'beneficio', 'gratis',
-        'invertir', 'casino', 'payout', 'jackpot', 'sex', 'dating'
-    ]
-
-    @staticmethod
-    def analyze(email_data):
-        """Analiza un email y devuelve un nivel de riesgo: 0 (verde), 1 (amarillo), 2 (rojo)"""
-        score = 0
-        subject = email_data.get('subject', '').lower()
-        body = email_data.get('body_text', '').lower()
-        sender = email_data.get('from', '').lower()
-
-        # 1. Búsqueda de palabras clave
-        hits = 0
-        for word in SpamDetector.SPAM_KEYWORDS:
-            if word in subject: hits += 2
-            if word in body: hits += 1
-
-        if hits >= 5: score += 2
-        elif hits >= 2: score += 1
-
-        # 2. Análisis de remitente (heurística simple)
-        if any(char.isdigit() for char in sender.split('@')[0]) and len(sender.split('@')[0]) > 10:
-            score += 1 # Nombres de usuario aleatorios con muchos números
-
-        # 3. Ratio HTML/Texto (si el HTML es muy largo y el texto casi nulo)
-        html_len = len(email_data.get('body_html', ''))
-        text_len = len(email_data.get('body_text', ''))
-        if html_len > 5000 and text_len < 100:
-            score += 1
-
-        # Resultado
-        if score >= 3: return 2 # Rojo (Spam probable)
-        if score >= 1: return 1 # Amarillo (Sospechoso)
-        return 0 # Verde (Limpio)
 
 
 class EmailClient:
@@ -274,13 +226,28 @@ class EmailClient:
 
     def connect_pop3(self):
         try:
-            server = poplib.POP3_SSL(self.pop_server, self.pop_port)
+            server = poplib.POP3_SSL(self.pop_server, self.pop_port, timeout=10)
             server.user(self.username)
             server.pass_(self.password)
             return server
         except Exception as e:
             print(f"❌ Error POP3: {e}")
             return None
+
+    def test_smtp_auth(self):
+        """Prueba la conexión y autenticación SMTP sin enviar correo"""
+        try:
+            if self.smtp_port == 465:
+                server = smtplib.SMTP_SSL(self.smtp_server, self.smtp_port, timeout=10)
+            else:
+                server = smtplib.SMTP(self.smtp_server, self.smtp_port, timeout=10)
+                server.starttls()
+
+            server.login(self.username, self.password)
+            server.quit()
+            return True, "OK"
+        except Exception as e:
+            return False, str(e)
 
     def send_email(self, to_address, subject, body, attachments=None):
         """Enviar un email vía SMTP"""
@@ -305,9 +272,9 @@ class EmailClient:
 
             # Conexión SMTP
             if self.smtp_port == 465:
-                server = smtplib.SMTP_SSL(self.smtp_server, self.smtp_port)
+                server = smtplib.SMTP_SSL(self.smtp_server, self.smtp_port, timeout=30)
             else:
-                server = smtplib.SMTP(self.smtp_server, self.smtp_port)
+                server = smtplib.SMTP(self.smtp_server, self.smtp_port, timeout=30)
                 server.starttls()
 
             server.login(self.username, self.password)
@@ -329,25 +296,28 @@ class EmailClient:
         except:
             return str(s)
 
-    def save_email(self, email_obj, email_id):
+    def save_email(self, email_obj, email_id, uid=None):
         try:
             subject = self.decode_mime_words(email_obj.get('Subject', 'Sin asunto'))
             sender = self.decode_mime_words(email_obj.get('From', 'Desconocido'))
 
             email_data = {
                 'id': email_id,
+                'uid': uid or str(email_id),
                 'subject': subject,
                 'from': sender,
                 'to': self.decode_mime_words(email_obj.get('To', '')),
                 'date': email_obj.get('Date', ''),
-                'headers': dict(email_obj.items()),
+                'headers': {k: self.decode_mime_words(str(v)) for k, v in email_obj.items()},
                 'body_text': '',
                 'body_html': '',
                 'attachments': []
             }
 
             safe_subject = "".join(c for c in subject if c.isalnum() or c in (' ', '-', '_')).rstrip()[:50]
-            email_folder = self.backup_dir / f"email_{email_id:04d}_{safe_subject}"
+            # Usar UID para el nombre de la carpeta si está disponible, si no el ID
+            folder_id = uid if uid else f"{email_id:04d}"
+            email_folder = self.backup_dir / f"email_{folder_id}"
             email_folder.mkdir(parents=True, exist_ok=True)
 
             if email_obj.is_multipart():
@@ -372,7 +342,8 @@ class EmailClient:
                 payload = email_obj.get_payload(decode=True)
                 if payload: email_data['body_text'] = payload.decode('utf-8', errors='ignore')
 
-            with open(email_folder / f"email_{email_id:04d}.json", 'w', encoding='utf-8') as f:
+            json_filename = f"email_{email_id:04d}.json" if not uid else "email_data.json"
+            with open(email_folder / json_filename, 'w', encoding='utf-8') as f:
                 json.dump(email_data, f, ensure_ascii=False, indent=2)
             return True
         except Exception as e:
@@ -383,17 +354,30 @@ class EmailClient:
         server = self.connect_pop3()
         if not server: return False
         try:
-            num_messages = len(server.list()[1])
+            # Obtener UIDLs
+            resp, items = server.uidl()
+            # items es una lista de strings 'id uid'
+            uidl_map = {}
+            for item in items:
+                msg_id, msg_uid = item.decode().split()
+                uidl_map[int(msg_id)] = msg_uid
+
+            num_messages = len(uidl_map)
             if limit: num_messages = min(num_messages, limit)
 
             successful = 0
-            for i in range(1, num_messages + 1):
+            # Iterar sobre los IDs disponibles de forma segura
+            for i in sorted(uidl_map.keys()):
+                if limit and successful >= limit:
+                    break
                 try:
+                    uid = uidl_map[i]
                     raw_email = b"\n".join(server.retr(i)[1])
                     email_obj = email.message_from_bytes(raw_email)
-                    if self.save_email(email_obj, i):
+                    if self.save_email(email_obj, i, uid=uid):
                         successful += 1
-                except:
+                except Exception as e:
+                    print(f"Error descargando email {i}: {e}")
                     continue
             return True
         finally:
@@ -413,7 +397,10 @@ class EmailClient:
                         with open(json_files[0], 'r', encoding='utf-8') as f:
                             data = json.load(f)
                             # Inyectar análisis de spam al cargar
-                            data['spam_level'] = SpamDetector.analyze(data)
+                            analysis = SpamDetector.analyze(data)
+                            data['spam_score'] = analysis['score']
+                            data['spam_level'] = analysis['level']
+                            data['spam_reasons'] = analysis['reasons']
                             emails.append(data)
                     except:
                         continue
