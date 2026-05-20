@@ -1,0 +1,6 @@
+{
+  "white_list": [],
+  "black_list": [],
+  "bayesian_threshold": 200,
+  "quarantine_enabled": true
+}

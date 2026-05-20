@@ -64,7 +64,28 @@ Resumen de las herramientas (qué hacen y cómo puede usarlas un/a mod)
 	- Uso: ver historial de sanciones y registros.
 - `vector_store_qdrant.py`: Maneja embeddings y búsquedas semánticas (si está habilitado).
 - `utils.py` y `config.py`: Utilidades y configuración central. Edita `config.py` para activar/desactivar módulos.
-- `pop3/EmailBackupClient.py` y `pop3/EmailBackupGUI.py`: Herramientas para respaldos de correo (opcional).
+- `pop3/pop3_gui.py`: Cliente de correo POP3/SMTP avanzado con filtrado de spam inteligente.
+
+## Cliente de Correo POP3/SMTP (pop3/)
+
+El cliente incluye un sistema de detección de spam en 4 capas:
+
+1.  **Heurística (Siempre activa):** Análisis de palabras clave, cabeceras SPF/DKIM y ratio HTML/Texto.
+2.  **Bayesiana (Auto-activada):** Aprende de tus clasificaciones. Se activa tras 200 correos de spam y 200 seguros.
+3.  **Qdrant (Opcional):** Comparación semántica con correos previos.
+4.  **Ollama (Opcional):** Análisis semántico profundo usando modelos como `llama3`.
+
+### Dependencias opcionales (Ollama + Qdrant)
+
+Para activar las capas 3 y 4 de spam:
+1.  **Ollama:** Instalar desde [ollama.com](https://ollama.com) y ejecutar `ollama run llama3`. El cliente detectará el servicio en `localhost:11434`.
+2.  **Qdrant:** Ejecutar vía Docker: `docker run -p 6333:6333 qdrant/qdrant`. Requiere `qdrant-client` (opcional en Python).
+
+### Configuración de Spam
+En la pestaña **Ajustes**, puedes:
+- Gestionar **Lista Blanca** (prioridad absoluta) y **Lista Negra**.
+- Activar/Desactivar la **Cuarentena**. Si se desactiva, el spam llega a la Bandeja con el prefijo `[CUARENTENA]`.
+- Ver el estado de las capas de detección (🟢 activa / ⚫ no disponible).
 
 Flujo típico de moderación (resumen)
 

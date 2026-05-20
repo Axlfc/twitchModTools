@@ -16,13 +16,20 @@ class Pop3Gui:
     def __init__(self, master):
         self.master = master
         self.master.title("Python Email Client (POP3/SMTP)")
-        self.master.geometry("1000x750")
+        self.master.geometry("1100x800")
 
         self.client = EmailClient()
         self.master_key = None
-        self.local_emails = [] # Todos los emails cargados
-        self.displayed_emails = [] # Emails actualmente en el Treeview (filtrados o no)
-        self.email_id_to_data = {} # Mapeo de ID de Treeview -> email_data
+
+        # Bandeja
+        self.local_emails = []
+        self.displayed_emails = []
+        self.email_id_to_data = {}
+
+        # Spam
+        self.spam_emails = []
+        self.displayed_spam_emails = []
+        self.spam_id_to_data = {}
 
         self.setup_styles()
         self.create_widgets()
@@ -45,22 +52,27 @@ class Pop3Gui:
         self.notebook.add(self.inbox_frame, text="📥 Bandeja")
         self.create_inbox_tab()
 
-        # 2. Redactar
+        # 2. Spam (NUEVA)
+        self.spam_frame = ttk.Frame(self.notebook)
+        self.notebook.add(self.spam_frame, text="🛡️ Spam")
+        self.create_spam_tab()
+
+        # 3. Redactar
         self.compose_frame = ttk.Frame(self.notebook)
         self.notebook.add(self.compose_frame, text="📝 Redactar")
         self.create_compose_tab()
 
-        # 3. Backup
+        # 4. Backup
         self.backup_frame = ttk.Frame(self.notebook)
         self.notebook.add(self.backup_frame, text="💾 Backup")
         self.create_backup_tab()
 
-        # 4. Diagnóstico
+        # 5. Diagnóstico
         self.diag_frame = ttk.Frame(self.notebook)
         self.notebook.add(self.diag_frame, text="🔍 Diagnóstico")
         self.create_diag_tab()
 
-        # 5. Configuración
+        # 6. Configuración
         self.config_frame = ttk.Frame(self.notebook)
         self.notebook.add(self.config_frame, text="⚙️ Ajustes")
         self.create_config_tab()
@@ -109,6 +121,58 @@ class Pop3Gui:
         else:
             self.text_viewer = tk.Text(self.viewer_frame, wrap='word')
             self.text_viewer.pack(fill='both', expand=True)
+
+    def create_spam_tab(self):
+        top_bar = ttk.Frame(self.spam_frame)
+        top_bar.pack(fill='x', padx=5, pady=5)
+
+        ttk.Label(top_bar, text="Buscar:").pack(side='left', padx=2)
+        self.spam_search_entry = ttk.Entry(top_bar)
+        self.spam_search_entry.pack(side='left', fill='x', expand=True, padx=2)
+        ttk.Button(top_bar, text="🔍", command=self.perform_spam_search).pack(side='left', padx=2)
+
+        # Botones de Acción
+        actions_bar = ttk.Frame(self.spam_frame)
+        actions_bar.pack(fill='x', padx=5)
+        ttk.Button(actions_bar, text="✅ Entregar", command=lambda: self.spam_action("deliver")).pack(side='left', padx=2)
+        ttk.Button(actions_bar, text="🚫 Es Spam", command=lambda: self.spam_action("confirm")).pack(side='left', padx=2)
+        ttk.Button(actions_bar, text="🟢 No es Spam", command=lambda: self.spam_action("not_spam")).pack(side='left', padx=2)
+        ttk.Button(actions_bar, text="🗑️ Eliminar", command=lambda: self.spam_action("delete")).pack(side='left', padx=2)
+
+        self.spam_paned = ttk.PanedWindow(self.spam_frame, orient=tk.VERTICAL)
+        self.spam_paned.pack(fill='both', expand=True, padx=5, pady=5)
+
+        list_frame = ttk.Frame(self.spam_paned)
+        self.spam_paned.add(list_frame, weight=1)
+
+        columns = ("score", "date", "from", "subject")
+        self.spam_tree = ttk.Treeview(list_frame, columns=columns, show='headings', selectmode='browse')
+        self.spam_tree.heading("score", text="Score")
+        self.spam_tree.heading("date", text="Fecha")
+        self.spam_tree.heading("from", text="De")
+        self.spam_tree.heading("subject", text="Asunto")
+        self.spam_tree.column("score", width=50, anchor='center')
+        self.spam_tree.column("date", width=150)
+        self.spam_tree.column("from", width=200)
+        self.spam_tree.column("subject", width=400)
+        self.spam_tree.pack(side='left', fill='both', expand=True)
+        self.spam_tree.bind("<<TreeviewSelect>>", self.on_spam_select)
+
+        scroll = ttk.Scrollbar(list_frame, orient=tk.VERTICAL, command=self.spam_tree.yview)
+        self.spam_tree.configure(yscrollcommand=scroll.set)
+        scroll.pack(side='right', fill='y')
+
+        self.spam_viewer_frame = ttk.Frame(self.spam_paned)
+        self.spam_paned.add(self.spam_viewer_frame, weight=2)
+        self.spam_header_label = tk.Label(self.spam_viewer_frame, text="Selecciona un correo", font=('Arial', 9, 'bold'), justify='left', anchor='w')
+        self.spam_header_label.pack(fill='x', padx=5, pady=5)
+
+        if HAS_TKINTERWEB:
+            self.spam_html_viewer = HtmlFrame(self.spam_viewer_frame)
+            self.spam_html_viewer.pack(fill='both', expand=True)
+        else:
+            self.spam_text_viewer = tk.Text(self.spam_viewer_frame, wrap='word')
+            self.spam_text_viewer.pack(fill='both', expand=True)
 
     def create_compose_tab(self):
         form = ttk.Frame(self.compose_frame, padding=10)
@@ -166,6 +230,39 @@ class Pop3Gui:
         ttk.Label(grid, text="Port:").grid(row=1, column=2); self.smtp_port_entry = ttk.Entry(grid, width=8); self.smtp_port_entry.grid(row=1, column=3)
         grid.columnconfigure(1, weight=1)
 
+        # SPAM INDICATORS (NEW)
+        spam_indic_frame = ttk.LabelFrame(container, text="Estado Filtros Spam", padding=5)
+        spam_indic_frame.pack(fill='x', pady=5)
+        self.indic_heur = ttk.Label(spam_indic_frame, text="Heurístico: ⚫")
+        self.indic_heur.pack(side='left', padx=10)
+        self.indic_bayes = ttk.Label(spam_indic_frame, text="Bayesiano: ⚫")
+        self.indic_bayes.pack(side='left', padx=10)
+        self.indic_qdrant = ttk.Label(spam_indic_frame, text="Qdrant: ⚫")
+        self.indic_qdrant.pack(side='left', padx=10)
+        self.indic_ollama = ttk.Label(spam_indic_frame, text="Ollama: ⚫")
+        self.indic_ollama.pack(side='left', padx=10)
+
+        self.bayes_status_label = ttk.Label(container, text="Bayesiano: Cargando...", font=('Arial', 8, 'italic'))
+        self.bayes_status_label.pack(fill='x', padx=10)
+
+        # QUARANTINE TOGGLE (NEW)
+        self.quarantine_var = tk.BooleanVar()
+        ttk.Checkbutton(container, text="Activar Cuarentena (mover a pestaña Spam)", variable=self.quarantine_var).pack(pady=5)
+
+        # WHITE/BLACK LISTS (NEW)
+        lists_frame = ttk.Frame(container)
+        lists_frame.pack(fill='both', expand=True, pady=5)
+
+        w_frame = ttk.LabelFrame(lists_frame, text="Lista Blanca (Direcciones/Dominios)", padding=5)
+        w_frame.pack(side='left', fill='both', expand=True, padx=2)
+        self.white_list_text = tk.Text(w_frame, height=5, width=20)
+        self.white_list_text.pack(fill='both', expand=True)
+
+        b_frame = ttk.LabelFrame(lists_frame, text="Lista Negra (Bloqueados)", padding=5)
+        b_frame.pack(side='left', fill='both', expand=True, padx=2)
+        self.black_list_text = tk.Text(b_frame, height=5, width=20)
+        self.black_list_text.pack(fill='both', expand=True)
+
         # Credenciales
         cred_frame = ttk.LabelFrame(container, text="Identidad (Segura)", padding=5)
         cred_frame.pack(fill='x', pady=5)
@@ -174,7 +271,7 @@ class Pop3Gui:
         ttk.Label(cred_frame, text="Password:").grid(row=2, column=0); self.pass_entry = ttk.Entry(cred_frame, show="*"); self.pass_entry.grid(row=2, column=1, sticky='ew')
         cred_frame.columnconfigure(1, weight=1)
 
-        ttk.Button(container, text="💾 Guardar con Clave Maestra", command=self.save_config).pack(pady=10)
+        ttk.Button(container, text="💾 Guardar Configuración", command=self.save_config).pack(pady=10)
 
     # Lógica
     def initial_load(self):
@@ -208,10 +305,39 @@ class Pop3Gui:
         self.name_entry.delete(0, tk.END); self.name_entry.insert(0, self.client.display_name)
         self.user_entry.delete(0, tk.END); self.user_entry.insert(0, self.client.username or "")
 
+        # Spam settings
+        config = self.client.spam_detector.config
+        self.quarantine_var.set(config.get('quarantine_enabled', True))
+
+        self.white_list_text.delete(1.0, tk.END)
+        self.white_list_text.insert(tk.END, "\n".join(config.get('white_list', [])))
+
+        self.black_list_text.delete(1.0, tk.END)
+        self.black_list_text.insert(tk.END, "\n".join(config.get('black_list', [])))
+
+        # Indicators
+        status = self.client.spam_detector.layers_status
+        self.indic_heur.config(text=f"Heurístico: {'🟢' if status['heuristic'] else '⚫'}")
+        self.indic_bayes.config(text=f"Bayesiano: {'🟢' if status['bayesian'] else '⚫'}")
+        self.indic_qdrant.config(text=f"Qdrant: {'🟢' if status['qdrant'] else '⚫'}")
+        self.indic_ollama.config(text=f"Ollama: {'🟢' if status['ollama'] else '⚫'}")
+
+        # Bayesian details
+        model = self.client.spam_detector.model
+        threshold = config.get('bayesian_threshold', 200)
+        msg = f"Clasificador Bayesiano: {model['spam_count']} spam / {model['not_spam_count']} no-spam clasificados."
+        if not status['bayesian']:
+            msg += f" ⚠️ Poco fiable — necesitas clasificar {threshold} de cada tipo."
+        self.bayes_status_label.config(text=msg)
+
     def refresh_inbox(self):
-        self.local_emails = self.client.get_local_emails()
-        self.displayed_emails = list(self.local_emails)
-        self.update_tree()
+        def task():
+            self.local_emails, self.spam_emails = self.client.get_local_emails()
+            self.displayed_emails = list(self.local_emails)
+            self.displayed_spam_emails = list(self.spam_emails)
+            self.master.after(0, self.update_tree)
+            self.master.after(0, self.update_spam_tree)
+        threading.Thread(target=task, daemon=True).start()
 
     def update_tree(self):
         for item in self.tree.get_children(): self.tree.delete(item)
@@ -221,6 +347,14 @@ class Pop3Gui:
             icon = "🟢" if level == "safe" else "🟡" if level == "suspicious" else "🔴"
             item_id = self.tree.insert("", "end", values=(icon, em.get('date'), em.get('from'), em.get('subject')), tags=(f"Spam{level.capitalize()}",))
             self.email_id_to_data[item_id] = em
+
+    def update_spam_tree(self):
+        for item in self.spam_tree.get_children(): self.spam_tree.delete(item)
+        self.spam_id_to_data = {}
+        for em in self.displayed_spam_emails:
+            score = em.get('spam_score', 0.0)
+            item_id = self.spam_tree.insert("", "end", values=(score, em.get('date'), em.get('from'), em.get('subject')))
+            self.spam_id_to_data[item_id] = em
 
     def perform_search(self):
         q = self.search_entry.get().lower()
@@ -233,26 +367,80 @@ class Pop3Gui:
             ]
         self.update_tree()
 
+    def perform_spam_search(self):
+        q = self.spam_search_entry.get().lower()
+        if not q:
+            self.displayed_spam_emails = list(self.spam_emails)
+        else:
+            self.displayed_spam_emails = [
+                em for em in self.spam_emails
+                if q in em.get('subject','').lower() or q in em.get('from','').lower() or q in em.get('body_text','').lower()
+            ]
+        self.update_spam_tree()
+
     def on_email_select(self, event):
         selected = self.tree.selection()
         if not selected: return
         item_id = selected[0]
         email_data = self.email_id_to_data.get(item_id)
+        self._show_email(email_data, self.header_label, self.html_viewer if HAS_TKINTERWEB else self.text_viewer)
+
+    def on_spam_select(self, event):
+        selected = self.spam_tree.selection()
+        if not selected: return
+        item_id = selected[0]
+        email_data = self.spam_id_to_data.get(item_id)
+        self._show_email(email_data, self.spam_header_label, self.spam_html_viewer if HAS_TKINTERWEB else self.spam_text_viewer)
+
+    def _show_email(self, email_data, label, viewer):
         if email_data:
             spam_reasons = "\n".join(email_data.get('spam_reasons', []))
-            spam_info = f"\n[SPAM] Razones:\n{spam_reasons}" if spam_reasons else ""
+            layer_info = ", ".join([f"{k}: {v}" for k,v in email_data.get('layer_scores', {}).items()])
+            spam_info = f"\n[SPAM] Razones: {spam_reasons}\nCapas: {layer_info}" if spam_reasons else ""
 
-            self.header_label.config(text=f"De: {email_data.get('from')}\nAsunto: {email_data.get('subject')}{spam_info}")
+            label.config(text=f"De: {email_data.get('from')}\nAsunto: {email_data.get('subject')}{spam_info}")
 
             body_html = email_data.get('body_html', '')
             body_text = email_data.get('body_text', '')
 
             if HAS_TKINTERWEB:
-                self.html_viewer.load_html(body_html if body_html else f"<html><body><pre>{body_text}</pre></body></html>")
+                viewer.load_html(body_html if body_html else f"<html><body><pre>{body_text}</pre></body></html>")
             else:
-                self.text_viewer.config(state='normal'); self.text_viewer.delete(1.0, tk.END)
+                viewer.config(state='normal'); viewer.delete(1.0, tk.END)
                 clean_text = body_text if body_text else SpamDetector.strip_tags(body_html)
-                self.text_viewer.insert(tk.END, clean_text); self.text_viewer.config(state='disabled')
+                viewer.insert(tk.END, clean_text); viewer.config(state='disabled')
+
+    def spam_action(self, action):
+        selected = self.spam_tree.selection()
+        if not selected:
+            messagebox.showwarning("Selección", "Selecciona un correo de la lista de Spam.")
+            return
+
+        item_id = selected[0]
+        email_data = self.spam_id_to_data.get(item_id)
+        uid = email_data.get('uid')
+
+        def task():
+            if action == "delete":
+                if messagebox.askyesno("Confirmar", "¿Seguro que quieres eliminar este correo permanentemente?"):
+                    if self.client.delete_email(uid):
+                        self.master.after(0, self.refresh_inbox)
+            elif action == "deliver":
+                self.client.spam_detector.record_feedback(uid, "not_spam", email_data)
+                # En esta v1, mover a bandeja es simplemente que al refrescar ya no sea clasificado igual o lo manejamos manual
+                # Para forzar que aparezca en bandeja, lo movemos en el detector (simulado)
+                messagebox.showinfo("Acción", "Correo marcado para entregar. Refrescando...")
+                self.master.after(0, self.refresh_inbox)
+            elif action == "confirm":
+                self.client.spam_detector.record_feedback(uid, "confirmed_spam", email_data)
+                messagebox.showinfo("Acción", "Spam confirmado.")
+                self.master.after(0, self.refresh_inbox)
+            elif action == "not_spam":
+                self.client.spam_detector.record_feedback(uid, "false_positive", email_data)
+                messagebox.showinfo("Acción", "Marcado como Falso Positivo. Refrescando...")
+                self.master.after(0, self.refresh_inbox)
+
+        threading.Thread(target=task, daemon=True).start()
 
     def send_email(self):
         if not self.client.username or not self.client.password:
@@ -279,26 +467,19 @@ class Pop3Gui:
         def log(msg): self.master.after(0, lambda: (self.diag_output.insert(tk.END, msg + "\n"), self.diag_output.see(tk.END)))
         def task():
             log(f"--- Diagnóstico {datetime.now().strftime('%H:%M:%S')} ---")
-
-            # POP3
             log(f"Probando POP3: {self.client.pop_server}:{self.client.pop_port}")
             try:
                 s = socket.create_connection((self.client.pop_server, self.client.pop_port), 10); s.close(); log("✅ Conectividad TCP POP3 OK")
                 p = poplib.POP3_SSL(self.client.pop_server, self.client.pop_port, timeout=10); log("✅ SSL Handshake POP3 OK")
                 p.user(self.client.username); p.pass_(self.client.password); log("✅ Autenticación POP3 OK"); p.quit()
             except Exception as e: log(f"❌ Error POP3: {e}")
-
-            # SMTP
             log(f"\nProbando SMTP: {self.client.smtp_server}:{self.client.smtp_port}")
             try:
                 s = socket.create_connection((self.client.smtp_server, self.client.smtp_port), 10); s.close(); log("✅ Conectividad TCP SMTP OK")
                 success, msg = self.client.test_smtp_auth()
-                if success:
-                    log("✅ Autenticación SMTP OK")
-                else:
-                    log(f"❌ Error Autenticación SMTP: {msg}")
+                if success: log("✅ Autenticación SMTP OK")
+                else: log(f"❌ Error Autenticación SMTP: {msg}")
             except Exception as e: log(f"❌ Error SMTP: {e}")
-
             log("\n--- Fin del diagnóstico ---")
             self.master.after(0, lambda: self.diag_output.config(state='disabled'))
         threading.Thread(target=task, daemon=True).start()
@@ -309,6 +490,7 @@ class Pop3Gui:
         else: messagebox.showwarning("Detección", "No se encontró el dominio.")
 
     def save_config(self):
+        # Update client settings
         self.client.pop_server = self.pop_serv_entry.get()
         self.client.pop_port = int(self.pop_port_entry.get())
         self.client.smtp_server = self.smtp_serv_entry.get()
@@ -316,13 +498,28 @@ class Pop3Gui:
         self.client.display_name = self.name_entry.get()
         user = self.user_entry.get(); pwd = self.pass_entry.get()
 
-        m_key = simpledialog.askstring("Clave Maestra", "Crea/Confirma tu clave maestra para cifrar los datos:", show='*')
-        if m_key and len(m_key) >= 8:
-            if self.client.credential_manager.save_credentials(user, pwd, self.client.display_name, m_key):
-                self.client.username = user; self.client.password = pwd; self.master_key = m_key
-                messagebox.showinfo("Éxito", "Configuración guardada de forma segura.")
-            else: messagebox.showerror("Error", "No se pudo guardar.")
-        else: messagebox.showerror("Error", "La clave maestra debe tener al menos 8 caracteres.")
+        # Update Spam Detector settings
+        self.client.spam_detector.config['quarantine_enabled'] = self.quarantine_var.get()
+        self.client.spam_detector.config['white_list'] = [line.strip() for line in self.white_list_text.get(1.0, tk.END).splitlines() if line.strip()]
+        self.client.spam_detector.config['black_list'] = [line.strip() for line in self.black_list_text.get(1.0, tk.END).splitlines() if line.strip()]
+        self.client.spam_detector.save_config()
+
+        # Ask master key only if credentials changed OR if we don't have it
+        if user != self.client.username or pwd != self.client.password or not self.master_key:
+            m_key = simpledialog.askstring("Clave Maestra", "Crea/Confirma tu clave maestra para cifrar los datos:", show='*')
+            if m_key and len(m_key) >= 8:
+                if self.client.credential_manager.save_credentials(user, pwd, self.client.display_name, m_key):
+                    self.client.username = user; self.client.password = pwd; self.master_key = m_key
+                    messagebox.showinfo("Éxito", "Configuración guardada.")
+                else: messagebox.showerror("Error", "No se pudo guardar.")
+            elif m_key: messagebox.showerror("Error", "La clave maestra debe tener al menos 8 caracteres.")
+            else: return # Cancelled
+        else:
+            # Update credentials file with existing key
+            self.client.credential_manager.save_credentials(user, pwd, self.client.display_name, self.master_key)
+            messagebox.showinfo("Éxito", "Configuración guardada.")
+
+        self.update_config_ui()
 
     def attach_files(self):
         f = filedialog.askopenfilenames(); self.attachments.extend(f)

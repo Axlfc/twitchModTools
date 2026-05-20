@@ -13,6 +13,7 @@ import datetime
 import hashlib
 import base64
 import re
+import shutil
 from pathlib import Path
 from email.header import decode_header
 from email.mime.text import MIMEText
@@ -182,6 +183,7 @@ class EmailClient:
         self.username = None
         self.password = None
         self.display_name = ""
+        self.spam_detector = SpamDetector()
 
         env_loader = EnvLoader()
         env_loader.load_env_file('.env')
@@ -342,6 +344,13 @@ class EmailClient:
                 payload = email_obj.get_payload(decode=True)
                 if payload: email_data['body_text'] = payload.decode('utf-8', errors='ignore')
 
+            # Pre-análisis de spam al guardar para cachear el resultado
+            analysis = self.spam_detector.analyze(email_data)
+            email_data['spam_score'] = analysis['score']
+            email_data['spam_level'] = analysis['level']
+            email_data['spam_reasons'] = analysis['reasons']
+            email_data['layer_scores'] = analysis.get('layer_scores', {})
+
             json_filename = f"email_{email_id:04d}.json" if not uid else "email_data.json"
             with open(email_folder / json_filename, 'w', encoding='utf-8') as f:
                 json.dump(email_data, f, ensure_ascii=False, indent=2)
@@ -383,11 +392,15 @@ class EmailClient:
         finally:
             server.quit()
 
-    def get_local_emails(self):
-        """Cargar emails guardados localmente"""
-        emails = []
+    def get_local_emails(self, re_analyze=False):
+        """Cargar emails guardados localmente y separarlos en Bandeja y Spam"""
+        inbox_emails = []
+        spam_emails = []
+
         if not self.backup_dir.exists():
-            return emails
+            return inbox_emails, spam_emails
+
+        quarantine_enabled = self.spam_detector.config.get('quarantine_enabled', True)
 
         for folder in sorted(self.backup_dir.glob('email_*'), reverse=True):
             if folder.is_dir():
@@ -396,15 +409,40 @@ class EmailClient:
                     try:
                         with open(json_files[0], 'r', encoding='utf-8') as f:
                             data = json.load(f)
-                            # Inyectar análisis de spam al cargar
-                            analysis = SpamDetector.analyze(data)
-                            data['spam_score'] = analysis['score']
-                            data['spam_level'] = analysis['level']
-                            data['spam_reasons'] = analysis['reasons']
-                            emails.append(data)
+
+                            # Si no tiene info de spam o se pide re-analizar (ej. al cambiar config)
+                            if re_analyze or 'spam_level' not in data:
+                                analysis = self.spam_detector.analyze(data)
+                                data['spam_score'] = analysis['score']
+                                data['spam_level'] = analysis['level']
+                                data['spam_reasons'] = analysis['reasons']
+                                data['layer_scores'] = analysis.get('layer_scores', {})
+
+                            if data['spam_level'] == "spam":
+                                if quarantine_enabled:
+                                    spam_emails.append(data)
+                                else:
+                                    subject = data.get('subject', '')
+                                    if not subject.startswith("[CUARENTENA]"):
+                                        data['subject'] = f"[CUARENTENA] {subject}"
+                                    inbox_emails.append(data)
+                            else:
+                                inbox_emails.append(data)
                     except:
                         continue
-        return emails
+        return inbox_emails, spam_emails
+
+    def delete_email(self, uid):
+        """Eliminar un email localmente"""
+        email_folder = self.backup_dir / f"email_{uid}"
+        if email_folder.exists() and email_folder.is_dir():
+            try:
+                shutil.rmtree(email_folder)
+                return True
+            except Exception as e:
+                print(f"❌ Error eliminando carpeta {email_folder}: {e}")
+                return False
+        return False
 
 
 if __name__ == "__main__":
